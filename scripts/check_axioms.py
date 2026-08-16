@@ -34,6 +34,16 @@ CONTRACT_THEOREMS = [
     # Part C
     "PlufWO1.closure_span_inter_block",
     "PlufWO1.noblock",
+    # WO-2, Part D
+    "PlufWO2.countable_supp",
+    "PlufWO2.coordCLM_apply",
+    "PlufWO2.mem_block_iff",
+    "PlufWO2.isClosed_block",
+    "PlufWO2.evec_mem_block",
+    # WO-2, Parts E and F
+    "PlufWO2.exact_paving",
+    "PlufWO2.exact_dichotomy",
+    "PlufWO2.block_filter_decides",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]

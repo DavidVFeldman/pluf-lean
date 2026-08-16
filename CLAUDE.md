@@ -58,18 +58,27 @@ GitHub release tag → Zenodo archival.
 
 | Result (paper) | Lean name | WO | Status |
 |---|---|---|---|
-| Paper II Lemma 3.6 (thinness) | `PlufWO1.thin` | WO-1 | awaiting first CI run |
-| Paper II Prop 3.7 (no disjointly supported blocker) | `PlufWO1.noblock` | WO-1 | awaiting first CI run |
-| Paper III Lemma 5.2 (normal ⇒ σ-Q, minima form) | `PlufWO1.minima_mem_of_fodor` (+ `sigmaQ_of_fodor`) | WO-1 | awaiting first CI run |
-| supporting: σ-Q equivalences, transversal escape, W/block infrastructure, C1 | Part A/B/C | WO-1 | awaiting first CI run |
+| Paper II Lemma 3.6 (thinness) | `PlufWO1.thin` | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
+| Paper II Prop 3.7 (no disjointly supported blocker) | `PlufWO1.noblock` | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
+| Paper III Lemma 5.2 (normal ⇒ σ-Q, minima form) | `PlufWO1.minima_mem_of_fodor` (+ `sigmaQ_of_fodor`) | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
+| supporting: σ-Q equivalences, transversal escape, W/block infrastructure, C1 | Part A/B/C | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
+
+Axiom footprint of every WO-1 theorem: `propext`, `Classical.choice`,
+`Quot.sound` (build-log artifact of CI run #1).
+
+| Paper III Thm 2.1 (exact paving) | `PlufWO2.exact_paving` | WO-2 | awaiting CI run #2 |
+| Paper III Thm 3.1 (exact dichotomy) | `PlufWO2.exact_dichotomy` | WO-2 | awaiting CI run #2 |
+| Paper III Cor 3.2, lattice half | `PlufWO2.block_filter_decides` | WO-2 | awaiting CI run #2 |
+| supporting: κ-infrastructure (countable supports, blocks, coordCLM at κ) | `PlufWO2` Part D | WO-2 | awaiting CI run #2 |
 
 Everything else in Papers I–III is **hand-checked only**. In particular:
 nothing of Paper I; Theorems A, C (both directions; sufficiency consumes
 Mathias's theorem, absent from Mathlib — WO-era statements must be
 hypothesis-parametrized), D, E, the blocking lemma and Theorem CH; at κ,
-Theorems F, G, Corollary H, MSS-free existence, Theorem J. WO-2 target of
-choice: Theorems F/G at κ (diagonal intersections + countable support; low
-analytic risk).
+the filter-language packaging of Corollary 3.2, MSS-free existence, and
+Theorem J. (Exact paving and the exact dichotomy at κ are WO-2.) Next WO
+candidates: the κ-witness Proposition 5.3's Hilbert half in ℓ²(κ), or
+Paper II's Theorem C necessity witness computations at ω.
 
 ## Known mathematical debts (do not lose)
 

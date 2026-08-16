@@ -24,8 +24,13 @@ finished.
   blocker** proposition (Paper II, Prop. 3.7).
 - `RequestProject/PlufWO1.lean` — root; runs `#print axioms` on all sixteen
   contract theorems.
-- `workorders/WO1/` — the commission trail: work-order input tarball,
-  Aristotle's census/report and summary.
+- `RequestProject/PlufWO2.lean` — WO-2 (root file; imports the WO-1 root, so
+  building it runs both audits): ℓ²(κ) infrastructure for an arbitrary index
+  type, **exact paving** along a diagonal-intersection-closed ultrafilter
+  (Paper III, Thm 2.1), and the **exact dichotomy** with its
+  maximality-shaped corollary (Paper III, Thm 3.1 / Cor 3.2).
+- `workorders/WO1/`, `workorders/WO2/` — the commission trails: work-order
+  input tarballs, Aristotle's census/reports and summaries.
 
 Formalization executed by **Aristotle** (Harmonic) against work order WO-1;
 source-audited by hand; independently compiled by the CI in this repo.
