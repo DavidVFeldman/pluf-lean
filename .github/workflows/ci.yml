@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install elan (Lean toolchain manager)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Show pinned toolchain
+        run: cat lean-toolchain
+
+      - name: Fetch Mathlib build cache
+        run: lake exe cache get
+
+      - name: Build (capturing log for the axiom audit)
+        run: |
+          set -o pipefail
+          lake build 2>&1 | tee build.log
+
+      - name: Axiom audit (whitelist propext, Classical.choice, Quot.sound)
+        run: python3 scripts/check_axioms.py build.log
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
