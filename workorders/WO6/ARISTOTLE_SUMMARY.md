@@ -1,0 +1,18 @@
+# Summary of changes for run 6f3dc177-a858-4820-abb0-b55a9d521e36
+WO-6 is now complete: the artifact compiles end to end, every contract item is returned, and the census/report deliverable exists.
+
+**What I did this session**
+
+1. **Closed the contract file.** `RequestProject/PlufWO6.lean` previously carried 18 `sorry`s while the mathematics sat in the `RequestProject/PlufWO6/` modules. It is now the contract roll-up: it imports the whole development, records the status of each of the eighteen items, preserves verbatim (in comments) every contracted statement whose returned form differs, and runs the `#print axioms` audit. There is no `sorry`, `admit`, `axiom` or `native_decide` anywhere in the project, and every audited theorem reports exactly `[propext, Classical.choice, Quot.sound]`. `lake build` is clean for the entire project, so all prior work-order modules remain green.
+
+2. **Strengthened E2 to the contracted form.** `face_iff_sandwich` no longer needs a nonzero-space hypothesis: over the zero space the statement is vacuous, no normalized functional existing there. It is now returned exactly as contracted.
+
+3. **Returned F2.** The contracted hypothesis (round-slice property along every pluf containing the blocks of an ultrafilter) yields only *some* member with small Rayleigh oscillation and never identifies it with a block, so the contracted shape is not derivable without the quarantined Marcus–Spielman–Srivastava theorem. I proved the honest content of the converse instead: `ks_of_blockRSP` — block-witnessed round-slice property for every operator implies the paving statement `KSHyp U`.
+
+4. **Delivered the separate Part D item (Lemma 3.1, ellipsoid phrasing)** in a new module, in addition to — not instead of — the contracted Rayleigh form: for a coercive positive operator, the minor radius of the ellipsoid slice is the inverse square root of the upper Rayleigh value, the major radius the inverse square root of the lower one, and the eccentricity the square root of their ratio; plus `rsp_iff_rspEcc`, showing the contracted round-slice property and the paper's eccentricity form are the same property.
+
+5. **Completed Proposition 3.3 beyond the contract**: the face of states cut out by a pluf is convex, weak-\* closed, and weak-\* compact (Banach–Alaoglu, together with the fact that a state has dual norm at most one).
+
+6. **Wrote `REPORT-WO6.md`**, the commission's census deliverable: what Mathlib supplies and what it lacks; both gate verdicts (Part C topology packaging — passed, all four clauses of Proposition 2.4 delivered; Part E states — passed, with an assessment of the `IsState` rendering, which is retained since Mathlib has no state theory applicable to the operators of a real Hilbert space); the item-by-item report with each marked minimal repair and its formalized counterexample; the Part B outcome (the contracted statement is false for the empty family, and the printed three-lines argument does not close — the returned proof runs through a triple of subspaces meeting pairwise trivially and pairwise spanning, which exists in the paper's H but cannot exist in odd finite dimension, a caveat reported rather than concealed); the D-form decision; the F2 analysis; and recommendations for the remaining commissions.
+
+**Outcome by item:** nine returned exactly as contracted (A2, A3, A4, D1, E2, E3, F1, G1, G2), eight with a counterexample-licensed minimal repair (A1, A5, B1, C1, C2, D2, E1, E4), and F2 with the repaired hypothesis described above. Two residues are flagged in the report and not claimed: Proposition 2.3 in odd finite dimension, and real GNS/pure-state theory.

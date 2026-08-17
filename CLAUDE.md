@@ -63,16 +63,46 @@ GitHub release tag → Zenodo archival.
 | Paper III Lemma 5.2 (normal ⇒ σ-Q, minima form) | `PlufWO1.minima_mem_of_fodor` (+ `sigmaQ_of_fodor`) | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 | supporting: σ-Q equivalences, transversal escape, W/block infrastructure, C1 | Part A/B/C | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 
-Axiom footprint of every WO-1–WO-4 theorem (65 in all, including the
-formalized I3 counterexample and the WO-4 auxiliaries): `propext`,
-`Classical.choice`, `Quot.sound` (build-log artifacts of CI runs #1–#4).
+Axiom footprint of every WO-1–WO-5 theorem (82 in all, including the three
+formalized counterexamples/obstructions): `propext`, `Classical.choice`,
+`Quot.sound` (build-log artifacts of CI runs #1–#5).
 
-| Paper II Thm 2.1 + Cor 2.2 (gliding hump; relativized dichotomy) | `PlufWO5.gliding_hump`, `relativized_dichotomy` | WO-5 | awaiting CI run #5 |
-| Paper II Lemma 3.2 (membership/addability criteria) | `PlufWO5` Part B | WO-5 | awaiting CI run #5 |
-| Paper II Thm 3.4 necessity (witness unadded + addable) | `PlufWO5.necessity` (+C1, C2) | WO-5 | awaiting CI run #5 |
-| Paper II Thm 3.4 sufficiency (Mathias-parametrized) | `PlufWO5.decides_of_mathias` | WO-5 | awaiting CI run #5 |
-| Paper II Thm 4.1 (Gowers's intimate subspace, all three clauses) | `PlufWO5` Part D | WO-5 | awaiting CI run #5 |
-| Paper II Thm 5.1 + Cor 5.2(a) (diagonalizable ⟺ intimate; package form) | `PlufWO5.diagonalizable_iff_intimate`, repaired E2 | WO-5 | awaiting CI run #5 |
+| Paper I Lemma 2.1 + converse (maximality criterion) | `PlufWO6.maximality_criterion`, `isPluf_of_criterion` | WO-6 | awaiting CI run #6 |
+| Paper I Lemma 2.2 (finite-dim, principality, finite codim) | `PlufWO6` Part A | WO-6 | awaiting CI run #6 |
+| Paper I Prop 2.3 (no prime filters) — **in H only** | `PlufWO6.no_prime_filter` (+`not_prime_of_triple`) | WO-6 | awaiting CI run #6 |
+| Paper I Prop 2.4 (topology: Hausdorff, zero-dim, isolated/dense, non-compact) | `PlufWO6` PartCTop | WO-6 | awaiting CI run #6 |
+| Paper I Lemma 3.1 (ellipsoid radii) + Prop 3.2 (gap criterion) | `PlufWO6` PartD/PartDEllipsoid | WO-6 | awaiting CI run #6 |
+| Paper I Prop 3.3/3.4 (state face: nonempty, sandwich, face, convex, weak-* compact, RSP ⟺ singleton) | `PlufWO6` PartE/PartECompact | WO-6 | awaiting CI run #6 |
+| Paper I Thm 4.1 (KS-parametrized) + partial converse | `PlufWO6.rsp_of_ks`, `ks_of_blockRSP` | WO-6 | awaiting CI run #6 |
+| **Package discharge** → Paper II Thm 5.1 as printed | `PlufWO6.plufPackage_of_isPluf`, `diagonalizable_iff_intimate_pluf` | WO-6 | awaiting CI run #6 |
+
+**WO-6 ratifications (2026-08-17):** six `[Nontrivial E]` repairs (A1, A5,
+C2, D2, E1, E4) against the zero-space counterexample — the empty family is
+vacuously a pluf there; matches the paper's standing hypothesis on H. C1
+repaired with closedness hypotheses (counterexample: non-closed span of the
+basis). B1 repaired with `π.Nonempty`. **B1 major finding: Paper I's printed
+proof of Prop 2.3 does not close** — primeness does not put the spanning
+plane into the filter. Replacement argument (`not_prime_of_triple`): a
+triple pairwise-meeting-trivially with pairwise joins dense; realized in H by
+even block / odd block / diagonal subspace. Such a triple cannot exist in odd
+finite dimension, so the general "rank ≥ 3" claim is NOT established by this
+route (Kochen–Specker backstop; separate item if wanted). **Paper I edit made
+2026-08-17.** F2 repaired to `ks_of_blockRSP` (block-witnessed RSP ⇒ KSHyp);
+contracted shape needs MSS. Beyond contract: ellipsoid form of Lemma 3.1 plus
+`rsp_iff_rspEcc`, and weak-* compactness of the face.
+
+**Gate verdicts:** Part C topology packaging PASSED (cheap). Part E states
+PASSED — Mathlib has no usable state theory for real B(H), so the contracted
+`IsState` rendering is retained and suffices; Hahn–Banach via
+`exists_extension_of_le_sublinear`. **WO-8 is commissionable**, with GNS/pure
+states budgeted separately (absent from Mathlib, substantial).
+
+| Paper II Thm 2.1 + Cor 2.2 (gliding hump; relativized dichotomy) | `PlufWO5.gliding_hump`, `relativized_dichotomy` | WO-5 | **verified** (CI #5, 2026-08-17) |
+| Paper II Lemma 3.2 (membership/addability criteria) | `PlufWO5` Part B | WO-5 | **verified** (CI #5, 2026-08-17) |
+| Paper II Thm 3.4 necessity (witness unadded + addable) | `PlufWO5.necessity` (+C1, C2) | WO-5 | **verified** (CI #5, 2026-08-17) |
+| Paper II Thm 3.4 sufficiency (Mathias-parametrized) | `PlufWO5.decides_of_mathias` | WO-5 | **verified** (CI #5, 2026-08-17) |
+| Paper II Thm 4.1 (Gowers's intimate subspace, all three clauses) | `PlufWO5` Part D | WO-5 | **verified** (CI #5, 2026-08-17) |
+| Paper II Thm 5.1 + Cor 5.2(a) (diagonalizable ⟺ intimate; package form) | `PlufWO5.diagonalizable_iff_intimate`, repaired E2 | WO-5 | **verified** (CI #5, 2026-08-17) |
 
 **WO-5 ratifications (2026-08-17):** E2 contract FALSE — `PhiOmega`
 members need not be closed while package members are; obstruction
@@ -136,11 +166,11 @@ Everything else in Papers I–III is **hand-checked only**. In particular:
 nothing of Paper I; Theorems A, C (both directions; sufficiency consumes
 Mathias's theorem, absent from Mathlib — WO-era statements must be
 hypothesis-parametrized), D, E, the blocking lemma and Theorem CH; at κ,
-MSS-free existence and Theorem J (state-theoretic; consume Blecher–Weaver
-excision, out of scope until that theory exists in Mathlib). Paper III's
-lattice level is now fully covered by WO-1–WO-3. Next WO candidate:
-Paper II's Theorem C necessity witness at ω (requires the finite-codimension
-membership calculus of lem:criteria).
+Paper III §§4–5 and Paper I §6 residue (WO-8, now commissionable per the
+WO-6 Part E gate); Paper I §5 and Paper II Thm 5.4 (WO-7, the transfinite
+constructions, gated on essential-spectrum and `HilbertBasis`
+infrastructure); Paper II Props 5.5–5.6 (same infrastructure); Prop 2.3 in
+odd finite dimension (Kochen–Specker route).
 
 ## Known mathematical debts (do not lose)
 
