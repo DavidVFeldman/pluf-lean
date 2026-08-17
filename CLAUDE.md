@@ -63,18 +63,39 @@ GitHub release tag → Zenodo archival.
 | Paper III Lemma 5.2 (normal ⇒ σ-Q, minima form) | `PlufWO1.minima_mem_of_fodor` (+ `sigmaQ_of_fodor`) | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 | supporting: σ-Q equivalences, transversal escape, W/block infrastructure, C1 | Part A/B/C | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 
-Axiom footprint of every WO-1–WO-5 theorem (82 in all, including the three
-formalized counterexamples/obstructions): `propext`, `Classical.choice`,
-`Quot.sound` (build-log artifacts of CI runs #1–#5).
+Axiom footprint of every merged theorem (149 after WO-7a; 133 verified through
+CI run #7), including all formalized counterexamples and obstructions:
+`propext`, `Classical.choice`, `Quot.sound`.
 
-| Paper I Lemma 2.1 + converse (maximality criterion) | `PlufWO6.maximality_criterion`, `isPluf_of_criterion` | WO-6 | awaiting CI run #6 |
-| Paper I Lemma 2.2 (finite-dim, principality, finite codim) | `PlufWO6` Part A | WO-6 | awaiting CI run #6 |
-| Paper I Prop 2.3 (no prime filters) — **in H only** | `PlufWO6.no_prime_filter` (+`not_prime_of_triple`) | WO-6 | awaiting CI run #6 |
-| Paper I Prop 2.4 (topology: Hausdorff, zero-dim, isolated/dense, non-compact) | `PlufWO6` PartCTop | WO-6 | awaiting CI run #6 |
-| Paper I Lemma 3.1 (ellipsoid radii) + Prop 3.2 (gap criterion) | `PlufWO6` PartD/PartDEllipsoid | WO-6 | awaiting CI run #6 |
-| Paper I Prop 3.3/3.4 (state face: nonempty, sandwich, face, convex, weak-* compact, RSP ⟺ singleton) | `PlufWO6` PartE/PartECompact | WO-6 | awaiting CI run #6 |
-| Paper I Thm 4.1 (KS-parametrized) + partial converse | `PlufWO6.rsp_of_ks`, `ks_of_blockRSP` | WO-6 | awaiting CI run #6 |
-| **Package discharge** → Paper II Thm 5.1 as printed | `PlufWO6.plufPackage_of_isPluf`, `diagonalizable_iff_intimate_pluf` | WO-6 | awaiting CI run #6 |
+| Paper I Prop 2.3 **in every dimension ≥ 2**, no Kochen–Specker input | `PlufWO7a.no_prime_filter_of_finrank_ge_two` (+`exists_pair_sup_top_notMem`) | WO-7a | awaiting CI run #8 |
+| WO-7 scoping probes (essential spectrum, bases, ω₁-recursion) | `PlufWO7a` (16 audited) | WO-7a | awaiting CI run #8 |
+
+**WO-7a findings (2026-08-17):** **target (d) closed** — a prime filter in
+finite dimension is principal at a line `ℝv` (Lemma 2.2), and `P = ℝw ⊕ C`,
+`Q = ℝ(v+w) ⊕ C` join to `⊤` while omitting `v`; parity and Kochen–Specker are
+both unnecessary, dimension ≥ 2 suffices. **Paper I erratum applied.** Probe Q2
+(arbitrary-index basis assembly) is FALSE — counterexample formalized; the
+corrected separable/countable form is what Paper II Prop 5.6 actually needs, so
+the paper is unaffected. **Earlier census verdict revised: the `HilbertBasis`
+API is adequate**, and coordinate blocks generalize to arbitrary bases free
+(Q4). Confirmed absent: essential spectrum, Calkin, Fredholm, **Borel
+functional calculus** — but a substitute was found and proved (closed spans of
+rapidly-decaying orthonormal approximate-eigenvector sequences replace the
+spectral subspaces in Paper I's escape and blocking lemmas), the largest cost
+saving of the census. ω₁-recursion needs no successor/limit split; friction is
+universe lifting. Costs, in commissions: (d) done; (a) Paper II Props 5.5/6.1
+≈ 0.5; (c) Paper II Thm 5.4 ≈ 2–2.5; (b) Paper I §5 ≈ 3–4, with a
+recommendation to quarantine the blocking lemma as a named hypothesis if the
+budget binds, and against formalizing Borel functional calculus.
+
+| Paper I Lemma 2.1 + converse (maximality criterion) | `PlufWO6.maximality_criterion`, `isPluf_of_criterion` | WO-6 | **verified** (CI #6, 2026-08-17) |
+| Paper I Lemma 2.2 (finite-dim, principality, finite codim) | `PlufWO6` Part A | WO-6 | **verified** (CI #6, 2026-08-17) |
+| Paper I Prop 2.3 (no prime filters) — **in H only** | `PlufWO6.no_prime_filter` (+`not_prime_of_triple`) | WO-6 | **verified** (CI #6, 2026-08-17) |
+| Paper I Prop 2.4 (topology: Hausdorff, zero-dim, isolated/dense, non-compact) | `PlufWO6` PartCTop | WO-6 | **verified** (CI #6, 2026-08-17) |
+| Paper I Lemma 3.1 (ellipsoid radii) + Prop 3.2 (gap criterion) | `PlufWO6` PartD/PartDEllipsoid | WO-6 | **verified** (CI #6, 2026-08-17) |
+| Paper I Prop 3.3/3.4 (state face: nonempty, sandwich, face, convex, weak-* compact, RSP ⟺ singleton) | `PlufWO6` PartE/PartECompact | WO-6 | **verified** (CI #6, 2026-08-17) |
+| Paper I Thm 4.1 (KS-parametrized) + partial converse | `PlufWO6.rsp_of_ks`, `ks_of_blockRSP` | WO-6 | **verified** (CI #6, 2026-08-17) |
+| **Package discharge** → Paper II Thm 5.1 as printed | `PlufWO6.plufPackage_of_isPluf`, `diagonalizable_iff_intimate_pluf` | WO-6 | **verified** (CI #6, 2026-08-17) |
 
 **WO-6 ratifications (2026-08-17):** six `[Nontrivial E]` repairs (A1, A5,
 C2, D2, E1, E4) against the zero-space counterexample — the empty family is
@@ -91,9 +112,9 @@ route (Kochen–Specker backstop; separate item if wanted). **Paper I edit made
 contracted shape needs MSS. Beyond contract: ellipsoid form of Lemma 3.1 plus
 `rsp_iff_rspEcc`, and weak-* compactness of the face.
 
-| Paper III Thm 4.1 (φ_U singular, countably additive, pure) | `PlufWO8` Parts A–D | WO-8 | awaiting CI run #7 |
-| Paper III Thm 4.2 (countably additive pure state ⇒ pluf) | `PlufWO8.isPluf_oneSet` (+E1–E4) | WO-8 | awaiting CI run #7 |
-| Paper I §6 / Paper III: 1-set of φ_U = Φ(U) | `PlufWO8.oneSet_phiLim_eq_PhiU` | WO-8 | awaiting CI run #7 |
+| Paper III Thm 4.1 (φ_U singular, countably additive, pure) | `PlufWO8` Parts A–D | WO-8 | **verified** (CI #7, 2026-08-17) |
+| Paper III Thm 4.2 (countably additive pure state ⇒ pluf) | `PlufWO8.isPluf_oneSet` (+E1–E4) | WO-8 | **verified** (CI #7, 2026-08-17) |
+| Paper I §6 / Paper III: 1-set of φ_U = Φ(U) | `PlufWO8.oneSet_phiLim_eq_PhiU` | WO-8 | **verified** (CI #7, 2026-08-17) |
 
 **WO-8 ratifications (2026-08-17):** no false contracts. Four elaboration
 repairs (`Submodule.starProjection` needs `[HasOrthogonalProjection]` as a

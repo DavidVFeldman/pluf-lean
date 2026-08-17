@@ -161,6 +161,23 @@ CONTRACT_THEOREMS = [
     "PlufWO8.oneSet_phiLim_eq_PhiU",
     "PlufWO8.phiLim_finiteRank_eq_zero",
     "PlufWO8.phiLim_compact_eq_zero",
+    # WO-7a (scoping probes; incl. target (d) closed and the Q2 refutation)
+    "PlufWO7a.tendsto_norm_proj_finiteDimensional_of_weaklyNull",
+    "PlufWO7a.exists_weyl_sequence_in_orthogonal",
+    "PlufWO7a.essSpec_le_of_finCodim",
+    "PlufWO7a.tendsto_inner_of_orthonormal",
+    "PlufWO7a.exists_orthonormal_approx_eigenvectors",
+    "PlufWO7a.isClosed_essSpec",
+    "PlufWO7a.countable_of_orthonormal",
+    "PlufWO7a.hilbertBasis_nat_of_decomposition_false",
+    "PlufWO7a.exists_countable_hilbertBasis_of_decomposition",
+    "PlufWO7a.hilbertBasis_reindex",
+    "PlufWO7a.mem_blockB_iff",
+    "PlufWO7a.exists_enumeration_of_CH",
+    "PlufWO7a.exists_omega1_chain",
+    "PlufWO7a.exists_pair_sup_top_notMem",
+    "PlufWO7a.no_prime_filter_of_finrank_ge_two",
+    "PlufWO7a.no_prime_filter_odd_finrank",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]
