@@ -90,6 +90,24 @@ CONTRACT_THEOREMS = [
     "PlufWO4.fullSelectorAll_of_fodor",
     "PlufWO4.not_fullSelectorAll_fubini",
     "PlufWO4.fullSelectorAll_map_iff",
+    # WO-5 (Paper II, Parts A-E) plus the formalized E2 obstruction
+    "PlufWO5.gliding_hump",
+    "PlufWO5.relativized_dichotomy",
+    "PlufWO5.dense_zero_set",
+    "PlufWO5.phiOmega_iff_finCodim",
+    "PlufWO5.addable_iff_infDim",
+    "PlufWO5.bot_not_phiOmega",
+    "PlufWO5.witness_not_mem",
+    "PlufWO5.witness_infDim",
+    "PlufWO5.necessity",
+    "PlufWO5.decides_of_mathias",
+    "PlufWO5.isClosed_gowersX",
+    "PlufWO5.gowersX_intimate",
+    "PlufWO5.gowersX_dim_bound",
+    "PlufWO5.gowersX_no_finCodim",
+    "PlufWO5.diagonalizable_iff_intimate",
+    "PlufWO5.diagonalizable_iff_extends_phiOmega",
+    "PlufWO5.exists_phiOmega_not_isClosed",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]

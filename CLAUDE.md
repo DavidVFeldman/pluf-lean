@@ -63,16 +63,38 @@ GitHub release tag → Zenodo archival.
 | Paper III Lemma 5.2 (normal ⇒ σ-Q, minima form) | `PlufWO1.minima_mem_of_fodor` (+ `sigmaQ_of_fodor`) | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 | supporting: σ-Q equivalences, transversal escape, W/block infrastructure, C1 | Part A/B/C | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 
-Axiom footprint of every WO-1/WO-2/WO-3 theorem (39 in all, including the
-formalized I3 counterexample): `propext`, `Classical.choice`, `Quot.sound`
-(build-log artifacts of CI runs #1–#3).
+Axiom footprint of every WO-1–WO-4 theorem (65 in all, including the
+formalized I3 counterexample and the WO-4 auxiliaries): `propext`,
+`Classical.choice`, `Quot.sound` (build-log artifacts of CI runs #1–#4).
 
-| Paper IV Thm 3.1 (injectivity on a square) | `PlufWO4.inj_on_pairs` (+12 patterns via `exists_avoiding_homog`) | WO-4 | awaiting CI run #4 |
-| Paper IV Thm 4.1 (exact paving for the product) | `PlufWO4.EPP_fubini` | WO-4 | awaiting CI run #4 |
-| Paper IV Prop 2.3 (product ≇ Fodor/normal) | `PlufWO4.fubini_not_iso_fodor` (+B4–B6) | WO-4 | awaiting CI run #4 |
-| Paper IV Cor 3.2 (product is σ-Q) | `PlufWO4.sigmaQ_fubini` | WO-4 | awaiting CI run #4 |
-| Paper IV Thm 5.2 + Cor 5.3 (EPP transfer; product decides) | `PlufWO4` Part C | WO-4 | awaiting CI run #4 |
-| Paper IV §6 (gen. thinness, support, Baire spread) | `PlufWO4` Part D | WO-4 | awaiting CI run #4 |
+| Paper II Thm 2.1 + Cor 2.2 (gliding hump; relativized dichotomy) | `PlufWO5.gliding_hump`, `relativized_dichotomy` | WO-5 | awaiting CI run #5 |
+| Paper II Lemma 3.2 (membership/addability criteria) | `PlufWO5` Part B | WO-5 | awaiting CI run #5 |
+| Paper II Thm 3.4 necessity (witness unadded + addable) | `PlufWO5.necessity` (+C1, C2) | WO-5 | awaiting CI run #5 |
+| Paper II Thm 3.4 sufficiency (Mathias-parametrized) | `PlufWO5.decides_of_mathias` | WO-5 | awaiting CI run #5 |
+| Paper II Thm 4.1 (Gowers's intimate subspace, all three clauses) | `PlufWO5` Part D | WO-5 | awaiting CI run #5 |
+| Paper II Thm 5.1 + Cor 5.2(a) (diagonalizable ⟺ intimate; package form) | `PlufWO5.diagonalizable_iff_intimate`, repaired E2 | WO-5 | awaiting CI run #5 |
+
+**WO-5 ratifications (2026-08-17):** E2 contract FALSE — `PhiOmega`
+members need not be closed while package members are; obstruction
+formalized (`exists_phiOmega_not_isClosed`, audited by commissioner
+addition), contract preserved in comment, repair (closed quantifier)
+ratified. D2 proved by the pair-sum route (all pair sums of a finitely
+supported member vanish), superior to the paper's echelon argument —
+candidate paper remark. A2 transport: recursion re-run inside the block
+(`gliding_hump_rel`), no isometry. `FinCodimIn` kept verbatim (bridge:
+`finCodimIn_iff_finite_orthocomplement`). Unused-retained hypotheses
+noted in docstrings (A1 `hW`; A2 `hS₀`; B2 `hcof`,`hM`; various in
+C1/C2). **Part F gated out** per census: Mathlib `HilbertBasis` lacks
+countability of orthonormal sets in separable spaces, basis
+assembly/reindexing from orthogonal families, and basis-relative blocks —
+this is WO-7a's infrastructure list; Props 5.5–5.6 recommissioned then.
+
+| Paper IV Thm 3.1 (injectivity on a square) | `PlufWO4.inj_on_pairs` (+12 patterns via `exists_avoiding_homog`) | WO-4 | **verified** (CI #4, 2026-08-17) |
+| Paper IV Thm 4.1 (exact paving for the product) | `PlufWO4.EPP_fubini` | WO-4 | **verified** (CI #4, 2026-08-17) |
+| Paper IV Prop 2.3 (product ≇ Fodor/normal) | `PlufWO4.fubini_not_iso_fodor` (+B4–B6) | WO-4 | **verified** (CI #4, 2026-08-17) |
+| Paper IV Cor 3.2 (product is σ-Q) | `PlufWO4.sigmaQ_fubini` | WO-4 | **verified** (CI #4, 2026-08-17) |
+| Paper IV Thm 5.2 + Cor 5.3 (EPP transfer; product decides) | `PlufWO4` Part C | WO-4 | **verified** (CI #4, 2026-08-17) |
+| Paper IV §6 (gen. thinness, support, Baire spread) | `PlufWO4` Part D | WO-4 | **verified** (CI #4, 2026-08-17) |
 
 **WO-4 ratifications (2026-08-17):** A1 restated with `htail` (tails in D) —
 `UncountablePivots` alone leaves upward-varying patterns unreachable; true

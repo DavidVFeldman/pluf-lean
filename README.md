@@ -44,7 +44,16 @@ finished.
   its proof for the self-product and the EPP-parametrized transfer of the
   WO-2/WO-3 theory (`EPP`), and the **blocker constraints** at ω —
   generalized thinness, support, Baire piece-spread (`Blockers`).
-- `workorders/WO1/` … `workorders/WO4/` — the commission trails: work-order
+- `RequestProject/PlufWO5.lean` + `RequestProject/PlufWO5/` — WO-5
+  (Paper II, §§2–5 minus Thm 5.4): the **gliding-hump dichotomy** and its
+  relativization, the block filter at ω with the **membership/addability
+  criteria**, **Theorem 3.4** (necessity in full; sufficiency
+  Mathias-parametrized), **Gowers's intimate subspace** with the dimension
+  bound by the pair-sum route, and **diagonalizable ⟺ intimate** against
+  the `PlufPackage` of companion-paper facts (to be discharged in WO-6),
+  including a formalized obstruction showing the naive extension
+  formulation requires the closed-subspace quantifier.
+- `workorders/WO1/` … `workorders/WO5/` — the commission trails: work-order
   input tarballs, Aristotle's census/reports and summaries.
 
 Formalization executed by **Aristotle** (Harmonic) against work order WO-1;
