@@ -70,6 +70,27 @@ CI run #7), including all formalized counterexamples and obstructions:
 | Paper I Prop 2.3 **in every dimension ≥ 2**, no Kochen–Specker input | `PlufWO7a.no_prime_filter_of_finrank_ge_two` (+`exists_pair_sup_top_notMem`) | WO-7a | awaiting CI run #8 |
 | WO-7 scoping probes (essential spectrum, bases, ω₁-recursion) | `PlufWO7a` (16 audited) | WO-7a | awaiting CI run #8 |
 
+| Paper I Prop 2.3, paper-facing, **every dim ≥ 2 and every space with an infinite orthonormal basis** | `PlufWO9` Part A | WO-9 | awaiting CI run #9 |
+| Essential-spectrum API (`essSpec`, closedness, finite-codim invariance) | `PlufWO9` Part B | WO-9 | awaiting CI run #9 |
+| Approximate-eigenvector substitute for spectral subspaces | `PlufWO9.approx_eigen_span_spec` (+C1) | WO-9 | awaiting CI run #9 |
+| General `HilbertBasis` block API (+ corrected Q2, reindexing) | `PlufWO9` Part D | WO-9 | awaiting CI run #9 |
+| ω₁-recursion combinator (CH as hypothesis) | `PlufWO9` Part E | WO-9 | awaiting CI run #9 |
+
+**WO-9 (harvest) delivered 2026-08-17:** all eight `True`-placeholders supplied
+and proved; no false contracts. Key signatures for downstream commissions —
+**C2 tolerance clause is homogeneous**: `∀ x ∈ K, ‖T x − lam·x‖ ≤ (∑' n, ε n)·‖x‖`,
+with infinite-dimensionality as `¬ FiniteDimensional`; chosen over unit-vector
+and compression forms because callers in the escape/blocking arguments receive
+unnormalized sums (both other forms derive from it in two lines). Tail bounds
+come from shifting the sequence, not from an `N` parameter. **D2 is a
+definitional equality** with WO-1's standard-basis `block` — no bridging
+isometry, so all prior results transfer unchanged. B2 needs neither
+self-adjointness nor Calkin/Fredholm input, and returns a strengthened
+conclusion (orthonormal, hence weakly null, sequence inside V). **Bonus:
+Proposition 2.3 now holds in every real Hilbert space with an infinite
+orthonormal basis, separable or not** — the WO-6 triple argument runs at an
+arbitrary basis. A2's contracted `hcl` retained but demonstrably unnecessary.
+
 **WO-7a findings (2026-08-17):** **target (d) closed** — a prime filter in
 finite dimension is principal at a line `ℝv` (Lemma 2.2), and `P = ℝw ⊕ C`,
 `Q = ℝ(v+w) ⊕ C` join to `⊤` while omitting `v`; parity and Kochen–Specker are

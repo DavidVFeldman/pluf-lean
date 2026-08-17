@@ -178,6 +178,26 @@ CONTRACT_THEOREMS = [
     "PlufWO7a.exists_pair_sup_top_notMem",
     "PlufWO7a.no_prime_filter_of_finrank_ge_two",
     "PlufWO7a.no_prime_filter_odd_finrank",
+    # WO-9 (harvest: Prop 2.3 paper-facing, essSpec, approx-eigen substitute, blockB, omega-1)
+    "PlufWO9.no_prime_filter_finrank",
+    "PlufWO9.no_prime_filter_paper",
+    "PlufWO9.no_prime_filter_of_finrank_ge_two",
+    "PlufWO9.no_prime_filter_of_infinite_hilbertBasis",
+    "PlufWO9.exists_orthonormal_approx_eigenvectors_mem",
+    "PlufWO9.mem_blockB_iff_inner",
+    "PlufWO9.isClosed_essSpec",
+    "PlufWO9.essSpec_le_of_finCodim",
+    "PlufWO9.essSpec_subset_essSpec_compress",
+    "PlufWO9.tendsto_norm_proj_finiteDimensional_of_weaklyNull",
+    "PlufWO9.exists_orthonormal_approx_eigenvectors",
+    "PlufWO9.approx_eigen_span_spec",
+    "PlufWO9.mem_blockB_iff",
+    "PlufWO9.isClosed_blockB",
+    "PlufWO9.blockB_stdBasis_eq",
+    "PlufWO9.hilbertBasis_reindex",
+    "PlufWO9.exists_countable_hilbertBasis_of_decomposition",
+    "PlufWO9.exists_enumeration_of_CH",
+    "PlufWO9.exists_omega1_chain",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]
