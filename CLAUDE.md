@@ -84,6 +84,25 @@ CI run #7), including all formalized counterexamples and obstructions:
 | CH enumerations of subspaces / bases / self-adjoints by countable ordinals | `PlufWO11` Part B | WO-11 | awaiting CI run #11 |
 | ω₁ stage bookkeeping (countable initial segments, unions) + Baire escape | `PlufWO11` Part C | WO-11 | awaiting CI run #11 |
 
+| Paper I §5: `T`, ampleness, Lemma 5.2 (+ radii as printed) | `PlufWO13` Parts A–B | WO-13 | awaiting CI run #12 |
+| Paper I Lemmas 5.3, 5.4 (upward inheritance; finite codimension) | `PlufWO13` Part C | WO-13 | awaiting CI run #12 |
+| Paper I Lemma 5.5 (escape), approximate-eigenvector formulation | `PlufWO13.escape` (+D2, D3) | WO-13 | awaiting CI run #12 |
+
+**WO-13 delivered 2026-08-17: no false contracts.** All 13 items proved verbatim
+to the contracted signatures. `T` realized as `(1/16)·id + (15/16)·P`, `P` the
+even-block projection. **C1 rescaling verdict: no rescaling of `1 − T` needed** —
+exact defect identities handle both `λ = 1` and `λ = 1/16` symmetrically.
+**D1's signature is FINAL and unamended** — WO-14 is to be drafted from it:
+clause (ii) holds for ALL `x ∈ K` (no normalization at call sites), clause (iii)
+is quotient-form infinite codimension, and the "finitely many linear constraints
+while staying off `N`" facility WO-14 needs is exactly C2 + clause (iii). `K` is
+internally ample at `λ`; that membership can be exposed cheaply if WO-14 wants
+it, but C1/C2 recover it from clause (ii). Beyond contract: **B1′ radii clauses
+as printed** (`minorRadius = 1`, `majorRadius = 4`, `eccentricity = 4`) on WO-6's
+ellipsoid API via `T_coercive`; and a **non-vacuity check** (`ample_top`,
+`not_ample_bot`) confirming D1's hypotheses are satisfiable, so escape is not
+vacuously true. Unused-retained: `hVN` in D1 (the `hnot` hypothesis suffices).
+
 **WO-11 delivered 2026-08-17.** Part A routes: A1 lower bound by blocks
 separated by constraint vectors; A2 lower by reindexing the standard basis
 along `Equiv.Perm ℕ` (no rotations needed); A3/A4 lower by `r • 1`. **B is

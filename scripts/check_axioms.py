@@ -231,6 +231,24 @@ CONTRACT_THEOREMS = [
     "PlufWO11.orthogonal_finiteDimensional_counterexample",
     "PlufWO11.mk_eq_continuum_of_hilbertBasis",
     "PlufWO11.mk_continuousLinearMaps_of_hilbertBasis",
+    # WO-13 (Paper I §5 ZFC lemmas: T, ampleness, inheritance, escape)
+    "PlufWO13.T_evec",
+    "PlufWO13.T_selfAdjoint",
+    "PlufWO13.T_bounds",
+    "PlufWO13.one_mem_essSpec",
+    "PlufWO13.sixteenth_mem_essSpec",
+    "PlufWO13.infinite_dimensional_of_ample",
+    "PlufWO13.minorRadius_of_ample",
+    "PlufWO13.majorRadius_of_ample",
+    "PlufWO13.eccentricity_of_ample",
+    "PlufWO13.ample_top",
+    "PlufWO13.essSpec_compress_mono",
+    "PlufWO13.ample_of_ample_le",
+    "PlufWO13.essSpec_compress_eq_of_finCodim",
+    "PlufWO13.ample_of_finCodim",
+    "PlufWO13.escape",
+    "PlufWO13.quadratic_estimate_of_bound",
+    "PlufWO13.infinite_codim_of_escape",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]
