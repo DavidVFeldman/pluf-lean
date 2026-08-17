@@ -76,6 +76,29 @@ CI run #7), including all formalized counterexamples and obstructions:
 | General `HilbertBasis` block API (+ corrected Q2, reindexing) | `PlufWO9` Part D | WO-9 | awaiting CI run #9 |
 | ω₁-recursion combinator (CH as hypothesis) | `PlufWO9` Part E | WO-9 | awaiting CI run #9 |
 
+| Paper II Prop 5.5 (one-witness reduction) **as printed, over all bases** | `PlufWO10.one_witness_reduction` (+E0 `diagonalizableB_iff_intimateB`) | WO-10 | awaiting CI run #10 |
+| Paper II Prop 6.1 (chains never suffice) | `PlufWO10.chains_never_suffice` | WO-10 | awaiting CI run #10 |
+| Zorn extension for plufs; chain coordinatization; `blockB` lattice API | `PlufWO10` Parts A–C | WO-10 | awaiting CI run #10 |
+
+**WO-10 (target (a) CLOSED) 2026-08-17:** **E0 taken and answered
+affirmatively** — Theorem 5.2 holds at an arbitrary Hilbert basis of an
+arbitrary real Hilbert space, so Prop 5.5 is proved **as printed**, quantified
+over all ℕ-indexed orthonormal bases, with no silent specialization (only the
+easy half of E0 is needed). Two contracts FALSE as printed (mine): B2 and D1
+asserted an ℕ-indexed Hilbert basis with nothing forcing infinite dimension —
+`E = ℝ` with the constant chain refutes both; counterexamples formalized
+(`no_hilbertBasis_nat_real`, `..._false` pair), repair adds
+`¬ FiniteDimensional ℝ E`, automatic in `PlufWO1.H`. **Base-API defect found:
+WO-9's D4 (`exists_countable_hilbertBasis_of_decomposition`) requires the
+ALGEBRAIC join `⨆ n, M n = ⊤`, which no infinite orthogonal decomposition
+satisfies — the theorem is true but inapplicable to any infinite
+decomposition. WO-10 proves the density variant
+(`exists_hilbertBasis_of_orthogonal_family`); export that form in the
+harvested API and prefer it in WO-12.** Also exported for WO-12:
+`blockB_inf_blockB`, `blockB_mono/univ/empty/ne_bot`,
+`intimateB_stdHilbertBasis_iff` (basis-relative intimacy at the standard
+basis IS `PlufWO5.Intimate`).
+
 **WO-9 (harvest) delivered 2026-08-17:** all eight `True`-placeholders supplied
 and proved; no false contracts. Key signatures for downstream commissions —
 **C2 tolerance clause is homogeneous**: `∀ x ∈ K, ‖T x − lam·x‖ ≤ (∑' n, ε n)·‖x‖`,

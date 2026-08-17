@@ -198,6 +198,20 @@ CONTRACT_THEOREMS = [
     "PlufWO9.exists_countable_hilbertBasis_of_decomposition",
     "PlufWO9.exists_enumeration_of_CH",
     "PlufWO9.exists_omega1_chain",
+    # WO-10 (target (a) closed: Zorn extension, chain coordinatization, Props 5.5 & 6.1)
+    "PlufWO10.exists_pluf_extension",
+    "PlufWO10.exists_pluf_of_directed",
+    "PlufWO10.chain_decomposition",
+    "PlufWO10.exists_basis_blocks_of_chain",
+    "PlufWO10.exists_basis_blocks_of_chain_false",
+    "PlufWO10.blockB_inf_blockB",
+    "PlufWO10.intimateB_blockB",
+    "PlufWO10.intimateB_mono",
+    "PlufWO10.intimateB_stdHilbertBasis_iff",
+    "PlufWO10.chains_never_suffice",
+    "PlufWO10.chains_never_suffice_false",
+    "PlufWO10.diagonalizableB_iff_intimateB",
+    "PlufWO10.one_witness_reduction",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]
