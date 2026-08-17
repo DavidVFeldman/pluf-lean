@@ -63,22 +63,41 @@ GitHub release tag → Zenodo archival.
 | Paper III Lemma 5.2 (normal ⇒ σ-Q, minima form) | `PlufWO1.minima_mem_of_fodor` (+ `sigmaQ_of_fodor`) | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 | supporting: σ-Q equivalences, transversal escape, W/block infrastructure, C1 | Part A/B/C | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 
-Axiom footprint of every WO-1 theorem: `propext`, `Classical.choice`,
-`Quot.sound` (build-log artifact of CI run #1).
+Axiom footprint of every WO-1 and WO-2 theorem (24 in all): `propext`,
+`Classical.choice`, `Quot.sound` (build-log artifacts of CI runs #1 and #2).
 
-| Paper III Thm 2.1 (exact paving) | `PlufWO2.exact_paving` | WO-2 | awaiting CI run #2 |
-| Paper III Thm 3.1 (exact dichotomy) | `PlufWO2.exact_dichotomy` | WO-2 | awaiting CI run #2 |
-| Paper III Cor 3.2, lattice half | `PlufWO2.block_filter_decides` | WO-2 | awaiting CI run #2 |
-| supporting: κ-infrastructure (countable supports, blocks, coordCLM at κ) | `PlufWO2` Part D | WO-2 | awaiting CI run #2 |
+| Paper III Cor 2.2 (diagonal flattening; certified w/o self-adjointness) | `PlufWO3.quadratic_flat` (+`exists_ulim`) | WO-3 | awaiting CI run #3 |
+| Paper III Cor 3.2, filter half (Φ(U): proper, upward, ∩-closed, generically complete, nonprincipal, decides) | `PlufWO3` Part H | WO-3 | awaiting CI run #3 |
+| Paper III Prop 5.3, Hilbert half (κ-witness) | `PlufWO3.kappa_witness` (+Part I) | WO-3 | awaiting CI run #3 |
+
+**WO-3 ratified repair:** contracted I3 (`Wk_inf_block_eq_bot_iff`) was FALSE
+without a covering hypothesis; Aristotle formalized the counterexample
+(`Wk_inf_block_eq_bot_iff_counterexample`), preserved the contract in a
+comment, and repaired with `hcover` (present at all use sites). Ratified
+2026-08-16; the paper is unaffected (its partition covers κ). Unused
+contract hypotheses flagged and retained: `hcc` in G1 (boundedness suffices),
+`hne` in I3/I4. G2 certified without self-adjointness.
+
+**Protocol codification (from the WO-3 precedent):** future work orders
+license the following on a false contract statement: formalize a
+counterexample where feasible, preserve the contract verbatim in a comment,
+and MAY supply a minimally repaired statement clearly marked as such —
+subject to commissioner ratification at audit.
+
+| Paper III Thm 2.1 (exact paving) | `PlufWO2.exact_paving` | WO-2 | **verified** (CI #2, 2026-08-16) |
+| Paper III Thm 3.1 (exact dichotomy) | `PlufWO2.exact_dichotomy` | WO-2 | **verified** (CI #2, 2026-08-16) |
+| Paper III Cor 3.2, lattice half | `PlufWO2.block_filter_decides` | WO-2 | **verified** (CI #2, 2026-08-16) |
+| supporting: κ-infrastructure (countable supports, blocks, coordCLM at κ) | `PlufWO2` Part D | WO-2 | **verified** (CI #2, 2026-08-16) |
 
 Everything else in Papers I–III is **hand-checked only**. In particular:
 nothing of Paper I; Theorems A, C (both directions; sufficiency consumes
 Mathias's theorem, absent from Mathlib — WO-era statements must be
 hypothesis-parametrized), D, E, the blocking lemma and Theorem CH; at κ,
-the filter-language packaging of Corollary 3.2, MSS-free existence, and
-Theorem J. (Exact paving and the exact dichotomy at κ are WO-2.) Next WO
-candidates: the κ-witness Proposition 5.3's Hilbert half in ℓ²(κ), or
-Paper II's Theorem C necessity witness computations at ω.
+MSS-free existence and Theorem J (state-theoretic; consume Blecher–Weaver
+excision, out of scope until that theory exists in Mathlib). Paper III's
+lattice level is now fully covered by WO-1–WO-3. Next WO candidate:
+Paper II's Theorem C necessity witness at ω (requires the finite-codimension
+membership calculus of lem:criteria).
 
 ## Known mathematical debts (do not lose)
 

@@ -1,0 +1,13 @@
+# Summary of changes for run a29e82e9-40e1-423c-a38b-5f8c595e23b2
+WO-3 is complete: the project now contains the full WO-2 base (unchanged) plus `RequestProject/PlufWO3.lean`, with all 14 WO-3 contract theorems proved and all 24 prior theorems still green. Nothing is left unproved: there is no `sorry`, `admit`, `axiom` or `native_decide` anywhere, and `#print axioms` for every contract theorem (WO-1, WO-2 and WO-3, all run by one build of the root file `RequestProject/PlufWO3.lean`) reports only `propext`, `Classical.choice`, `Quot.sound`.
+
+Items:
+- **Part G.** `exists_ulim` (G1) and `quadratic_flat` (G2, diagonal flattening in quadratic-form shape) are proved. G2 needs no self-adjointness hypothesis; its route uses the exact-paving set intersected with the ε-set of the diagonal limit, the ℓ²-expansion of the quadratic form (via the reused coordinate-expansion and coordinate-rigidity lemmas) and of the norm, and a termwise comparison — no operator-norm API.
+- **Part H.** `PhiU_upward`, `inf_mem_PhiU`, `bot_notMem_PhiU` (H1), `iInf_mem_PhiU` (H2, generic in the index type), `PhiU_nonprincipal` (H3) and `PhiU_decides` (H4) are proved.
+- **Part I.** The constraint vector `kConstraintVec` of a countable set is constructed from an injection into ℕ, with its specification lemmas `supp_kConstraintVec` (I1b) and `kConstraintVec_nonneg` (I1c — no restatement was needed; the coordinates are in fact strictly positive exactly on the piece, recorded separately), the witness subspace `Wk` with `mem_Wk_iff` and `isClosed_Wk` (I1d), `Wk_notMem_PhiU` (I2), `Wk_inf_block_eq_bot_iff` (I3) and `kappa_witness` (I4).
+
+Two reports (also written up in `REPORT-WO3.md`, which contains the census and the item-by-item account):
+- **I3 is false as contracted.** Without a covering hypothesis the (⇐) direction fails; a counterexample (κ = ℕ, single piece {0}, S = {1}) is formalized as `Wk_inf_block_eq_bot_iff_counterexample`. The original statement is preserved verbatim in a comment, and the repaired theorem adds `hcover : (⋃ i, P i) = univ`, which is available at every use site including I4. Both directions are also available as separate lemmas.
+- **Unused contract hypotheses.** G1's countable-completeness hypothesis is not needed (boundedness alone yields the ultralimit via a supremum), and I3/I4's piece-nonemptiness hypothesis is not needed. Both are retained as the contract asks, and each is flagged in its docstring.
+
+One bookkeeping note, reported as licensed: several contract statements are proved with the order instance omitted while some reused base lemmas carry it; instead of duplicating those lemmas, their proofs are invoked under a locally introduced well-order, so no contract statement or hypothesis changes.

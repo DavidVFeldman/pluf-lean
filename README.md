@@ -29,7 +29,15 @@ finished.
   type, **exact paving** along a diagonal-intersection-closed ultrafilter
   (Paper III, Thm 2.1), and the **exact dichotomy** with its
   maximality-shaped corollary (Paper III, Thm 3.1 / Cor 3.2).
-- `workorders/WO1/`, `workorders/WO2/` — the commission trails: work-order
+- `RequestProject/PlufWO3.lean` — WO-3 (root file; imports the chain, so one
+  build runs all three audits): ultrafilter limits of bounded functions,
+  **diagonal flattening** (Paper III, Cor 2.2, certified without
+  self-adjointness), the **block filter Φ(U) as a filter** (proper, upward
+  closed, intersection-closed, generically complete, nonprincipal, deciding),
+  and the **κ-witness** (Paper III, Prop 5.3, Hilbert half), including a
+  formalized counterexample showing the covering hypothesis of the blocking
+  characterization is necessary.
+- `workorders/WO1/` … `workorders/WO3/` — the commission trails: work-order
   input tarballs, Aristotle's census/reports and summaries.
 
 Formalization executed by **Aristotle** (Harmonic) against work order WO-1;

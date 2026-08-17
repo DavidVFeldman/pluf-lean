@@ -44,6 +44,25 @@ CONTRACT_THEOREMS = [
     "PlufWO2.exact_paving",
     "PlufWO2.exact_dichotomy",
     "PlufWO2.block_filter_decides",
+    # WO-3, Part G
+    "PlufWO3.exists_ulim",
+    "PlufWO3.quadratic_flat",
+    # WO-3, Part H
+    "PlufWO3.PhiU_upward",
+    "PlufWO3.inf_mem_PhiU",
+    "PlufWO3.bot_notMem_PhiU",
+    "PlufWO3.iInf_mem_PhiU",
+    "PlufWO3.PhiU_nonprincipal",
+    "PlufWO3.PhiU_decides",
+    # WO-3, Part I
+    "PlufWO3.supp_kConstraintVec",
+    "PlufWO3.mem_Wk_iff",
+    "PlufWO3.isClosed_Wk",
+    "PlufWO3.Wk_notMem_PhiU",
+    "PlufWO3.Wk_inf_block_eq_bot_iff",
+    "PlufWO3.kappa_witness",
+    # WO-3, report item (formalized counterexample to the un-repaired I3)
+    "PlufWO3.Wk_inf_block_eq_bot_iff_counterexample",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]
