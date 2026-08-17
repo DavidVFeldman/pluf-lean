@@ -212,14 +212,57 @@ CONTRACT_THEOREMS = [
     "PlufWO10.chains_never_suffice_false",
     "PlufWO10.diagonalizableB_iff_intimateB",
     "PlufWO10.one_witness_reduction",
+    # WO-11 (cardinal infrastructure for the transfinite commissions)
+    "PlufWO11.mk_closedSubspaces",
+    "PlufWO11.mk_hilbertBases",
+    "PlufWO11.mk_continuousLinearMaps",
+    "PlufWO11.mk_selfAdjoint",
+    "PlufWO11.exists_enum_closedSubspaces",
+    "PlufWO11.exists_enum_hilbertBases",
+    "PlufWO11.exists_enum_selfAdjoint",
+    "PlufWO11.countable_Iio_of_lt_omega1",
+    "PlufWO11.countable_iUnion_Iio",
+    "PlufWO11.exists_orthogonal_of_countable",
+    "PlufWO11.span_ne_top_of_countable",
+    "PlufWO11.exists_notMem_of_countable_closed_proper",
+    "PlufWO11.orthogonal_ne_bot_of_isClosed_ne_top",
+    "PlufWO11.exists_orthogonal_of_countable_false",
+    "PlufWO11.closedSpan_countable_eq_top_counterexample",
+    "PlufWO11.orthogonal_finiteDimensional_counterexample",
+    "PlufWO11.mk_eq_continuum_of_hilbertBasis",
+    "PlufWO11.mk_continuousLinearMaps_of_hilbertBasis",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]
 
 def strip_comments(src: str) -> str:
-    src = re.sub(r"/-.*?-/", "", src, flags=re.S)
-    src = re.sub(r"--.*", "", src)
-    return src
+    """Remove Lean comments, honouring NESTED block comments.
+
+    Lean's `/- ... -/` nests, and this project's files quote contract text
+    (which itself contains `-/`) inside comments under the
+    report-rather-than-repair protocol. A non-greedy regex terminates at the
+    first inner `-/` and leaves real-looking code exposed, producing spurious
+    forbidden-token hits. Hence the explicit scanner below.
+    """
+    out = []
+    i, n, depth = 0, len(src), 0
+    while i < n:
+        two = src[i:i + 2]
+        if two == "/-":
+            depth += 1
+            i += 2
+        elif two == "-/" and depth > 0:
+            depth -= 1
+            i += 2
+        elif depth > 0:
+            i += 1
+        elif two == "--":
+            j = src.find("\n", i)
+            i = n if j == -1 else j
+        else:
+            out.append(src[i])
+            i += 1
+    return "".join(out)
 
 def main(logpath: str) -> int:
     ok = True

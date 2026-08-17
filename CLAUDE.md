@@ -80,6 +80,34 @@ CI run #7), including all formalized counterexamples and obstructions:
 | Paper II Prop 6.1 (chains never suffice) | `PlufWO10.chains_never_suffice` | WO-10 | awaiting CI run #10 |
 | Zorn extension for plufs; chain coordinatization; `blockB` lattice API | `PlufWO10` Parts A–C | WO-10 | awaiting CI run #10 |
 
+| Cardinal infrastructure: #closed subspaces = #bases = #operators = #self-adjoint = 𝔠 | `PlufWO11` Part A | WO-11 | awaiting CI run #11 |
+| CH enumerations of subspaces / bases / self-adjoints by countable ordinals | `PlufWO11` Part B | WO-11 | awaiting CI run #11 |
+| ω₁ stage bookkeeping (countable initial segments, unions) + Baire escape | `PlufWO11` Part C | WO-11 | awaiting CI run #11 |
+
+**WO-11 delivered 2026-08-17.** Part A routes: A1 lower bound by blocks
+separated by constraint vectors; A2 lower by reindexing the standard basis
+along `Equiv.Perm ℕ` (no rotations needed); A3/A4 lower by `r • 1`. **B is
+pure instantiation** — WO-9's E1 delivers the general statement and its
+universe handling is correctly placed; only a cosmetic `Set.Iio (Ordinal.omega
+1)` vs `{o // o < (aleph 1).ord}` bridge (`enumShift`) was needed. **C3 REPORTED
+FALSE in both proposed forms** (mine): `H` is separable, so a countable set can
+have dense span — the standard basis itself refutes the properness form, and
+`{eₙ : n ≠ 0}` refutes the infinite-dimensional-complement form. Two
+counterexamples formalized; repair supplied under the contracted name as the
+**algebraic (Baire) escape form**: the *span* of a countable set is never all
+of `H` and stays proper after adjoining a finite set. **WO-15 must NOT be
+written against an orthogonality-based C3.** (WO-13, already dispatched, does
+not consume C3 and is unaffected.) Two cheap generalizations taken (`#E = 𝔠`
+and `#(E →L[ℝ] E) = 𝔠` for any real inner product space with an ℕ-indexed
+Hilbert basis), derived from the concrete forms.
+
+**Audit-script fix (commissioner, 2026-08-17):** `strip_comments` now honours
+NESTED Lean block comments. The previous non-greedy regex terminated at the
+first inner `-/`, so preserved-contract text (which the protocol requires to
+be quoted verbatim in comments, and which itself contains `-/`) leaked into
+the token scan as apparent code — a spurious `sorry` hit on `PlufWO11.lean`
+that would have failed CI. No regressions across the prior files.
+
 **WO-10 (target (a) CLOSED) 2026-08-17:** **E0 taken and answered
 affirmatively** — Theorem 5.2 holds at an arbitrary Hilbert basis of an
 arbitrary real Hilbert space, so Prop 5.5 is proved **as printed**, quantified
