@@ -37,7 +37,14 @@ finished.
   and the **κ-witness** (Paper III, Prop 5.3, Hilbert half), including a
   formalized counterexample showing the covering hypothesis of the blocking
   characterization is necessary.
-- `workorders/WO1/` … `workorders/WO3/` — the commission trails: work-order
+- `RequestProject/PlufWO4.lean` + `RequestProject/PlufWO4/` — WO-4
+  (Paper IV): the twelve-pattern homogeneity analysis and **injectivity on a
+  square** (`Homog`), the Fubini product with the **full-selector
+  non-isomorphism** package (`Fubini`), the **exact-paving property** with
+  its proof for the self-product and the EPP-parametrized transfer of the
+  WO-2/WO-3 theory (`EPP`), and the **blocker constraints** at ω —
+  generalized thinness, support, Baire piece-spread (`Blockers`).
+- `workorders/WO1/` … `workorders/WO4/` — the commission trails: work-order
   input tarballs, Aristotle's census/reports and summaries.
 
 Formalization executed by **Aristotle** (Harmonic) against work order WO-1;

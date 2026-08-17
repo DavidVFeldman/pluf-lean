@@ -63,6 +63,33 @@ CONTRACT_THEOREMS = [
     "PlufWO3.kappa_witness",
     # WO-3, report item (formalized counterexample to the un-repaired I3)
     "PlufWO3.Wk_inf_block_eq_bot_iff_counterexample",
+    # WO-4 (Paper IV): Parts A-D plus auxiliaries
+    "PlufWO4.inj_on_pairs",
+    "PlufWO4.mem_fubini_iff",
+    "PlufWO4.triangle_mem_fubini",
+    "PlufWO4.countableSmall_fubini",
+    "PlufWO4.column_notMem_fubini",
+    "PlufWO4.fullSelector_of_fodor",
+    "PlufWO4.not_fullSelector_fubini",
+    "PlufWO4.fullSelector_map_iff",
+    "PlufWO4.fubini_not_iso_fodor",
+    "PlufWO4.sigmaQ_fubini",
+    "PlufWO4.sigmaQ_of_EPP",
+    "PlufWO4.EPP_fubini",
+    "PlufWO4.exact_paving_of_EPP",
+    "PlufWO4.exact_dichotomy_of_EPP",
+    "PlufWO4.quadratic_flat_of_EPP",
+    "PlufWO4.PhiU_decides_of_EPP",
+    "PlufWO4.product_decides",
+    "PlufWO4.gen_thin",
+    "PlufWO4.inter_infinite_iff_mem",
+    "PlufWO4.rank_le_of_le_block_finite",
+    "PlufWO4.support_mem",
+    "PlufWO4.baire_spread",
+    "PlufWO4.exists_avoiding_homog",
+    "PlufWO4.fullSelectorAll_of_fodor",
+    "PlufWO4.not_fullSelectorAll_fubini",
+    "PlufWO4.fullSelectorAll_map_iff",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]

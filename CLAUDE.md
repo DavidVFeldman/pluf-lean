@@ -63,12 +63,33 @@ GitHub release tag → Zenodo archival.
 | Paper III Lemma 5.2 (normal ⇒ σ-Q, minima form) | `PlufWO1.minima_mem_of_fodor` (+ `sigmaQ_of_fodor`) | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 | supporting: σ-Q equivalences, transversal escape, W/block infrastructure, C1 | Part A/B/C | WO-1 | **verified** (CI #1, commit `1be8bac`, 2026-08-16) |
 
-Axiom footprint of every WO-1 and WO-2 theorem (24 in all): `propext`,
-`Classical.choice`, `Quot.sound` (build-log artifacts of CI runs #1 and #2).
+Axiom footprint of every WO-1/WO-2/WO-3 theorem (39 in all, including the
+formalized I3 counterexample): `propext`, `Classical.choice`, `Quot.sound`
+(build-log artifacts of CI runs #1–#3).
 
-| Paper III Cor 2.2 (diagonal flattening; certified w/o self-adjointness) | `PlufWO3.quadratic_flat` (+`exists_ulim`) | WO-3 | awaiting CI run #3 |
-| Paper III Cor 3.2, filter half (Φ(U): proper, upward, ∩-closed, generically complete, nonprincipal, decides) | `PlufWO3` Part H | WO-3 | awaiting CI run #3 |
-| Paper III Prop 5.3, Hilbert half (κ-witness) | `PlufWO3.kappa_witness` (+Part I) | WO-3 | awaiting CI run #3 |
+| Paper IV Thm 3.1 (injectivity on a square) | `PlufWO4.inj_on_pairs` (+12 patterns via `exists_avoiding_homog`) | WO-4 | awaiting CI run #4 |
+| Paper IV Thm 4.1 (exact paving for the product) | `PlufWO4.EPP_fubini` | WO-4 | awaiting CI run #4 |
+| Paper IV Prop 2.3 (product ≇ Fodor/normal) | `PlufWO4.fubini_not_iso_fodor` (+B4–B6) | WO-4 | awaiting CI run #4 |
+| Paper IV Cor 3.2 (product is σ-Q) | `PlufWO4.sigmaQ_fubini` | WO-4 | awaiting CI run #4 |
+| Paper IV Thm 5.2 + Cor 5.3 (EPP transfer; product decides) | `PlufWO4` Part C | WO-4 | awaiting CI run #4 |
+| Paper IV §6 (gen. thinness, support, Baire spread) | `PlufWO4` Part D | WO-4 | awaiting CI run #4 |
+
+**WO-4 ratifications (2026-08-17):** A1 restated with `htail` (tails in D) —
+`UncountablePivots` alone leaves upward-varying patterns unreachable; true
+for all uniform ultrafilters, contracted already in B1/B8/C2. B5 restated at
+`κ : Type` (contract's `FullSelector` is Type-0-indexed; polymorphic
+`FullSelectorAll` supplied, B7 verbatim polymorphic). **Pattern finding:**
+the two-regime prose of Paper IV §4 under-describes four of the twelve
+ordered patterns (P2/P5/P8/P11), where the mid-region between fixed
+coordinates is the *only* source of the large family; mechanized fix is
+`exists_mid` (pivots applied to a tail). Paper IV §4 amended with one
+sentence naming the step. C4–C6 by option (ii) (fresh EPP proofs reusing
+WO-2/3 auxiliaries; base untouched). Unused-but-retained: `hsmall` (C4/C6),
+`hcof` (D2; proved by sharper contrapositive S = Tᶜ).
+
+| Paper III Cor 2.2 (diagonal flattening; certified w/o self-adjointness) | `PlufWO3.quadratic_flat` (+`exists_ulim`) | WO-3 | **verified** (CI #3, 2026-08-16) |
+| Paper III Cor 3.2, filter half (Φ(U): proper, upward, ∩-closed, generically complete, nonprincipal, decides) | `PlufWO3` Part H | WO-3 | **verified** (CI #3, 2026-08-16) |
+| Paper III Prop 5.3, Hilbert half (κ-witness) | `PlufWO3.kappa_witness` (+Part I) | WO-3 | **verified** (CI #3, 2026-08-16) |
 
 **WO-3 ratified repair:** contracted I3 (`Wk_inf_block_eq_bot_iff`) was FALSE
 without a covering hypothesis; Aristotle formalized the counterexample
