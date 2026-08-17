@@ -91,6 +91,22 @@ route (Kochen–Specker backstop; separate item if wanted). **Paper I edit made
 contracted shape needs MSS. Beyond contract: ellipsoid form of Lemma 3.1 plus
 `rsp_iff_rspEcc`, and weak-* compactness of the face.
 
+| Paper III Thm 4.1 (φ_U singular, countably additive, pure) | `PlufWO8` Parts A–D | WO-8 | awaiting CI run #7 |
+| Paper III Thm 4.2 (countably additive pure state ⇒ pluf) | `PlufWO8.isPluf_oneSet` (+E1–E4) | WO-8 | awaiting CI run #7 |
+| Paper I §6 / Paper III: 1-set of φ_U = Φ(U) | `PlufWO8.oneSet_phiLim_eq_PhiU` | WO-8 | awaiting CI run #7 |
+
+**WO-8 ratifications (2026-08-17):** no false contracts. Four elaboration
+repairs (`Submodule.starProjection` needs `[HasOrthogonalProjection]` as a
+*binder*): instance binders in C1–C3; dependent pairs in `oneSet` and
+`BWPackage.excision`; named binder in E4 — each propositionally identical,
+contracts preserved verbatim in comments. Beyond contract: compact-operator
+singularity (`phiLim_compact_eq_zero`) via a finite ε/2-net, needing neither
+Hilbert basis nor finite-rank density (both absent from Mathlib); and
+`eq_phiLim_of_mem_face` (every face state *equals* φ_U), stronger than the
+contracted uniqueness. Unused-retained: `hφ` in E1/E2/E4, `hctble` in C3.
+**Scalar finding: no item needed ℂ** — the whole state layer is scalar-agnostic
+over ℝ. MSS appears nowhere; Blecher–Weaver confined to `BWPackage`.
+
 **Gate verdicts:** Part C topology packaging PASSED (cheap). Part E states
 PASSED — Mathlib has no usable state theory for real B(H), so the contracted
 `IsState` rendering is retained and suffices; Hahn–Banach via

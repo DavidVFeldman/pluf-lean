@@ -53,7 +53,18 @@ finished.
   the `PlufPackage` of companion-paper facts (to be discharged in WO-6),
   including a formalized obstruction showing the naive extension
   formulation requires the closed-subspace quantifier.
-- `workorders/WO1/` … `workorders/WO5/` — the commission trails: work-order
+- `RequestProject/PlufWO6.lean` + `RequestProject/PlufWO6/` — WO-6 (Paper I
+  §§2–4): the maximality criterion and its converse, the finite-dimension and
+  principality lemmas, no prime filters (for H; see the paper's Prop. 2.3), the
+  topology on the space of plufs, ellipsoid radii and the gap criterion, the
+  state face with Banach–Alaoglu compactness, Kadison–Singer parametrized by a
+  paving hypothesis, and the discharge of WO-5's `PlufPackage`.
+- `RequestProject/PlufWO8.lean` + `RequestProject/PlufWO8/` — WO-8 (Paper III
+  §§4–5, Paper I §6): the ultrafilter-limit state, its singularity (through the
+  compact operators), countable and generic-index additivity, purity derived
+  from the face machinery, Theorem 4.2 parametrized by a Blecher–Weaver
+  excision package, and the identification of its 1-set with the block filter.
+- `workorders/WO1/` … `workorders/WO8/` — the commission trails: work-order
   input tarballs, Aristotle's census/reports and summaries.
 
 Formalization executed by **Aristotle** (Harmonic) against work order WO-1;

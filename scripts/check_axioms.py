@@ -142,6 +142,25 @@ CONTRACT_THEOREMS = [
     "PlufWO6.PlufSpace.isOpen_singleton_principal",
     "PlufWO6.PlufSpace.dense_principal",
     "PlufWO6.PlufSpace.not_compactSpace",
+    # WO-8 (Paper III §§4-5, Paper I §6): state theory, excision-parametrized
+    "PlufWO8.phiLim_spec",
+    "PlufWO8.isState_phiLim",
+    "PlufWO8.phiLim_rankOne_eq_zero",
+    "PlufWO8.phiLim_finiteDimensional_eq_zero",
+    "PlufWO8.phiLim_iSup_eq_zero",
+    "PlufWO8.phiLim_iSup",
+    "PlufWO8.phiLim_iSup_eq_zero_generic",
+    "PlufWO8.phiLim_mem_face",
+    "PlufWO8.phiLim_pure",
+    "PlufWO8.oneSet_upward",
+    "PlufWO8.oneSet_inf",
+    "PlufWO8.bot_notMem_oneSet",
+    "PlufWO8.exists_oneSet_inf_eq_bot",
+    "PlufWO8.isPluf_oneSet",
+    "PlufWO8.oneSet_nonprincipal",
+    "PlufWO8.oneSet_phiLim_eq_PhiU",
+    "PlufWO8.phiLim_finiteRank_eq_zero",
+    "PlufWO8.phiLim_compact_eq_zero",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]
