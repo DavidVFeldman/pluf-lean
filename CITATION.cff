@@ -25,6 +25,13 @@ authors:
     family-names: Wilce
     affiliation: Susquehanna University
     orcid: https://orcid.org/0000-0001-5987-1327
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21987888
+    description: Concept DOI, resolving to the latest version
+  - type: doi
+    value: 10.5281/zenodo.21987889
+    description: Version DOI for v1.0
 license: Apache-2.0
 license-url: https://www.apache.org/licenses/LICENSE-2.0
 keywords:

@@ -1,5 +1,7 @@
 # pluf-lean
 
+[![DOI](https://zenodo.org/badge/1336315599.svg)](https://doi.org/10.5281/zenodo.21987888)
+
 A Lean 4 / Mathlib verification of the theorems of a four-paper series on
 **maximal filters in the projection lattice of a Hilbert space** — *plufs*, the
 lattice-theoretic linearization of "bounded sequences converge along
