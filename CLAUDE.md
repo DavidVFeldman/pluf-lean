@@ -88,21 +88,42 @@ CI run #7), including all formalized counterexamples and obstructions:
 | Paper I Lemmas 5.3, 5.4 (upward inheritance; finite codimension) | `PlufWO13` Part C | WO-13 | **verified** (CI #12, 2026-08-17) |
 | Paper I Lemma 5.5 (escape), approximate-eigenvector formulation | `PlufWO13.escape` (+D2, D3) | WO-13 | **verified** (CI #12, 2026-08-17) |
 
-| **Paper I Lemma 5.6 — THE BLOCKING LEMMA, unconditional** | `PlufWO14.blocking_lemma` | WO-14 | awaiting CI run #13 |
-| Selection/perturbation machinery (S0–S2, P1, odd-stage lemma) | `PlufWO14` Parts S, P | WO-14 | awaiting CI run #13 |
-| The blocking recursion; exact diagonality; conditional assembly | `PlufWO14.exists_blocking_sequence`, `compress_exact_diagonal`, `blocking_lemma_of_sequence` | WO-14 | awaiting CI run #13 |
+| **Paper I Lemma 5.6 — THE BLOCKING LEMMA, unconditional** | `PlufWO14.blocking_lemma` | WO-14 | **verified** (CI #13, 2026-08-17) |
+| Selection/perturbation machinery (S0–S2, P1, odd-stage lemma) | `PlufWO14` Parts S, P | WO-14 | **verified** (CI #13, 2026-08-17) |
+| The blocking recursion; exact diagonality; conditional assembly | `PlufWO14.exists_blocking_sequence`, `compress_exact_diagonal`, `blocking_lemma_of_sequence` | WO-14 | **verified** (CI #13, 2026-08-17) |
 
-| **Paper II Thm 5.4 (CH: nonprincipal pluf, diagonalizable via no basis)** | `PlufWO12.exists_nonprincipal_nondiagonalizable` | WO-12 | awaiting CI run #13 |
-| Stage construction (constrained selection, two-coordinate lemma, non-intimate blocker) | `PlufWO12` Part A | WO-12 | awaiting CI run #13 |
-| CH vector enumeration; cofinal chains; the ω₁ witness family | `PlufWO12` Part B | WO-12 | awaiting CI run #13 |
+| **Paper II Thm 5.4 (CH: nonprincipal pluf, diagonalizable via no basis)** | `PlufWO12.exists_nonprincipal_nondiagonalizable` | WO-12 | **verified** (CI #13, 2026-08-17) |
+| Stage construction (constrained selection, two-coordinate lemma, non-intimate blocker) | `PlufWO12` Part A | WO-12 | **verified** (CI #13, 2026-08-17) |
+| CH vector enumeration; cofinal chains; the ω₁ witness family | `PlufWO12` Part B | WO-12 | **verified** (CI #13, 2026-08-17) |
 
-| **Paper I Thm 5.7 (CH: nonprincipal pluf, all members ample; no round slices)** | `PlufWO15.exists_pluf_all_ample`, `not_rsp_of_all_ample`, `radii_of_all_ample` | WO-15 | awaiting CI run #14 |
-| **Paper I Prop 5.9 (face values of T = [1/16, 1])** | `PlufWO15.face_values_eq_Icc` (+D1, D2) | WO-15 | awaiting CI run #14 |
-| Stage step (three cases internalized); ω₁ chain | `PlufWO15` Parts A–B | WO-15 | awaiting CI run #14 |
+| **Paper I Thm 5.7 (CH: nonprincipal pluf, all members ample; no round slices)** | `PlufWO15.exists_pluf_all_ample`, `not_rsp_of_all_ample`, `radii_of_all_ample` | WO-15 | **verified** (CI #14, 2026-08-17) |
+| **Paper I Prop 5.9 (face values of T = [1/16, 1])** | `PlufWO15.face_values_eq_Icc` (+D1, D2) | WO-15 | **verified** (CI #14, 2026-08-17) |
+| Stage step (three cases internalized); ω₁ chain | `PlufWO15` Parts A–B | WO-15 | **verified** (CI #14, 2026-08-17) |
 
-| Paper V §2–3 (union closure; elimination) | `PlufWO16` Part A | WO-16 | awaiting CI run #15 |
-| Paper V §7 (trace formula; covering criterion) | `PlufWO16` Part B | WO-16 | awaiting CI run #15 |
-| Paper V §8 (intimacy = level three; collapse; χ(Gowers)=3; blocker constraint) | `PlufWO16` Part C | WO-16 | awaiting CI run #15 |
+| Paper V §2–3 (union closure; elimination) | `PlufWO16` Part A | WO-16 | **verified** (CI #15, 2026-08-18) |
+| Paper V §7 (trace formula; covering criterion) | `PlufWO16` Part B | WO-16 | **verified** (CI #15, 2026-08-18) |
+| Paper V §8 (intimacy = level three; collapse; χ(Gowers)=3; blocker constraint) | `PlufWO16` Part C | WO-16 | **verified** (CI #15, 2026-08-18) |
+
+| Paper V Thm 4.3 (S1; S2 for finite deletions) | `PlufWO17` Part A | WO-17 | awaiting CI run #16 |
+| Paper V Thm 5.2 (finite-rank classification, Aroca quarantined) | `PlufWO17.suppFamily_isScrawlFamily` (+B1, B2) | WO-17 | awaiting CI run #16 |
+| Paper V Lemma 6.1, Example 6.2, and the §6 conditional | `PlufWO17` Part C | WO-17 | awaiting CI run #16 |
+
+**WO-17 (Paper V §§4–6) delivered 2026-08-18: no false contracts. PAPER V IS
+COMPLETE.** All nine items in the printed shape. **Both WO-16 census
+recommendations were correctly overridden.** The matroid vocabulary
+(`IsCircuitFamily`, `IndepOf`, `HasSM`, `IsScrawlFamily`) is defined from
+scratch — verified at merge that no file imports `Mathlib.Data.Matroid` and no
+matroid instance is built. Section 6 succeeded against the rewritten
+Example 6.2: Mathlib has no counting form of Rolle, so one was built
+(`expSum_card_zeros_lt` by induction on the exponent count), and the contracted
+negative form derives from it. B1's coercion `PlufWO16.toFun` did not exist in
+the base and was introduced here as the linear map carried by the ℓ² coercion.
+B2's rescaling is `weight n = 2⁻ⁿ / (1 + Σ_{v ∈ t} |v n|)` over a finite
+generating set. `Submodule.closed_of_finiteDimensional` applies verbatim
+(`isClosed_of_finite`). Unused-retained: A2's `hXw`; C3's `hM` — and C3 needs
+only the antichain axiom, not the (SM) clause, which is a stronger conclusion
+than the paper claims. Residue is the two intended items: quarantined
+`AroKaHyp`, and the open Question 9.3.
 
 **WO-16 (Paper V) delivered 2026-08-18: no false contracts.** All 17 items in
 the printed shape; counterexample license not invoked. **Scalar finding

@@ -298,6 +298,18 @@ CONTRACT_THEOREMS = [
     "PlufWO16.mem_cI_gowersX_iff",
     "PlufWO16.gowersX_threeCover",
     "PlufWO16.diagonallyConsistent_of_addableBlocker",
+    # WO-17 (Paper V §§4-6: scrawl axioms, finite rank, the model space)
+    "PlufWO17.suppFamily_sUnion_closed",
+    "PlufWO17.suppFamily_elimination_finite",
+    "PlufWO17.suppFamily_eq_coords",
+    "PlufWO17.exists_realization_in_lp",
+    "PlufWO17.suppFamily_isScrawlFamily",
+    "PlufWO17.expSum_zeros_lt",
+    "PlufWO17.geom_apply",
+    "PlufWO17.exists_supp_compl_finite",
+    "PlufWO17.not_isScrawlFamily_of_cofiniteOnly",
+    "PlufWO17.expSum_card_zeros_lt",
+    "PlufWO17.isClosed_of_finite",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]
