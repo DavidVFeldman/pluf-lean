@@ -279,6 +279,25 @@ CONTRACT_THEOREMS = [
     "PlufWO15.face_apply_mem_Icc",
     "PlufWO15.exists_face_state_apply_eq",
     "PlufWO15.face_values_eq_Icc",
+    # WO-16 (Paper V: support families, covering criterion, series transfers)
+    "PlufWO16.exists_supp_union",
+    "PlufWO16.exists_supp_iUnion",
+    "PlufWO16.exists_supp_sUnion",
+    "PlufWO16.exists_supp_elimination",
+    "PlufWO16.mem_cD_iff",
+    "PlufWO16.cI_downward",
+    "PlufWO16.trace_subset",
+    "PlufWO16.mem_trace_of_forall_cD",
+    "PlufWO16.diagonallyConsistent_iff",
+    "PlufWO16.diagonallyConsistent_iff_not_finiteCover",
+    "PlufWO16.intimate_iff_no_two_cover",
+    "PlufWO16.diagonallyConsistent_of_mem_diagonalizable",
+    "PlufWO16.diagonalizable_iff_all_diagonallyConsistent",
+    "PlufWO16.gowersX_pairSum_rec",
+    "PlufWO16.mem_gowersX_iff_pairSum_rec",
+    "PlufWO16.mem_cI_gowersX_iff",
+    "PlufWO16.gowersX_threeCover",
+    "PlufWO16.diagonallyConsistent_of_addableBlocker",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]

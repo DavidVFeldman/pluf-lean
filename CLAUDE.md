@@ -100,6 +100,32 @@ CI run #7), including all formalized counterexamples and obstructions:
 | **Paper I Prop 5.9 (face values of T = [1/16, 1])** | `PlufWO15.face_values_eq_Icc` (+D1, D2) | WO-15 | awaiting CI run #14 |
 | Stage step (three cases internalized); ω₁ chain | `PlufWO15` Parts A–B | WO-15 | awaiting CI run #14 |
 
+| Paper V §2–3 (union closure; elimination) | `PlufWO16` Part A | WO-16 | awaiting CI run #15 |
+| Paper V §7 (trace formula; covering criterion) | `PlufWO16` Part B | WO-16 | awaiting CI run #15 |
+| Paper V §8 (intimacy = level three; collapse; χ(Gowers)=3; blocker constraint) | `PlufWO16` Part C | WO-16 | awaiting CI run #15 |
+
+**WO-16 (Paper V) delivered 2026-08-18: no false contracts.** All 17 items in
+the printed shape; counterexample license not invoked. **Scalar finding
+confirms the paper:** no item needed a property of ℝ beyond uncountability of
+the field, used once in the counting step behind A1/A2 — Paper V's
+field-blindness claim for §§7–8 stands as printed. C4a supplied as
+`pairSum x k = ((k+2)/(k+1)) * pairSum x (k+1)`, with converse and
+vanishing-propagation; 0-indexed, dictionary to the paper's 1-indexing in the
+report. C4's three-cover is explicit and concrete: `{0,5} ∪ evens≥6`,
+`{1,2} ∪ odds≥6`, `{3,4}` — missing pairs 1, 2, 0 respectively. A2's recursion
+reuses `PlufWO14.exists_seq_of_step` unchanged, with the caveat that the stage
+predicate must be satisfiable for an arbitrary history, so only the new
+vector's coordinates are protected per stage and the paper's freezing invariant
+is a separate induction. **Finding: A4's two minimality hypotheses are
+unnecessary** (retained verbatim as contracted). **Census verdicts on the
+uncontracted sections:** §4 worth contracting only in support language
+(Mathlib's infinite `Matroid` has circuits, elimination, duality — but no
+circuit-axioms constructor, no scrawls, no cofinitary matroids, no
+representability); §5 worth contracting as a transfer, the gap being analytic
+and non-vacuous, with support-preserving realization inside ℓ² the item with
+content; §6 stays uncontracted — Mathlib has no Blaschke products, no Hardy or
+model spaces, no generalized Vandermonde positivity.
+
 **WO-15 (FINAL COMMISSION) delivered 2026-08-17.** Every contracted item proved.
 **A2 was FALSE as printed** (mine, eighth of the campaign, same species as the
 rest): with an empty index type the union is neither admissible nor contains `⊤`.

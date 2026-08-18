@@ -1,0 +1,15 @@
+# Summary of changes for run 2022f4dd-df7c-40af-bd78-b8e3c8ebb8a7
+WO-16 (Paper V) is delivered complete: all seventeen contracted items are proved in Lean, with no `sorry`, `admit`, `axiom` or `native_decide`, and the whole prior development stays green.
+
+**What was done.** The submitted base tree was installed as the project (`RequestProject/`, plus `WORKORDER.md`, `PAPERS.md`, `REPORT-WO5.md`, `REPORT-WO14.md`, `paper5.pdf`), and the contract file `RequestProject/PlufWO16.lean` was turned into a roll-up over three new modules:
+
+- `RequestProject/PlufWO16/Basic.lean` — the contracted definitions (`supp`, `cD`, `cI`, `DiagonallyConsistent`, `HasFiniteCover`, `pair`) verbatim, plus `pairSum` and the support/block dictionary.
+- `RequestProject/PlufWO16/PartA.lean` — A1 (Lemma 2.1), A2 (Proposition 2.2, the recursion with frozen minima), A3 (Corollary 2.3), A4 (Proposition 3.2).
+- `RequestProject/PlufWO16/PartB.lean` — B1 (Lemma 7.2), B2 (Proposition 7.3, both halves), B3 (Proposition 7.5), B4 (Theorem 7.6).
+- `RequestProject/PlufWO16/PartC.lean` — C1 (Proposition 8.1), C2 (Proposition 8.2), C3 (Corollary 8.3), C4a (statement supplied) with its converse, C4b and C4 (Theorem 8.4, the explicit three-cover), C5 (Proposition 8.5).
+
+Every contracted statement is returned in the printed shape — no repair was needed, so the counterexample license was not invoked. `#print axioms` at the foot of `RequestProject/PlufWO16.lean` reports only `propext`, `Classical.choice`, `Quot.sound` for each contract theorem, and a full build of the project succeeds with 0 errors (261 axiom audits across the tree, all whitelist-only). `PlufWO7a.lean` was not edited.
+
+**Report and census** are in `REPORT-WO16.md`, covering: (i) verdicts on the three uncontracted sections — §4 is worth contracting only in support language, since Mathlib's infinite-ground-set `Matroid` API has circuits, elimination and duality but no circuit-axioms constructor, no scrawls, no cofinitary matroids and no representability; §5 is worth contracting as a transfer, the analytic gap between the quarantined hypothesis and the conclusion being real; §6 should stay uncontracted, Mathlib having no Blaschke products, no Hardy/model spaces, no generalized Vandermonde positivity and only the polynomial Descartes rule; (ii) the A2 recursion shape — the existing dependent-choice gadget applies unchanged, with the caveat that the stage predicate must be satisfiable for an arbitrary history, so only the new vector's coordinates are protected at each stage and the paper's invariant is a separate induction; (iii) the supplied C4a statement (`pairSum x k = ((k+2)/(k+1)) · pairSum x (k+1)`), with the converse and the vanishing-propagation consequence; (iv) the 0-indexing convention and its dictionary to the paper's 1-indexed pairs; (v) the scalar finding — no item needed a property of ℝ beyond uncountability of the scalar field, used once in the counting step behind A1/A2, confirming the paper's field-blindness claim; and (vi) the finding that A4's two minimality hypotheses are unnecessary (retained verbatim as contracted).
+
+All work is committed and pushed.
