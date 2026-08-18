@@ -1,0 +1,13 @@
+# Summary of changes for run 289df795-5253-4871-995a-642935396a59
+**WO-15 delivered: Paper I, Theorem 5.7 and Proposition 5.9 are machine-checked.**
+
+I unpacked the supplied base tree into the project, added the contract file `RequestProject/PlufWO15.lean` and the new part files under `RequestProject/PlufWO15/` (`Basic.lean`, `PartA.lean`, `PartB.lean`, `PartC.lean`, `PartD.lean`), and proved every contracted item. The whole project builds green (`Build completed successfully`, 8084 jobs) with no `sorry`, `admit`, `axiom` or `native_decide` in the new material, and `#print axioms` for every contract theorem reports exactly `[propext, Classical.choice, Quot.sound]`. CH is carried as a hypothesis, never an axiom. The base tree is untouched — `diff -r` against the supplied `base/RequestProject` reports only the two new entries — so all prior theorems remain green and the census file was not edited.
+
+What is proved:
+- **A1** `exists_admissible_decides` — the stage step, with the paper's three cases internalized; Case III consumes the blocking lemma, supplied with the `hGN` clause as the contract requires.
+- **A2** `admissible_iUnion` — **repaired**: as printed it is false for an empty index type (the empty union is neither admissible nor contains `⊤`). The printed form is preserved verbatim in a comment, the repair is the marked minimal one (`[Nonempty ι]`), and the refutation is itself machine-checked as `admissible_iUnion_counterexample`.
+- **B1** `exists_admissible_chain` — the ω₁ recursion, following the settled pattern (well-founded recursion with the stage choice in a `dite`, invariant by ordinal induction over the history, no successor/limit split). One divergence, reported: the recursion is run at a declared universe variable rather than pinned at `0`, because the contract's own statement auto-binds an ordinal universe.
+- **C1/C2** `exists_pluf_all_ample`, `not_rsp_of_all_ample`, plus `radii_of_all_ample` (minor radius 1, major radius 4, eccentricity 4) — Theorem 5.7. Nonprincipality goes through a finite-codimension room argument at the hyperplane `(ℝ ∙ v)ᗮ`, not a countable-set escape.
+- **D1/D2/D3** `face_apply_mem_Icc`, `exists_face_state_apply_eq`, `face_values_eq_Icc` — Proposition 5.9, the face values of `T` being exactly `[1/16, 1]`. D2's route is reported: the domination is fed to the existing Hahn–Banach dominated-extension lemma along the ray through `T`, so no two-dimensional domain and no `{I, T}` independence lemma are needed.
+
+`REPORT-WO15.md` contains the census, the `Admissible`/`⊤` packaging decision (side hypothesis, not a field), the A2 form and its repair, the B1 recursion as implemented with its single divergence, the Part C route, the D2 route, and the axiom audit.

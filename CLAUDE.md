@@ -67,26 +67,88 @@ Axiom footprint of every merged theorem (149 after WO-7a; 133 verified through
 CI run #7), including all formalized counterexamples and obstructions:
 `propext`, `Classical.choice`, `Quot.sound`.
 
-| Paper I Prop 2.3 **in every dimension ≥ 2**, no Kochen–Specker input | `PlufWO7a.no_prime_filter_of_finrank_ge_two` (+`exists_pair_sup_top_notMem`) | WO-7a | awaiting CI run #8 |
-| WO-7 scoping probes (essential spectrum, bases, ω₁-recursion) | `PlufWO7a` (16 audited) | WO-7a | awaiting CI run #8 |
+| Paper I Prop 2.3 **in every dimension ≥ 2**, no Kochen–Specker input | `PlufWO7a.no_prime_filter_of_finrank_ge_two` (+`exists_pair_sup_top_notMem`) | WO-7a | **verified** (CI #8, 2026-08-17) |
+| WO-7 scoping probes (essential spectrum, bases, ω₁-recursion) | `PlufWO7a` (16 audited) | WO-7a | **verified** (CI #8, 2026-08-17) |
 
-| Paper I Prop 2.3, paper-facing, **every dim ≥ 2 and every space with an infinite orthonormal basis** | `PlufWO9` Part A | WO-9 | awaiting CI run #9 |
-| Essential-spectrum API (`essSpec`, closedness, finite-codim invariance) | `PlufWO9` Part B | WO-9 | awaiting CI run #9 |
-| Approximate-eigenvector substitute for spectral subspaces | `PlufWO9.approx_eigen_span_spec` (+C1) | WO-9 | awaiting CI run #9 |
-| General `HilbertBasis` block API (+ corrected Q2, reindexing) | `PlufWO9` Part D | WO-9 | awaiting CI run #9 |
-| ω₁-recursion combinator (CH as hypothesis) | `PlufWO9` Part E | WO-9 | awaiting CI run #9 |
+| Paper I Prop 2.3, paper-facing, **every dim ≥ 2 and every space with an infinite orthonormal basis** | `PlufWO9` Part A | WO-9 | **verified** (CI #9, 2026-08-17) |
+| Essential-spectrum API (`essSpec`, closedness, finite-codim invariance) | `PlufWO9` Part B | WO-9 | **verified** (CI #9, 2026-08-17) |
+| Approximate-eigenvector substitute for spectral subspaces | `PlufWO9.approx_eigen_span_spec` (+C1) | WO-9 | **verified** (CI #9, 2026-08-17) |
+| General `HilbertBasis` block API (+ corrected Q2, reindexing) | `PlufWO9` Part D | WO-9 | **verified** (CI #9, 2026-08-17) |
+| ω₁-recursion combinator (CH as hypothesis) | `PlufWO9` Part E | WO-9 | **verified** (CI #9, 2026-08-17) |
 
-| Paper II Prop 5.5 (one-witness reduction) **as printed, over all bases** | `PlufWO10.one_witness_reduction` (+E0 `diagonalizableB_iff_intimateB`) | WO-10 | awaiting CI run #10 |
-| Paper II Prop 6.1 (chains never suffice) | `PlufWO10.chains_never_suffice` | WO-10 | awaiting CI run #10 |
-| Zorn extension for plufs; chain coordinatization; `blockB` lattice API | `PlufWO10` Parts A–C | WO-10 | awaiting CI run #10 |
+| Paper II Prop 5.5 (one-witness reduction) **as printed, over all bases** | `PlufWO10.one_witness_reduction` (+E0 `diagonalizableB_iff_intimateB`) | WO-10 | **verified** (CI #10, 2026-08-17) |
+| Paper II Prop 6.1 (chains never suffice) | `PlufWO10.chains_never_suffice` | WO-10 | **verified** (CI #10, 2026-08-17) |
+| Zorn extension for plufs; chain coordinatization; `blockB` lattice API | `PlufWO10` Parts A–C | WO-10 | **verified** (CI #10, 2026-08-17) |
 
-| Cardinal infrastructure: #closed subspaces = #bases = #operators = #self-adjoint = 𝔠 | `PlufWO11` Part A | WO-11 | awaiting CI run #11 |
-| CH enumerations of subspaces / bases / self-adjoints by countable ordinals | `PlufWO11` Part B | WO-11 | awaiting CI run #11 |
-| ω₁ stage bookkeeping (countable initial segments, unions) + Baire escape | `PlufWO11` Part C | WO-11 | awaiting CI run #11 |
+| Cardinal infrastructure: #closed subspaces = #bases = #operators = #self-adjoint = 𝔠 | `PlufWO11` Part A | WO-11 | **verified** (CI #11, 2026-08-17) |
+| CH enumerations of subspaces / bases / self-adjoints by countable ordinals | `PlufWO11` Part B | WO-11 | **verified** (CI #11, 2026-08-17) |
+| ω₁ stage bookkeeping (countable initial segments, unions) + Baire escape | `PlufWO11` Part C | WO-11 | **verified** (CI #11, 2026-08-17) |
 
-| Paper I §5: `T`, ampleness, Lemma 5.2 (+ radii as printed) | `PlufWO13` Parts A–B | WO-13 | awaiting CI run #12 |
-| Paper I Lemmas 5.3, 5.4 (upward inheritance; finite codimension) | `PlufWO13` Part C | WO-13 | awaiting CI run #12 |
-| Paper I Lemma 5.5 (escape), approximate-eigenvector formulation | `PlufWO13.escape` (+D2, D3) | WO-13 | awaiting CI run #12 |
+| Paper I §5: `T`, ampleness, Lemma 5.2 (+ radii as printed) | `PlufWO13` Parts A–B | WO-13 | **verified** (CI #12, 2026-08-17) |
+| Paper I Lemmas 5.3, 5.4 (upward inheritance; finite codimension) | `PlufWO13` Part C | WO-13 | **verified** (CI #12, 2026-08-17) |
+| Paper I Lemma 5.5 (escape), approximate-eigenvector formulation | `PlufWO13.escape` (+D2, D3) | WO-13 | **verified** (CI #12, 2026-08-17) |
+
+| **Paper I Lemma 5.6 — THE BLOCKING LEMMA, unconditional** | `PlufWO14.blocking_lemma` | WO-14 | awaiting CI run #13 |
+| Selection/perturbation machinery (S0–S2, P1, odd-stage lemma) | `PlufWO14` Parts S, P | WO-14 | awaiting CI run #13 |
+| The blocking recursion; exact diagonality; conditional assembly | `PlufWO14.exists_blocking_sequence`, `compress_exact_diagonal`, `blocking_lemma_of_sequence` | WO-14 | awaiting CI run #13 |
+
+| **Paper II Thm 5.4 (CH: nonprincipal pluf, diagonalizable via no basis)** | `PlufWO12.exists_nonprincipal_nondiagonalizable` | WO-12 | awaiting CI run #13 |
+| Stage construction (constrained selection, two-coordinate lemma, non-intimate blocker) | `PlufWO12` Part A | WO-12 | awaiting CI run #13 |
+| CH vector enumeration; cofinal chains; the ω₁ witness family | `PlufWO12` Part B | WO-12 | awaiting CI run #13 |
+
+| **Paper I Thm 5.7 (CH: nonprincipal pluf, all members ample; no round slices)** | `PlufWO15.exists_pluf_all_ample`, `not_rsp_of_all_ample`, `radii_of_all_ample` | WO-15 | awaiting CI run #14 |
+| **Paper I Prop 5.9 (face values of T = [1/16, 1])** | `PlufWO15.face_values_eq_Icc` (+D1, D2) | WO-15 | awaiting CI run #14 |
+| Stage step (three cases internalized); ω₁ chain | `PlufWO15` Parts A–B | WO-15 | awaiting CI run #14 |
+
+**WO-15 (FINAL COMMISSION) delivered 2026-08-17.** Every contracted item proved.
+**A2 was FALSE as printed** (mine, eighth of the campaign, same species as the
+rest): with an empty index type the union is neither admissible nor contains `⊤`.
+Refutation machine-checked as `admissible_iUnion_counterexample`; repair is the
+marked minimal `[Nonempty ι]`. B1 follows WO-12's settled pattern with one
+reported divergence — the recursion runs at a declared universe variable rather
+than pinned at `0`, because the contract statement auto-binds an ordinal
+universe. `Admissible`/`⊤` packaging: side hypothesis, not a structure field.
+Nonprincipality routed through a finite-codimension room argument at the
+hyperplane `(ℝ ∙ v)ᗮ` — NOT a countable-set escape, per the inherited WO-11
+warning. **D2 simplification:** the domination is fed to Mathlib's dominated-
+extension lemma along the RAY through `T`, so neither a two-dimensional domain
+nor an `{I, T}` independence lemma was needed.
+
+**WO-12 delivered 2026-08-17: the deviation route CLOSED.** Theorem 5.4 proved
+without the paper's three-case recursion — the family is built and
+`PlufWO10.one_witness_reduction` supplies the pluf, nonprincipality and
+non-diagonalizability. No repairs, no quarantined hypotheses. B3 packaging: the
+family is taken to BE the set of finite intersections, so directedness is
+automatic. **RECURSION VERDICT FOR WO-15: `PlufWO9.exists_omega1_chain` DOES NOT
+FIT** — its step map cannot see the stage index, and stages need the whole set of
+earlier values, not a supremum. Pattern used and recommended: plain well-founded
+recursion on `Ordinal` with the stage choice in a `dite`, `WellFounded.fix` +
+`WellFounded.fix_eq`, invariant proved afterwards by `Ordinal.induction` over the
+history `Prev c a = c '' Set.Iio a`. **No successor/limit split at all.** Two
+practical notes: (i) pin the universe (`Ordinal.{0}` annotations) or
+`(aleph 1).ord`'s universe stays a metavariable; (ii) keep `Prev` and the stage
+predicate top-level so the `dite` rewrite is a one-liner. Unused-retained: `hhc`
+in A1, `hNcl` in A3 (the construction forces `R` orthogonal to `h 0 ⊓ N`).
+
+**WO-14 (the summit) delivered 2026-08-17: QUARANTINE FALLBACK NOT NEEDED.**
+W1 closed unconditionally, hence W3. `blocking_lemma_of_sequence` was delivered
+anyway and used as the actual carrier: it proves W3's conclusion from W1's as a
+hypothesis, and `blocking_lemma` is its one-line application — so the quarantined
+form remains available to WO-15 at zero cost. 20 new theorems + `tailSpan`.
+Recursion implemented via a reusable dependent-choice gadget `exists_seq_of_step`
+(stage predicate depends only on earlier values; `hex` unconditional because the
+selection lemmas accept an arbitrary finite constraint set — no invariant is
+threaded). **S0 verdict: NOT in `PlufWO13/Basic.lean`** (its transfer lemmas move
+between given finite-codimension statements; none manufactures finite codimension
+from functionals) — proved here via `LinearMap.quotKerEquivRange`.
+**essSpec-criterion verdict:** WO-13's `mem_essSpec_compress_of_seq` wants ambient
+defect convergence but the recursion yields Rayleigh; bridged by a new
+`mem_essSpec_compress_of_rayleigh_seq` using WO-13's `norm_T_sub_lam_sq_le`.
+**W2 packaging: ambient starProjection identity — and W3 does NOT consume it**;
+the assembly runs on the cheaper Rayleigh criterion, so exact diagonality is
+recorded as contracted but not load-bearing. Unused-retained hypotheses: `hN` in
+`perturb_unit` (the two-candidate η argument needs no closedness) and `hGN` in
+`blocking_lemma` — as predicted in the contract.
 
 **WO-13 delivered 2026-08-17: no false contracts.** All 13 items proved verbatim
 to the contracted signatures. `T` realized as `(1/16)·id + (15/16)·P`, `P` the

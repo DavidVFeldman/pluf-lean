@@ -1,0 +1,817 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.15in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\spec}{\sigma}
+\newcommand{\sess}{\sigma_{\mathrm{ess}}}
+\newcommand{\Mm}{M}   % major radius
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\BH}{\mathcal{B}(\HH)}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\pluf}{\pi}
+
+\title[Ultrafilter limits in the projection lattice]
+{Ultrafilter limits in the projection lattice\\ of a Hilbert space}
+
+\author{David Feldman}
+\address{Department of Mathematics and Statistics, University of New Hampshire, Durham, NH}
+
+\author{Alexander Wilce}
+\address{Department of Mathematics, Susquehanna University, Selinsgrove, PA}
+
+\date{\today}
+
+\begin{document}
+
+\begin{abstract}
+A bounded sequence of reals has a limit along any ultrafilter on its index set. We study
+a linear analogue in which the index set becomes a separable Hilbert space $\HH$, subsets
+become closed subspaces, ultrafilters become maximal filters in the projection lattice
+$\PP(\HH)$ (\emph{plufs}), bounded sequences become ellipsoids, and convergence becomes
+the existence of arbitrarily round slices. Three answers emerge. For plufs aligned with an
+atomic masa, the analogue holds, and is equivalent to the Kadison--Singer problem, resolved
+by Marcus, Spielman and Srivastava; we record an elementary packaging of that theorem:
+\emph{every ellipsoid in $\ell^2$ has almost-round coordinate slices along every
+ultrafilter on $\N$}. Under the continuum hypothesis the analogue fails as badly as
+possible: we construct a pluf $\pluf$ and an ellipsoid $E$ of eccentricity $4$ such that
+every $\pluf$-slice of $E$ has eccentricity exactly $4$; indeed the set of $\pluf$-limits
+of the associated quadratic form is an entire interval. Finally, on a Hilbert space of
+measurable dimension the analogue holds along any normal measure, by a soft diagonal-intersection
+argument developed in a companion paper. A closing section reads these results as a
+fragment of ``linear model theory'': plufs are maximal consistent incidence types, the
+state-space face $S_\pluf$ is the space of their completions, \L o\'s's theorem holds
+exactly on the Boolean and normal-measure fragments, and the obstruction to a linear
+Feferman--Vaught theory is entanglement.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+Gian-Carlo Rota liked to observe that statements of discrete mathematics often admit formal
+linear analogues, and that these can turn out to be false, trivial, deep, or merely
+parallel; even formulating the analogue is not mechanical, despite the functorial passage
+from a set to the Hilbert space it generates. We take as our discrete statement:
+
+\begin{center}
+\emph{a bounded sequence of reals converges along every ultrafilter on $\N$,}
+\end{center}
+
+\noindent and we linearize every ingredient. Throughout, $\HH$ denotes a separable
+infinite-dimensional real Hilbert space (everything below works verbatim over
+$\mathbb{C}$), $\PP(\HH)$ its lattice of closed subspaces, and $\BH$ the algebra of
+bounded operators.
+
+\begin{definition}\label{def:pluf}
+A \emph{projection-lattice ultrafilter}, or \emph{pluf}, is a family
+$\pluf\subseteq\PP(\HH)$ of nonzero closed subspaces, closed under finite intersection and
+under enlargement, and maximal with these properties; equivalently, a maximal filter in
+$\PP(\HH)$.
+\end{definition}
+
+Plufs exist by Zorn's lemma. The family $\pluf_L=\{M: L\subseteq M\}$ of all closed
+subspaces containing a fixed line $L$ is a pluf; we call such plufs \emph{principal}.
+
+For the linear analogue of a bounded sequence we take a positive definite bounded
+symmetric form $T$ with bounded inverse, or equivalently the ellipsoid
+$E_T=\{x:\langle Tx,x\rangle=1\}$; diagonal $T$ recovers bounded sequences. Write $m(E)$
+and $\Mm(E)$ for the minor and major radii of an ellipsoid and $r(E)=\Mm(E)/m(E)$ for its
+eccentricity. Slicing by a closed subspace never increases eccentricity.
+
+\begin{definition}\label{def:RSP}
+A pluf $\pluf$ has the \emph{round slice property} (RSP) for $T$ if
+$\inf_{M\in\pluf}r(E_T\cap M)=1$.
+\end{definition}
+
+The proposed analogue is: \emph{every pluf has RSP for every $T$}. This paper establishes
+the following trichotomy.
+
+\begin{enumerate}
+\item[(A)] (\S\ref{sec:pos}) Every pluf containing the coordinate subspaces of an
+ultrafilter on a fixed orthonormal basis has RSP for every $T$. This is exactly the
+Kadison--Singer problem \cite{KadisonSinger}, resolved by Marcus, Spielman and Srivastava
+\cite{MSS}; conversely, the RSP statement for coordinate filters is equivalent to
+Kadison--Singer (Remark~\ref{rem:KSpackage}).
+\item[(B)] (\S\ref{sec:neg}) Assuming the continuum hypothesis, there is a pluf $\pluf$
+and an ellipsoid $E$ of eccentricity $4$ such that \emph{every} $\pluf$-slice of $E$ has
+minor radius $1$, major radius $4$, and eccentricity $4$. The failure is total: the set of
+$\pluf$-limits of the form is the entire interval between the essential extremes
+(Proposition~\ref{prop:interval}).
+\item[(C)] (\S\ref{sec:meas}) If $\dim\HH$ is a measurable cardinal and $\mathcal U$ is a
+normal measure on it, the coordinate filter of $\mathcal U$ is \emph{already} a pluf, and
+it has RSP for every $T$, by a diagonal-intersection argument requiring no paving theorem.
+Full proofs appear in the companion paper \cite{FWIII}.
+\end{enumerate}
+
+The reading in \S\ref{sec:coda} is model-theoretic: a pluf is a maximal consistent
+set of \emph{incidence} conditions, the face $S_\pluf$ of states fixing it
+(\S\ref{sec:slices}) is the space of completions of that type, and RSP is \L o\'s's
+theorem for atomic formulas. \L o\'s survives linearization exactly on the Boolean
+fragment (by Marcus--Spielman--Srivastava) and along normal measures (softly); in between,
+the gap is measured by an ellipsoid.
+
+A companion paper \cite{FWII} develops the combinatorial theory that determines
+\emph{which} plufs arise from ultrafilters on bases, characterizes maximality of the
+block-generated filter by selectivity of the ultrafilter, and reduces the diagonalizability
+of a pluf to the existence of a single \emph{intimate} witness.
+The nearest published relative of our maximal lattice filters is Question 6.39 of
+Farah--Wofsey \cite{FarahWofsey}, which asks whether every maximal filter in the projection
+lattice of the \emph{Calkin} algebra lifts; we discuss the bridge in
+\S\ref{sec:questions}.
+
+\section{Structure of the space of plufs}\label{sec:struct}
+
+The facts below are elementary. They already show why the Stone--\v{C}ech analogy
+breaks, before any analysis enters.
+
+\begin{lemma}\label{lem:maximality}
+A filter $\pluf$ in $\PP(\HH)$ is maximal if and only if for every $M\in\PP(\HH)$ either
+$M\in\pluf$ or there is $N\in\pluf$ with $M\cap N=0$.
+\end{lemma}
+
+\begin{proof}
+The filter generated by $\pluf\cup\{M\}$ consists of the subspaces containing some
+$M\cap N$ with $N\in\pluf$, and is proper exactly when no such intersection vanishes.
+\end{proof}
+
+The condition $M\cap N=0$ is far weaker than $N\subseteq M^{\perp}$: two subspaces can
+meet trivially while lying at angle $0$. The lattice sees incidence and forgets angle.
+
+\begin{lemma}\label{lem:findim}
+If a pluf $\pluf$ contains a finite-dimensional subspace then $\pluf=\pluf_L$ for a line
+$L$. Consequently a pluf is principal if and only if $\bigcap\pluf\neq0$, in which case
+$\bigcap\pluf$ is a line; and every nonprincipal pluf contains every subspace of finite
+codimension.
+\end{lemma}
+
+\begin{proof}
+Choose $M\in\pluf$ of least finite dimension $d$. For $N\in\pluf$, $M\cap N\in\pluf$ has
+dimension at most $d$, hence exactly $d$, hence $M\subseteq N$. If $d\geq2$, any line
+$L\subsetneq M$ meets every member of $\pluf$, contradicting maximality; so $d=1$ and
+$\pluf=\pluf_M$. If $0\neq v\in\bigcap\pluf$, maximality puts $\R v$ into $\pluf$. For the
+last claim: if $V$ has finite codimension and $V\notin\pluf$, some $M\in\pluf$ satisfies
+$M\cap V=0$, forcing $\dim M<\infty$ and principality.
+\end{proof}
+
+\begin{proposition}\label{prop:noprime}
+$\PP(\HH)$ has no prime filters: no proper filter $F$ satisfies
+$M\vee N\in F\Rightarrow M\in F\text{ or }N\in F$. The same holds for the lattice of
+closed subspaces of any real Hilbert space with an infinite orthonormal basis, and for
+the subspace lattice of any real inner product space of finite dimension at least two.
+\end{proposition}
+
+\begin{proof}
+Suppose $F$ is prime. Since $F$ is nonempty and upward closed, the whole space lies in
+$F$. In the presence of an infinite orthonormal basis, fix three closed subspaces
+$A,B,C$ that pairwise meet trivially and pairwise span: indexing the basis as $(e_n)$,
+take $A$ the closed span of the even-indexed vectors, $B$ that of the odd-indexed ones,
+and
+\[
+C=\{x:x_{2n}=x_{2n+1}\text{ for all }n\},
+\]
+so that $A\cap B=A\cap C=B\cap C=0$ while $A\vee B=A\vee C=B\vee C=\HH$ (for the last two,
+$e_{2n+1}=(e_{2n}+e_{2n+1})-e_{2n}$ and symmetrically). Applying primeness to the three
+joins puts one member of each pair $\{A,B\}$, $\{A,C\}$, $\{B,C\}$ into $F$; whichever way
+the choices fall, $F$ contains two of $A,B,C$, whose intersection is $0$ --- contradicting
+that $F$ is a proper filter.
+
+A triple as above requires $\dim A=\dim B=\dim C$, so none exists in odd finite
+dimension. There the following argument serves, and covers every finite dimension at
+least two. A prime filter of a finite-dimensional lattice contains a finite-dimensional
+member, hence is principal at a line $\R v$ by Lemma~\ref{lem:findim}. Choose
+$w\notin\R v$, put $S=\operatorname{span}\{v,w\}$ and let $C$ be a complement of $S$.
+Then
+\[
+P=\R w\oplus C,\qquad Q=\R(v+w)\oplus C
+\]
+satisfy $P\vee Q\supseteq\R w+\R(v+w)+C=S+C=\HH$, while $v\notin P$ and $v\notin Q$: a
+relation $v=aw+c$ with $c\in C$ forces $c=v-aw\in S\cap C=0$ and hence $w\in\R v$, and
+symmetrically for $Q$. Primeness applied to $P\vee Q$ would put $\R v$ inside $P$ or
+inside $Q$, which it is not.
+
+Primeness of a filter through all of $\PP(\HH)$ would furnish a dispersion-free
+$\{0,1\}$-valued lattice homomorphism, forbidden for $\dim\HH\geq3$ by Kochen--Specker
+\cite{KS}. The arguments above are elementary substitutes covering also $\dim\HH=2$.
+\end{proof}
+
+Topologize the set $\Pi$ of plufs by the basis $\widehat M=\{\pluf:M\in\pluf\}$; note
+$\widehat M\cap\widehat N=\widehat{M\cap N}$.
+
+\begin{proposition}\label{prop:topology}
+$\Pi$ is Hausdorff and zero-dimensional; the principal plufs form a dense set of isolated
+points of cardinality $2^{\aleph_0}$; and $\Pi$ is not compact.
+\end{proposition}
+
+\begin{proof}
+Each $\widehat M$ is clopen, with complement $\bigcup\{\widehat N:N\cap M=0\}$ by
+Lemma~\ref{lem:maximality}; two distinct plufs are separated by an $\widehat M,\widehat N$
+with $M\cap N=0$. For a line $L$, $\widehat L=\{\pluf_L\}$, so principal plufs are
+isolated, and they are dense since $\pluf_L\in\widehat M$ for every line $L\subseteq M$.
+If $\dim M=2$ then by Lemma~\ref{lem:findim} $\widehat M$ consists exactly of the
+$\pluf_L$, $L\subseteq M$: an uncountable discrete closed subspace, so $\Pi$ is not
+compact.
+\end{proof}
+
+Thus $\Pi$ contains the projective space $\mathbf P(\HH)$ densely and \emph{discretely} ---
+its own topology destroyed --- with no compactification structure. Since ultrafilter
+limits are nothing but the compactness of $\beta\N$, the RSP cannot be had softly.
+
+\section{Slices, gaps, and states}\label{sec:slices}
+
+Fix a positive $T\in\BH$ with bounded inverse and set, for $0\neq M\in\PP(\HH)$,
+\[
+u_T(M)=\sup_{x\in M,\|x\|=1}\langle Tx,x\rangle,\qquad
+\ell_T(M)=\inf_{x\in M,\|x\|=1}\langle Tx,x\rangle,
+\]
+so that with $T_M=P_MTP_M|_M$ we have $u_T(M)=\max\spec(T_M)$,
+$\ell_T(M)=\min\spec(T_M)$.
+
+\begin{lemma}\label{lem:radii}
+$m(E_T\cap M)=u_T(M)^{-1/2}$, $\Mm(E_T\cap M)=\ell_T(M)^{-1/2}$, and
+$r(E_T\cap M)=\sqrt{u_T(M)/\ell_T(M)}$.
+\end{lemma}
+
+Downward directedness of a filter gives
+$\sup_{M\in\pluf}\ell_T(M)\leq\inf_{M\in\pluf}u_T(M)$, whence:
+
+\begin{proposition}\label{prop:gap}
+$\pluf$ has RSP for $T$ iff
+$\sup_{M\in\pluf}\ell_T(M)=\inf_{M\in\pluf}u_T(M)$, iff for every $\epsilon>0$ some
+$M\in\pluf$ has $u_T(M)-\ell_T(M)<\epsilon$.
+\end{proposition}
+
+The simultaneous statement over all $T$ is state-theoretic. Put
+\[
+S_\pluf=\{\varphi\text{ a state on }\BH:\varphi(P_M)=1\text{ for all }M\in\pluf\}.
+\]
+
+\begin{proposition}\label{prop:face}
+$S_\pluf$ is a nonempty weak$^*$-compact face of the state space of $\BH$; it equals the
+set of states with
+$\sup_M\ell_T(M)\le\varphi(T)\le\inf_Mu_T(M)$ for every self-adjoint $T$; and $\pluf$ has
+RSP for every $T$ iff $S_\pluf$ is a singleton, in which case its element is a pure
+state.
+\end{proposition}
+
+\begin{proof}
+$\overline{\lim}_\pluf T:=\inf_Mu_T(M)$ is sublinear on self-adjoints, with
+$\underline{\lim}_\pluf T=-\overline{\lim}_\pluf(-T)$; Hahn--Banach supplies a linear
+functional between them, which is a state, so $S_\pluf\neq\emptyset$. If $\varphi(P_M)=1$
+then $\varphi(A)=\varphi(P_MAP_M)$ and
+$\ell_T(M)P_M\le P_MTP_M\le u_T(M)P_M$ gives the sandwich; conversely
+$\ell_{P_M}(M)=1$ forces $\varphi(P_M)=1$. A convex combination is $1$ at $P_M$ only if
+both summands are, so $S_\pluf$ is a face and its extreme points are pure. The last
+sentence is Proposition~\ref{prop:gap} over all $T$.
+\end{proof}
+
+The face $S_\pluf$ realizes the pluf: in the GNS representation
+$(\HH_\varphi,\rho_\varphi,\xi_\varphi)$ of any $\varphi\in S_\pluf$ one has
+$\rho_\varphi(P_M)\xi_\varphi=\xi_\varphi$ for all $M\in\pluf$, i.e.\ the GNS space
+contains a vector lying in every subspace of the pluf. For principal $\pluf_{\R v}$ this
+returns $\HH$ with $\xi=v$. We return to this reading in \S\ref{sec:coda}.
+
+Finally, the pluf notion sits properly inside Farah and Weaver's \emph{quantum filters}
+\cite{FarahWofsey,WeaverQMC}: upward-closed families of projections with
+$\|p_1\cdots p_n\|=1$ for all finite subfamilies, whose maximal elements correspond
+bijectively to pure states. Every filter in $\PP(\HH)$ is a quantum filter; the converse
+fails because $\|pq\|=1$ sees angle where $p\wedge q\neq0$ sees incidence, and quantum
+filters need not be closed under meets.
+
+\begin{remark}[Round subspaces are abundant]\label{rem:dvoretzky}
+Definition~\ref{def:RSP} is not Dvoretzky's theorem in disguise: for ellipsoids the
+corresponding fact is stronger and elementary. If $Q$ has eigenvalues
+$\lambda_1\ge\cdots\ge\lambda_n$, choose $c\in[\lambda_{n+1-k},\lambda_k]$ and in each
+plane $\mathrm{span}(e_j,e_{n+1-j})$, $j\le k\le n/2$, a unit $f_j$ with $Q(f_j)=c$: the
+$f_j$ are $Q$-orthogonal, and $Q$ restricts to $c\cdot I$ on their span --- an
+\emph{exactly} spherical section of dimension $\lfloor n/2\rfloor$. The same pairing in
+$\HH$ applied to $T=\mathrm{diag}(1,\tfrac1{16},1,\tfrac1{16},\dots)$ produces an
+infinite-dimensional subspace on which $T$ compresses to $\tfrac12I$. What
+\S\ref{sec:neg} constructs is thus a maximal filter dodging a $2^{\aleph_0}$-sized family
+of perfectly round subspaces.
+\end{remark}
+
+\section{The atomic masa: Kadison--Singer as a round-slice theorem}\label{sec:pos}
+
+Fix an orthonormal basis $(e_n)$ of $\HH$ and for $S\subseteq\N$ let
+$\HH_S=\overline{\operatorname{span}}\{e_n:n\in S\}$. An ultrafilter $\mathcal U$ on $\N$
+generates the filter $\{\HH_S:S\in\mathcal U\}$ (note
+$\HH_S\cap\HH_{S'}=\HH_{S\cap S'}$).
+
+\begin{theorem}\label{thm:MSS}
+Let $\mathcal U$ be an ultrafilter on $\N$ and $\pluf$ any pluf containing
+$\{\HH_S:S\in\mathcal U\}$. Then $\pluf$ has RSP for every $T$, and
+$\lim_\pluf T=\lim_{n\to\mathcal U}\langle Te_n,e_n\rangle$.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:face}, $S_\pluf$ lies inside the set of state extensions to
+$\BH$ of the pure state $\mathcal U$ on the atomic masa. By the Kadison--Singer problem
+\cite{KadisonSinger}, resolved affirmatively by Marcus, Spielman and Srivastava
+\cite{MSS} via Anderson's paving reformulation \cite{Anderson79}, that set is a
+singleton; being nonempty, $S_\pluf$ is that singleton, namely
+$\mathcal U\circ\mathcal E$ for the diagonal conditional expectation $\mathcal E$.
+\end{proof}
+
+\begin{remark}\label{rem:KSpackage}
+Unwinding, RSP along coordinate filters restates paving: Anderson's theorem partitions
+$\N$ into finitely many pieces on each of which $T-\mathcal E(T)$ compresses to small
+norm; one piece lies in $\mathcal U$, and shrinking further makes the diagonal nearly
+constant. Thus the statement
+\begin{center}
+\emph{for every ultrafilter $\mathcal U$ on $\N$, every ellipsoid $E$ in $\ell^2$, and
+every $\epsilon>0$ there is $S\in\mathcal U$ with $r(E\cap\HH_S)<1+\epsilon$}
+\end{center}
+is \emph{equivalent} to the Kadison--Singer problem.
+\end{remark}
+
+Which plufs contain a coordinate filter, for which the block-generated filter is already
+maximal, and whether \emph{every} pluf is so aligned, are the subject of the companion
+paper \cite{FWII}: the block filter of $\mathcal U$ (blocks together with all
+finite-codimension subspaces) is a pluf iff $\mathcal U$ is selective, and a pluf is
+diagonalizable over a basis iff every member is \emph{intimate} with respect to it.
+
+\section{A pluf with no round slices, under CH}\label{sec:neg}
+
+Fix once and for all
+\[
+T=\mathrm{diag}\bigl(1,\tfrac1{16},1,\tfrac1{16},\dots\bigr),\qquad E=E_T,
+\]
+so $\spec(T)=\sess(T)=\{\tfrac1{16},1\}$, $m(E)=1$, $\Mm(E)=4$, $r(E)=4$.
+
+\begin{definition}
+A closed subspace $M\neq0$ is \emph{ample} if
+$\{1,\tfrac1{16}\}\subseteq\sess(T_M)$.
+\end{definition}
+
+Since $\tfrac1{16}\le T\le1$, ampleness forces $u_T(M)=1$, $\ell_T(M)=\tfrac1{16}$, so by
+Lemma~\ref{lem:radii}:
+
+\begin{lemma}\label{lem:ample-radii}
+Every ample $M$ satisfies $m(E\cap M)=1$, $\Mm(E\cap M)=4$, $r(E\cap M)=4$; in particular
+ample subspaces are infinite-dimensional.
+\end{lemma}
+
+\begin{lemma}[Upward inheritance]\label{lem:upward}
+Let $W\subseteq V$ be closed and $\lambda\in\{\tfrac1{16},1\}$. If
+$\lambda\in\sess(T_W)$ then $\lambda\in\sess(T_V)$. Hence ampleness passes upward and its
+failure passes downward.
+\end{lemma}
+
+\begin{proof}
+Since $\spec(T)=\{\tfrac1{16},1\}$ we have $(T-1)(T-\tfrac1{16})=0$, whence for every
+unit $x$ the two exact identities
+\[
+\|Tx-x\|^2=\tfrac{15}{16}\bigl(1-\langle Tx,x\rangle\bigr),\qquad
+\|Tx-\tfrac1{16}x\|^2=\tfrac{15}{16}\bigl(\langle Tx,x\rangle-\tfrac1{16}\bigr).
+\]
+Choose a weakly null orthonormal $(x_k)$ in $W$ with $\langle Tx_k,x_k\rangle\to\lambda$.
+The identity at $\lambda$ gives $\|Tx_k-\lambda x_k\|\to0$, hence
+$\|T_Vx_k-\lambda x_k\|=\|P_V(Tx_k-\lambda x_k)\|\to0$: a weakly null approximate
+eigensequence for $T_V$ at $\lambda$.
+\end{proof}
+
+\begin{lemma}\label{lem:finitecodim}
+If $W\subseteq V$ has finite codimension in $V$ then $\sess(T_W)=\sess(T_V)$; in
+particular ampleness is inherited by finite-codimension subspaces.
+\end{lemma}
+
+\begin{proof}
+$P_V-P_W$ has finite rank, so $T_V$ and $T_W\oplus0$ differ by a finite-rank operator.
+\end{proof}
+
+\begin{lemma}[Escape]\label{lem:escape}
+Let $V$ be ample, $N$ closed, $V\cap N$ not ample, and
+$\lambda\in\{\tfrac1{16},1\}$ with $\lambda\notin\sess(T_{V\cap N})$. Then for every
+$\epsilon>0$ the spectral subspace
+$K^\epsilon_\lambda(V)=\mathbf1_{[\lambda-\epsilon,\lambda+\epsilon]}(T_V)\,V$ is
+infinite-dimensional, $\lambda\in\sess(T_{K^\epsilon_\lambda(V)})$, and
+$K^\epsilon_\lambda(V)\cap N$ has infinite codimension in $K^\epsilon_\lambda(V)$. In
+particular $N$ has infinite codimension in $\HH$.
+\end{lemma}
+
+\begin{proof}
+Take $\lambda=1$. A weakly null orthonormal $(x_k)$ in $V$ with
+$\langle T_Vx_k,x_k\rangle\to1$ satisfies $\|T_Vx_k-x_k\|\to0$ by the estimate above,
+hence $\|\mathbf1_{[1-\epsilon,1]}(T_V)x_k-x_k\|\to0$; so $K:=K^\epsilon_1(V)$ is
+infinite-dimensional with $1\in\sess(T_K)$. If $K\cap N$ had finite codimension in $K$,
+Lemmas~\ref{lem:finitecodim} and \ref{lem:upward} would give $1\in\sess(T_{V\cap N})$,
+contrary to hypothesis.
+\end{proof}
+
+\begin{remark}\label{rem:approxeigen}
+The proof uses only three properties of $K$: infinite dimension, the estimate
+$\|Tx-\lambda x\|\le\delta\|x\|$ for all $x\in K$ (with $\delta$ at the caller's
+disposal), and infinite codimension of $K\cap N$ in $K$. A subspace with these
+properties is available without the Borel functional calculus. Since
+$\lambda\in\sess(T_V)$, the identities in the proof of Lemma~\ref{lem:upward} supply an
+orthonormal $(u_n)$ in $V$ with $\|Tu_n-\lambda u_n\|<\delta_n$ for any prescribed
+$\delta_n>0$; taking $\sum_n\delta_n\le\delta$ and $K$ the closed span of the $u_n$,
+every $x=\sum_nc_nu_n\in K$ has $|c_n|\le\|x\|$ and hence
+$\|Tx-\lambda x\|\le\sum_n|c_n|\delta_n\le\delta\|x\|$.
+\end{remark}
+
+\begin{lemma}[Blocking lemma]\label{lem:blocking}
+Let $G$ be a countable, downward directed family of ample subspaces and $N$ a closed
+subspace such that $q\cap N$ is not ample for some $q\in G$ while $g\cap N\neq0$ for all
+$g\in G$. Then there is a closed subspace $R$ with
+\begin{enumerate}
+\item[(i)] $R\cap N=0$;
+\item[(ii)] $R\cap g$ is ample for every $g\in G$, and $R$ is ample.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Enumerate $G=\{g_1,g_2,\dots\}$ and put $h_n=q\cap g_1\cap\dots\cap g_n$: a decreasing
+sequence in $G$ (directedness), each ample, each $h_n\cap N$ not ample
+(Lemma~\ref{lem:upward}). Fix $\lambda_0\in\{\tfrac1{16},1\}$ with
+$\lambda_0\notin\sess(T_{q\cap N})$, hence
+$\lambda_0\notin\sess(T_{h_n\cap N})$ for all $n$, and let $\lambda_1$ be the other
+value. Choose $\epsilon_n\downarrow0$.
+
+We construct unit vectors $w_n\in h_n$ recursively so that, writing
+$y_n=P_{N^\perp}w_n$:
+\begin{enumerate}
+\item[(a)] $|\langle Tw_n,w_n\rangle-\mu_n|<\epsilon_n$, where $\mu_n=\lambda_0$ for even
+$n$ and $\mu_n=\lambda_1$ for odd $n$;
+\item[(b)] $\langle w_n,w_j\rangle=0$ and $\langle Tw_n,w_j\rangle=0$ for all $j<n$;
+\item[(c)] $y_n\neq0$ and $\langle w_n,y_j\rangle=0$ for all $j<n$.
+\end{enumerate}
+All conditions in (b) and (c) other than $y_n\neq0$ are \emph{finitely many linear
+constraints} on $w_n$ (self-adjointness of $T$ converts $\langle Tw_n,w_j\rangle=0$ into
+$w_n\perp Tw_j$), so they carve out a finite-codimension subspace $C_n$ of any
+infinite-dimensional subspace we work in.
+
+\emph{Even $n$.} Work in $K:=K^{\epsilon_n}_{\lambda_0}(h_n)$, infinite-dimensional with
+$K\cap N$ of infinite codimension in $K$ (Lemma~\ref{lem:escape}). Then
+$C_n\subseteq K$ is infinite-dimensional and $C_n\cap N\subseteq K\cap N$ has infinite
+codimension in $C_n$; pick a unit $w_n\in C_n\setminus N$, so $y_n\neq0$; and every unit
+vector of $K$ satisfies (a) since
+$\lambda_0-\epsilon_n\le T_{h_n}\le\lambda_0+\epsilon_n$ on $K$ gives
+$|\langle Tw_n,w_n\rangle-\lambda_0|\le\epsilon_n$.
+
+\emph{Odd $n$.} First pick a unit $w_n'\in K^{\epsilon_n/2}_{\lambda_1}(h_n)$ satisfying
+the linear constraints of (b)--(c); then pick a unit
+$z_n\in K^{\epsilon_n/2}_{\lambda_0}(h_n)\setminus N$ satisfying the same linear
+constraints together with $z_n\perp w_n'$ and $z_n\perp Tw_n'$ (again finitely many
+linear conditions inside an infinite-dimensional escaping subspace, by
+Lemma~\ref{lem:escape}). Set $w_n=(w_n'+\eta z_n)/\|w_n'+\eta z_n\|$ for small
+$\eta>0$. Conditions (b)--(c) hold for every $\eta$ by linearity; $y_n\neq0$ for all but
+at most one value of $\eta$ (as $P_{N^\perp}z_n\neq0$); and
+$\langle Tw_n,w_n\rangle=(\langle Tw_n',w_n'\rangle+\eta^2\langle Tz_n,z_n\rangle)
+/(1+\eta^2)$ lies within $\epsilon_n$ of $\lambda_1$ for $\eta$ small. This perturbation
+step replaces the orthogonal decomposition of $h_n$ along $N$, which
+non-distributivity forbids.
+
+Let $R=\overline{\operatorname{span}}\{w_n\}$ and
+$R_j=\overline{\operatorname{span}}\{w_n:n\ge j\}$.
+
+\emph{(i).} By (b) the $w_n$ are orthonormal, so each $x\in R$ has a unique expansion
+$x=\sum c_nw_n$ with $(c_n)\in\ell^2$, and $P_{N^\perp}x=\sum c_ny_n$ (the series
+converges since $\|y_n\|\le1$). By (c) the $y_n$ are pairwise orthogonal
+($\langle y_n,y_j\rangle=\langle w_n,P_{N^\perp}y_j\rangle=\langle w_n,y_j\rangle=0$ for
+$j<n$, as $y_j\in N^\perp$), and each $y_n\neq0$; so $P_{N^\perp}x=0$ forces
+$c_n\|y_n\|=0$, i.e.\ $c_n=0$, for all $n$. Thus $R\cap N=0$.
+
+\emph{(ii).} By (b), $T_R$ is \emph{exactly diagonal} in the orthonormal basis $(w_n)$ of
+$R$: $\langle T_Rw_m,w_n\rangle=\langle Tw_m,w_n\rangle=0$ for $m\neq n$ (using
+self-adjointness for $m<n$), with diagonal entries
+$d_n=\langle Tw_n,w_n\rangle$ accumulating at both $\lambda_0$ and $\lambda_1$ by (a).
+Hence $\sess(T_{R_j})\supseteq\{\tfrac1{16},1\}$ for every $j$: $R_j$ is ample. Since
+$w_n\in h_n\subseteq g_j$ for $n\ge j$, $R_j\subseteq R\cap g_j$, and
+Lemma~\ref{lem:upward} makes $R\cap g_j$ ample; $j=1$ gives ampleness of $R$.
+\end{proof}
+
+\begin{remark}\label{rem:exact}
+Every constraint imposed in the recursion is linear, so exact orthogonality costs
+nothing and no error accumulates: $T_R$ is exactly diagonal in the basis $(w_n)$. Part
+(ii) consumes only the diagonal values $d_n$ and their accumulation at
+$\tfrac1{16}$ and $1$.
+\end{remark}
+
+\begin{theorem}\label{thm:CH}
+Assume CH. There is a nonprincipal pluf $\pluf$ every member of which is ample.
+Consequently every $\pluf$-slice of $E$ has minor radius $1$, major radius $4$, and
+eccentricity $4$; in particular $\pluf$ fails RSP for $T$.
+\end{theorem}
+
+\begin{proof}
+Under CH enumerate $\PP(\HH)=\{p_i:i<\omega_1\}$. We build an increasing chain
+$(F_i)_{i<\omega_1}$ of countable, intersection-closed families of ample subspaces with:
+\begin{enumerate}
+\item[($\ast$)] for each $i$, either $p_i\in F_i$ or some $g\in F_i$ has $g\cap p_i=0$.
+\end{enumerate}
+Set $F_0=\{\HH\}$ and take unions at limits (countable by CH). Given
+$G=\bigcup_{j<i}F_j$:
+
+\emph{Case I: $g\cap p_i=0$ for some $g\in G$.} Set $F_i=G$.
+
+\emph{Case II: $g\cap p_i$ is ample for every $g\in G$.} Set
+$F_i=G\cup\{p_i\}\cup\{g\cap p_i:g\in G\}$ (note $p_i=\HH\cap p_i$ is ample).
+
+\emph{Case III: otherwise.} All $g\cap p_i\neq0$ but some $q\cap p_i$ is not ample.
+Apply Lemma~\ref{lem:blocking} with $N=p_i$ to get $R$, and set
+$F_i=G\cup\{R\}\cup\{g\cap R:g\in G\}$.
+
+In each case $F_i$ is countable, intersection-closed, ample, and satisfies ($\ast$).
+Let $\pluf$ be the upward closure of $\bigcup_iF_i$: a proper filter of ample (hence
+nonzero) subspaces, every member of which is ample by Lemma~\ref{lem:upward}, maximal by
+($\ast$) and Lemma~\ref{lem:maximality}, and nonprincipal since ample subspaces are
+infinite-dimensional (Lemma~\ref{lem:findim}). Lemma~\ref{lem:ample-radii} gives the
+radius assertions.
+\end{proof}
+
+\begin{remark}
+The pluf of Theorem~\ref{thm:CH} contains no coordinate subspace $\HH_S$ with $S$ almost
+contained in the evens or the odds, so its trace on the atomic masa is a filter on $\N$
+that is \emph{not} an ultrafilter: the blocking in Case III is performed by subspaces
+transverse to the masa. Lattice maximality never forces a pluf to decide $S$ against
+$\N\setminus S$; that is why Theorem~\ref{thm:MSS} does not apply.
+\end{remark}
+
+The failure is not merely the absence of a limit; the ``limit'' is an entire interval.
+
+\begin{proposition}\label{prop:interval}
+For the pluf $\pluf$ of Theorem~\ref{thm:CH},
+$\{\varphi(T):\varphi\in S_\pluf\}=[\tfrac1{16},1]$: every value between the essential
+extremes is a $\pluf$-limit of $T$.
+\end{proposition}
+
+\begin{proof}
+Containment $\subseteq$ is Proposition~\ref{prop:face} with $u_T\equiv1$,
+$\ell_T\equiv\tfrac1{16}$ on $\pluf$. For $\supseteq$, fix $c\in[\tfrac1{16},1]$ and
+define $\psi(bT)=bc$ on the line $\R T$. For $b\ge0$,
+$\overline{\lim}_\pluf(bT)=b\ge bc$; for $b<0$,
+$\overline{\lim}_\pluf(bT)=\tfrac b{16}\ge bc$. So $\psi$ is dominated by the
+sublinear functional $\overline{\lim}_\pluf$ and extends by Hahn--Banach to a linear
+$\varphi$ with $\underline{\lim}_\pluf\le\varphi\le\overline{\lim}_\pluf$ on
+self-adjoints; such $\varphi$ is a state in $S_\pluf$ (Proposition~\ref{prop:face}) with
+$\varphi(T)=c$.
+\end{proof}
+
+\section{Measurable dimension: a summary}\label{sec:meas}
+
+The third act takes place on $\HH=\ell^2(\kappa)$ with $\kappa$ a measurable cardinal and
+$\mathcal U$ a normal measure on $\kappa$; full proofs appear in the companion note
+\cite{FWIII}, whose starting point is the following observation. Every vector of
+$\ell^2(\kappa)$ has countable support, and a normal measure is closed under diagonal
+intersections; together these give, for any $T\in\mathcal B(\ell^2(\kappa))$, a set
+$S\in\mathcal U$ with $P_STP_S$ \emph{exactly diagonal} --- Anderson paving with error
+zero, by a diagonal intersection. From this one deduces an exact dichotomy: for every
+closed subspace $W$ there is $S\in\mathcal U$ with either $\HH_S\subseteq W$ or
+$W\cap\HH_S=0$. Consequently:
+
+\begin{theorem}[{see \cite{FWIII}}]\label{thm:meas}
+Let $\kappa$ be measurable and $\mathcal U$ normal on $\kappa$. Then
+$\Phi(\mathcal U)=\{M:\HH_S\subseteq M\text{ for some }S\in\mathcal U\}$ is a
+nonprincipal, $\kappa$-complete pluf; it has RSP for every $T$, with
+$\lim_{\Phi(\mathcal U)}T=\lim_{\mathcal U}\langle Te_\alpha,e_\alpha\rangle$; and
+$S_{\Phi(\mathcal U)}$ is a singleton whose element is a singular, countably additive
+pure state.
+\end{theorem}
+
+Three qualifications bound the scope of Theorem~\ref{thm:meas}. The collapse is local
+to the normal measure:
+pure states on the diagonal of $\mathcal B(\ell^2(\kappa))$ corresponding to arbitrary
+ultrafilters on $\kappa$ (for instance, those concentrating on a countable set) still
+require Marcus--Spielman--Srivastava for unique extension, as in Blecher--Weaver
+\cite{BlecherWeaver}, Theorem 5.1. Nor is normality idle: maximality of the block
+filter \emph{forces} a Q-point-type regularity on the measure (every countable-to-one
+function on $\kappa$ is injective on a measure-one set), so that maximality is pinched
+between this property and normality; see \cite{FWIII} for the proof and for the open
+sufficiency question. The pluf space over $\ell^2(\kappa)$ remains
+non-compact and prime-filter-free (the arguments of \S\ref{sec:struct} are
+dimension-free). And non-diagonalizable plufs are not excluded at $\kappa$: graphs of
+unitaries between complementary blocks are non-intimate there just as at $\aleph_0$
+\cite{FWII}.
+
+The state $\varphi_{\mathcal U}=\lim_{\mathcal U}\langle\,\cdot\,e_\alpha,e_\alpha\rangle$
+is countably additive by $\kappa$-completeness and singular because every projection of
+countable rank is annihilated; it is thus exactly the boundary object of Gleason's
+theorem, which forces countably additive states on $\BH$ to be normal precisely when
+$\dim\HH$ is non-measurable. The second author of \cite{BlecherWeaver} together with
+Farah developed the quantum-filter side of this boundary; the lattice side, developed in
+\cite{FWIII}, is that at measurable $\kappa$ --- and, below the first Ulam measurable
+cardinal, \emph{only} there --- quantum-filter maximality and lattice maximality
+coincide, the bridge being the excision theory of \cite{BlecherWeaver}.
+
+\section{A model-theoretic coda}\label{sec:coda}
+
+The results above admit a model-theoretic reading. It requires no new theorems, only a
+dictionary.
+
+Continuous model theory \cite{BYBHU,FHS} linearizes \emph{structures}: metric domains,
+uniformly continuous function symbols (our operators $\HH^{\otimes n}\to\HH$),
+$[0,1]$-valued predicates, $\sup/\inf$ quantifiers. Kuperberg--Weaver's quantum relations
+\cite{KuperbergWeaver} linearize \emph{relations}: operator bimodules, reducing over the
+atomic masa to ordinary relations on $\N$. Both keep the \emph{index} of an ultraproduct
+classical. The pluf proposal linearizes the ultrafilter itself, and the present paper
+computes what happens.
+
+In the dictionary: a pluf is a maximal consistent set of incidence conditions
+``$v\in M$'' --- a maximal quantifier-free partial type in the incidence fragment;
+$S_\pluf$ is the space of its completions to full types over $\BH$ (pure states being
+the complete types); the GNS construction is the linear ultrapower, realizing the type
+(principal plufs give realized types, and the GNS vector $\xi_\varphi$ of
+\S\ref{sec:slices} is the realizing element); and RSP is \L o\'s's theorem for atomic
+formulas. Then:
+Proposition~\ref{prop:noprime} says \L o\'s fails for disjunction --- unavoidably, by
+Kochen--Specker, so any honest linear semantics is lattice-valued, as in
+Takeuti--Ozawa quantum set theory \cite{Ozawa};
+Proposition~\ref{prop:topology} says the compactness theorem fails for the fully
+linearized logic, quantum filters being the metric repair that buys it back;
+Theorem~\ref{thm:MSS} says the Boolean reduct of a type determines its completion
+(\L o\'s recovered on the Boolean fragment, at the cost of \cite{MSS});
+Theorem~\ref{thm:CH} says incidence-maximality is consistently far from semantic
+completeness, with the gap an interval (Proposition~\ref{prop:interval}); and
+Theorem~\ref{thm:meas} says \L o\'s holds outright along normal measures.
+
+A further obstruction appears at the next step. Products of
+structures require product plufs on $\HH\otimes\HH$; but the filter generated by
+$\{\overline{M\otimes N}:M\in\pluf_1,N\in\pluf_2\}$ never decides an entangled subspace,
+and almost all of $\PP(\HH\otimes\HH)$ is entangled. Classically $\mathcal U\times
+\mathcal V$ exists canonically (Fubini); linearly, maximalization requires uncanonical
+choices on entangled data. We conjecture this failure of a linear Feferman--Vaught
+theorem is the structural reason no naive linear model theory exists, and note its family
+resemblance to the tensor-versus-commuting distinction underlying $\mathrm{MIP}^*=
+\mathrm{RE}$.
+
+\section{Questions}\label{sec:questions}
+
+\begin{question}[The quadrant question]\label{q:quadrant}
+Diagonalizable plufs have singleton $S_\pluf$ (Theorem~\ref{thm:MSS}); under CH some pluf
+has neither property (Theorem~\ref{thm:CH}). Is there a \emph{non-diagonalizable} pluf
+with $S_\pluf$ a singleton? A positive answer produces a non-diagonalizable pure state
+whose lattice filter is maximal --- strictly stronger than the known non-diagonalizable
+states of Akemann--Weaver \cite{AW} and Koszmider \cite{Koszmider}, none of which yield
+lattice filters at all (their states being singular, hence non-regular, the meet-stability
+of \cite{BlecherWeaver}, Lemma 4.3 is unavailable). A negative answer makes RSP-for-all-$T$
+a \emph{characterization} of diagonalizability: a lattice-level converse to
+Marcus--Spielman--Srivastava.
+\end{question}
+
+\begin{question}\label{q:tstar}
+CH enters Theorem~\ref{thm:CH} at exactly one point: countability of
+$\bigcup_{j<i}F_j$, which makes the $h_n$ of Lemma~\ref{lem:blocking} a decreasing
+$\omega$-nest. Following the template of Farah--Wofsey \cite{FarahWofsey}, Theorem 6.46
+--- which derives a non-diagonalizable pure state from $\mathfrak b<\mathfrak t^*$, where
+$\mathfrak t^*$ is the least length of a maximal decreasing chain in the Calkin
+projection lattice --- identify the pluf-analogue of $\mathfrak t^*$ (the least length of
+a maximal decreasing chain of ample subspaces, say) and derive Theorem~\ref{thm:CH} from
+an inequality against it, CH becoming a corollary. Is Theorem~\ref{thm:CH} a theorem of
+ZFC? Is it consistent that every pluf has RSP for every $T$?
+\end{question}
+
+\begin{question}\label{q:calkin}
+Every nonprincipal pluf contains all finite-codimension subspaces
+(Lemma~\ref{lem:findim}) and is invariant under finite-rank perturbations of its
+projections, but not obviously under compact ones --- the gap being, once more, angle
+zero. Does the image of a nonprincipal pluf generate a maximal filter in the projection
+lattice of the Calkin algebra? Does every maximal filter there so arise? Either answer
+bears on Question 6.39 of \cite{FarahWofsey} (whether every maximal Calkin filter lifts
+to a commuting family); in particular, is the image of the ample pluf of
+Theorem~\ref{thm:CH} maximal but not liftable?
+\end{question}
+
+\begin{question}\label{q:continuous}
+Kadison and Singer proved non-uniqueness of pure state extensions from the continuous
+masa $L^\infty[0,1]$ \cite{KadisonSinger}. Does some pluf extending the filter of
+spectral subspaces of the continuous masa have non-degenerate $S_\pluf$ in ZFC? (The
+countable chain $\{L^2[0,t_n]\}$ alone cannot witness this: any countable nested family
+is simultaneously coordinatizable, hence intimate for the coordinatizing basis
+\cite{FWII}. The full family $\{L^2[0,t]\}_{t\in(0,1]}$ generates the continuous masa
+and is not coordinatizable.)
+\end{question}
+
+\subsection*{Formal verification}
+This paper has been formalized and machine-checked in Lean~4 with Mathlib
+(toolchain v4.28.0), as part of a verification of this series; the artifacts compile
+with no unproved obligations, and every statement's axiom footprint is exactly
+\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. In
+Sections~\ref{sec:struct}--\ref{sec:pos}:
+Lemma~\ref{lem:maximality} together with its converse (a proper, upward closed,
+meet-closed family of closed subspaces satisfying the criterion is maximal);
+Lemma~\ref{lem:findim} in all three clauses; Proposition~\ref{prop:noprime} in both of the
+forms proved above --- for $\HH$ by the triple of subspaces, and for every space of
+finite dimension at least two by the principality argument, so that no appeal to
+Kochen--Specker is needed at any dimension;
+Proposition~\ref{prop:topology} in all four clauses, over the topology generated by the
+sets $\widehat M$; Lemma~\ref{lem:radii} in the ellipsoid form displayed, together with
+the equivalence of that form of the round-slice property with its Rayleigh-quotient
+form; Proposition~\ref{prop:gap}; Proposition~\ref{prop:face} in full, including
+nonemptiness by Hahn--Banach, the sandwich characterization, the face property, weak\,*
+compactness by Banach--Alaoglu, and the equivalence of the round-slice property for all
+$T$ with singleness of $S_\pluf$; and Theorem~\ref{thm:MSS}, parametrized by a paving
+hypothesis in the sense of Anderson --- the Kadison--Singer theorem of
+\cite{MSS} being the quarantined classical import --- together with the elementary half
+of the converse recorded in Remark~\ref{rem:KSpackage}, namely that block-witnessed
+round slices for every operator yield paving.
+
+Since Mathlib provides no state theory applicable to the bounded operators of a real
+Hilbert space, states are rendered directly as continuous linear functionals that are
+nonnegative on operators with nonnegative quadratic form and take the value $1$ at the
+identity; all the properties used above (monotonicity, adjoint invariance,
+Cauchy--Schwarz, and the compression identity at a projection of value $1$) are derived
+from that definition. Section~\ref{sec:neg} has since been formalized as well, and with it every
+assertion of this paper. Mathlib has no essential spectrum, no Calkin algebra, no
+Fredholm theory and no Borel functional calculus; the first was defined directly by
+Weyl sequences, and the last was circumvented rather than built. In place of the
+spectral subspace $K^\epsilon_\lambda(V)$ of Lemma~\ref{lem:escape} the mechanized
+development uses the closed span of an orthonormal sequence of approximate
+eigenvectors with summable defects, which supplies exactly the three properties the
+argument consumes: infinite dimension, a bound $\|Tx-\lambda x\|\le\delta\|x\|$
+valid on the whole span, and infinite codimension of the intersection with $N$.
+Lemma~\ref{lem:ample-radii} is verified in the ellipsoid form displayed here;
+Lemmas~\ref{lem:upward}, \ref{lem:finitecodim} and \ref{lem:escape} as stated; the
+blocking lemma, Lemma~\ref{lem:blocking}, in full, its recursion carried by a
+dependent-choice gadget whose stage predicate refers only to the vectors already
+chosen; and Theorem~\ref{thm:CH} and Proposition~\ref{prop:interval} by a
+transfinite recursion in which the three cases of the construction are internalized
+in a single stage lemma, so that the recursion itself never branches. The continuum
+hypothesis enters as an equinumerosity hypothesis on the statements that use it and
+is nowhere an axiom of the development. The mechanization also fixed two points of economy now incorporated above:
+Remark~\ref{rem:exact}, that part (ii) of the blocking lemma consumes only the diagonal
+values; and the reduction of Proposition~\ref{prop:interval} to the ray $\R T$. Not formalized: \S\ref{sec:coda}, and the summary
+\S\ref{sec:meas}, whose contents are theorems of \cite{FWIII} and are verified
+there. The verification artifacts will be archived with
+the final version of this paper.
+
+\subsection*{Acknowledgements}
+We are grateful to W.~T.~Gowers for correspondence around 2000 on intimate subspaces,
+which shaped the companion paper \cite{FWII}; to the late Andrew Gleason for the
+suggestion, made in conversation with the first author, to consider these questions on a
+Hilbert space of measurable dimension, a suggestion redeemed in \S\ref{sec:meas} and
+\cite{FWIII}; and to the authors of \cite{BlecherWeaver} and \cite{FarahWofsey}, whose
+published work repeatedly turned out to contain exactly the tools we needed. Portions of
+these results were developed in the course of an extended dialogue with Anthropic's
+Claude language model; responsibility for correctness rests with the authors.
+
+\begin{thebibliography}{99}
+
+\bibitem{AW} C.~Akemann and N.~Weaver, \emph{Not all pure states on $B(H)$ are
+diagonalizable}, Proc. Natl. Acad. Sci. USA \textbf{105} (2008), 5313--5314.
+
+\bibitem{Anderson79} J.~Anderson, \emph{Extensions, restrictions, and representations of
+states on $C^*$-algebras}, Trans. Amer. Math. Soc. \textbf{249} (1979), 303--329.
+
+\bibitem{BYBHU} I.~Ben Yaacov, A.~Berenstein, C.~W.~Henson and A.~Usvyatsov, \emph{Model
+theory for metric structures}, in: Model Theory with Applications to Algebra and
+Analysis, vol.~2, London Math. Soc. Lecture Note Ser. 350, Cambridge, 2008.
+
+\bibitem{Bice} T.~Bice, \emph{Filters in $C^*$-algebras}, Canad. J. Math. \textbf{65}
+(2013), 485--509.
+
+\bibitem{BlecherWeaver} D.~P.~Blecher and N.~Weaver, \emph{Quantum measurable cardinals},
+arXiv:1607.08505.
+
+\bibitem{FarahWofsey} I.~Farah and E.~Wofsey, \emph{Set theory and operator algebras},
+in: Appalachian Set Theory 2006--2012 (J.~Cummings and E.~Schimmerling, eds.), London
+Math. Soc. Lecture Note Ser. 406, Cambridge, 2013, 63--120.
+
+\bibitem{FHS} I.~Farah, B.~Hart and D.~Sherman, \emph{Model theory of operator algebras
+I--III}, Bull. Lond. Math. Soc. / Israel J. Math. / ibid.
+
+\bibitem{FWII} D.~Feldman and A.~Wilce, \emph{Intimate subspaces, block filters, and the
+diagonalization of maximal projection filters}, in preparation.
+
+\bibitem{FWIII} D.~Feldman and A.~Wilce, \emph{Projection-lattice ultrafilters at a
+measurable cardinal}, in preparation.
+
+\bibitem{KadisonSinger} R.~V.~Kadison and I.~M.~Singer, \emph{Extensions of pure states},
+Amer. J. Math. \textbf{81} (1959), 383--400.
+
+\bibitem{KS} S.~Kochen and E.~P.~Specker, \emph{The problem of hidden variables in
+quantum mechanics}, J. Math. Mech. \textbf{17} (1967), 59--87.
+
+\bibitem{Koszmider} P.~Koszmider, \emph{A non-diagonalizable pure state}, Proc. Natl.
+Acad. Sci. USA \textbf{117} (2020), 33084--33089.
+
+\bibitem{KuperbergWeaver} G.~Kuperberg and N.~Weaver, \emph{A von Neumann algebra
+approach to quantum metrics / Quantum relations}, Mem. Amer. Math. Soc. \textbf{215}
+(2012), no. 1010.
+
+\bibitem{MSS} A.~Marcus, D.~A.~Spielman and N.~Srivastava, \emph{Interlacing families II:
+Mixed characteristic polynomials and the Kadison--Singer problem}, Ann. of Math.
+\textbf{182} (2015), 327--350.
+
+\bibitem{Ozawa} M.~Ozawa, \emph{Transfer principle in quantum set theory}, J. Symbolic
+Logic \textbf{72} (2007), 625--648.
+
+\bibitem{WeaverQMC} N.~Weaver, \emph{Set theory and $C^*$-algebras}, Bull. Symbolic
+Logic \textbf{13} (2007), 1--20.
+
+\end{thebibliography}
+
+\end{document}

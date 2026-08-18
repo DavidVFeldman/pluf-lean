@@ -1,0 +1,31 @@
+{
+  "title": "pluf-lean: a Lean 4 verification of maximal filters in the projection lattice of a Hilbert space",
+  "upload_type": "software",
+  "description": "<p>A Lean 4 / Mathlib development machine-checking the theorems of a four-paper series on maximal filters in the projection lattice of a Hilbert space (<em>plufs</em>). 243 audited theorems, axiom footprint <code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code>. Four classical inputs (Mathias; Marcus-Spielman-Srivastava; Blecher-Weaver; Rowbottom) enter only as named hypotheses and are never discharged, so every mechanized statement is a theorem of ZFC. <code>PAPERS.md</code> maps each printed assertion of each paper to the Lean name that proves it.</p>",
+  "creators": [
+    {
+      "name": "Feldman, David V.",
+      "affiliation": "University of New Hampshire",
+      "orcid": "0000-0001-6943-4833"
+    },
+    {
+      "name": "Wilce, Alexander",
+      "affiliation": "Susquehanna University",
+      "orcid": "0000-0001-5987-1327"
+    }
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "projection lattice",
+    "maximal filter",
+    "ultrafilter",
+    "Hilbert space",
+    "Kadison-Singer",
+    "measurable cardinal",
+    "normal measure",
+    "Lean 4",
+    "Mathlib",
+    "formal verification"
+  ],
+  "access_right": "open"
+}

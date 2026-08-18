@@ -1,0 +1,629 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\lk}{\ell^2(\kappa)}
+\newcommand{\cod}{\operatorname{codim}}
+\newcommand{\supp}{\operatorname{supp}}
+
+\title{Exact paving for Fubini products of normal measures,\\
+with an application to maximal projection filters}
+\author{David V.\ Feldman\thanks{University of New Hampshire;
+\texttt{dvfinnh@gmail.com}.}
+\and Alexander Wilce\thanks{Susquehanna University.}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $\kappa$ be measurable and $\D$ a normal measure on $\kappa$. We prove
+that the Fubini product $\D\otimes\D$ satisfies \emph{exact paving}: for
+every assignment of a countable set $c_x$ to each point $x$, some set of
+$\D\otimes\D$ mutually avoids the assignment. The proof uses only Rowbottom
+homogeneity for finitely many colorings of triples and quadruples; normality
+of the product is neither available nor needed. Consequently the block
+filter of $\D\otimes\D$ in the projection lattice of $\ell^2(\kappa\times
+\kappa)$ is a $\kappa$-complete nonprincipal maximal filter with a singleton
+state face --- although $\D\otimes\D$ is not isomorphic to any normal
+measure. This answers, negatively, the question of the third paper in this
+series: maximality of the block filter does not characterize normality up to
+isomorphism. We organize the invariants that do and do not survive: the
+full-selector property of normal measures, which holds for arbitrary
+partitions, is isomorphism-invariant, and fails for the product; the
+$\sigma$-Q-point property, which the product enjoys, by an
+injectivity-on-a-square theorem; and an exact-paving property lying between
+them.
+In a final section we return to $\aleph_0$ and the rigidity conjecture of
+the second paper, proving three structural constraints on any addable
+blocker of the witness subspace: it meets the block of any $m$ pieces in
+dimension at most $m$, its total support belongs to the ultrafilter, and on
+every measure-one block it contains vectors of infinite piece-spread.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+This paper continues a series \cite{FWI,FWII,FWIII} on maximal filters in
+the projection lattice $\PP(H)$ of a real Hilbert space (\emph{plufs}), the
+lattice-theoretic linearization of ``bounded sequences converge along
+ultrafilters.'' The third paper established that at a measurable cardinal
+$\kappa$, along a normal measure $\D$, the theory collapses to an exact
+form: every bounded operator is exactly diagonal on a measure-one
+coordinate block (\emph{exact paving}), every closed subspace either
+contains a measure-one block or meets one trivially (\emph{exact
+dichotomy}), and consequently the block filter
+\[
+\Phi(\U)\;=\;\{M\in\PP(\lk):\HH_S\subseteq M\text{ for some }S\in\U\}
+\]
+is a $\kappa$-complete nonprincipal pluf with a singleton state face. It
+also proved a necessity result: maximality of $\Phi(\U)$ forces $\U$ to be a
+\emph{$\sigma$-Q-point} (every partition of $\kappa$ into countable pieces
+admits a partial selector in $\U$), a property enjoyed by every normal
+measure, and asked (\cite{FWIII}, Question 5.5) whether maximality
+characterizes the normal measures up to isomorphism, proposing the Fubini
+product $\D\otimes\D$ as the test case.
+
+The present paper settles the test case, and with it the question. The
+product is not isomorphic to any normal measure
+(Proposition~\ref{prop:notiso}), yet its block filter is maximal
+(Theorem~\ref{thm:main}). The engine is Theorem~\ref{thm:paving-product}:
+$\D\otimes\D$ satisfies exact paving outright. Normality entered the paving
+proof of \cite{FWIII} through the diagonal intersection; the product admits
+no diagonal intersections, but it inherits from $\D$ something just as
+serviceable, Rowbottom homogeneity for finite colorings of finite subsets of
+$\kappa$, and homogeneity suffices: any assignment of countable
+avoidance-sets, examined through the finitely many \emph{membership
+patterns} it can exhibit on triples and quadruples, is forced by
+countability to avoid a homogeneous square.
+
+The same method yields an injectivity theorem
+(Theorem~\ref{thm:inj}) --- every countable-to-one function on pairs from
+$\kappa$ is injective on the pairs from a $\D$-large set --- which gives the
+$\sigma$-Q-point property of the product directly.
+
+Since the mechanized development accompanying \cite{FWIII} consumed
+normality only through the paving conclusion, the entire positive theory
+transfers to the product along Theorem~\ref{thm:paving-product}; we spell
+this out in Section~\ref{sec:transfer}, introduce the \emph{exact-paving
+property} (EPP) as the invariant the transfer isolates, and record the
+resulting picture:
+\[
+\text{normal}\;\Longrightarrow\;\text{EPP}\;\Longrightarrow\;
+\text{$\Phi$ maximal}\;\Longrightarrow\;\text{$\sigma$-Q-point},
+\]
+so that maximality holds strictly beyond the normal measures. What
+\emph{does} separate normal measures from products is a selector property:
+normal measures admit full selectors for \emph{arbitrary} partitions with no
+piece in the measure (Lemma~\ref{lem:full-selector}), the piece-minima
+argument of \cite{FWIII} requiring no countability. The property is
+isomorphism-invariant, and the column partition refutes it for the product.
+The invariants thus separate: $\D\otimes\D$ is maximal and $\sigma$-Q but
+not Q-for-all-partitions.
+
+Section~\ref{sec:rigidity} returns to $\aleph_0$ and the rigidity
+conjecture of \cite{FWII}: for a non-selective ultrafilter $\U$ on $\N$
+with witness subspace $W$, does $W$ belong to every pluf extension of the
+block filter? We prove three constraints on any prospective \emph{addable
+blocker} $R$ (a closed subspace with $R\cap W=0$ meeting every member of
+the block filter in infinite dimension): a generalized thinness bound
+(Lemma~\ref{lem:genthin}), a support lemma
+(Lemma~\ref{lem:support}), and a Baire-category piece-spread lemma
+(Lemma~\ref{lem:spread}). The conjecture remains open; the constraints
+close every finitely-generated route to a counterexample. The measurable-cardinal results of this paper
+frame the conjecture from above: along $\D$ or $\D\otimes\D$ there are no
+witness subspaces at all, so rigidity, if real, is a phenomenon of small
+cardinality.
+
+Throughout, $\kappa$ is a measurable cardinal, $\D$ a normal measure
+(nonprincipal $\kappa$-complete normal ultrafilter) on $\kappa$, and
+$\D\otimes\D$ the Fubini product on $\kappa\times\kappa$:
+$X\in\D\otimes\D$ iff $\{\gamma:\{\beta:(\gamma,\beta)\in X\}\in\D\}\in\D$.
+We write $[A]^2$ for the two-element subsets of $A$, identified when
+convenient with the ordered pairs $(\gamma,\beta)$, $\gamma<\beta$; since
+each section $\{\beta:\beta>\gamma\}$ lies in $\D$, the product concentrates
+on the upper triangle, and we pass between the triangle and $[\kappa]^2$
+without comment. The Hilbert-space background and the definitions of pluf,
+block, block filter and witness subspace are as in \cite{FWI,FWII,FWIII}.
+
+\section{Homogeneity preliminaries}\label{sec:prelim}
+
+We use one classical input.
+
+\begin{theorem}[Rowbottom; see {\cite[Theorem 7.17]{Kanamori}}]
+\label{thm:rowbottom}
+Let $\D$ be a normal measure on $\kappa$, $n<\omega$, $\lambda<\kappa$, and
+$F:[\kappa]^n\to\lambda$. Then there is $H\in\D$ with $F$ constant on
+$[H]^n$.
+\end{theorem}
+
+Applying Theorem~\ref{thm:rowbottom} to the finite product of finitely many
+colorings homogenizes them simultaneously; we use this silently. The
+following one-line observation supplies all the ``high pivots'' below: if
+$H\in\D$ then $H$ has order type $\kappa$, so for every $\lambda<\kappa$
+some (indeed, a tail of) $\beta\in H$ satisfies
+$|H\cap\beta|\ge\lambda$.
+
+The selector lemma of \cite{FWIII} holds for arbitrary partitions:
+countability of the pieces plays no role in its proof.
+
+\begin{lemma}[Full selectors along normal measures]\label{lem:full-selector}
+Let $\D$ be normal and $\kappa=\bigsqcup_{i\in I}\sigma_i$ a partition into
+nonempty pieces with $\sigma_i\notin\D$ for every $i$. Then the set
+$M=\{\min\sigma_i:i\in I\}$ of piece-minima lies in $\D$; in particular
+$\D$ contains a set meeting every piece exactly once.
+\end{lemma}
+
+\begin{proof}
+If $M\notin\D$ then on $\kappa\setminus M\in\D$ the map
+$g(\alpha)=\min(\text{piece of }\alpha)$ is regressive, hence constant on a
+set of $\D$ by normality; that set lies inside a single piece,
+contradicting $\sigma_i\notin\D$. So $M\in\D$, and $M$ meets each piece
+exactly once by disjointness of the pieces and distinctness of their
+minima.
+\end{proof}
+
+The property in the conclusion --- every partition with no piece in the
+ultrafilter admits a selector in the ultrafilter --- mentions no order and
+is therefore invariant under isomorphism of ultrafilters (transport along a
+bijection of the underlying sets). We refer to it as the
+\emph{full-selector property}. The countable-piece specialization is the
+$\sigma$-Q-point property of \cite{FWIII}.
+
+\begin{proposition}\label{prop:notiso}
+$\D\otimes\D$ fails the full-selector property; consequently
+$\D\otimes\D$ is not isomorphic to any normal measure.
+\end{proposition}
+
+\begin{proof}
+Partition $\kappa\times\kappa$ into the columns
+$C_\gamma=\{\gamma\}\times\kappa$. No column lies in $\D\otimes\D$ (the set
+of first coordinates with $\D$-large section is a singleton, not in $\D$).
+A selector meets each column at most once, so its sections are singletons,
+none in $\D$; hence no selector lies in $\D\otimes\D$. Since normal
+measures have the full-selector property (Lemma~\ref{lem:full-selector})
+and the property is isomorphism-invariant, no isomorph of a normal measure
+can be $\D\otimes\D$.
+\end{proof}
+
+\section{Injectivity on a square}\label{sec:inj}
+
+\begin{theorem}\label{thm:inj}
+Let $\D$ be a normal measure on $\kappa$, $\lambda<\kappa$, and let
+$g:[\kappa]^2\to V$ be a function all of whose fibers have size less than
+$\max(\lambda,\omega_1)$. Then there is $H\in\D$ with $g$ injective on
+$[H]^2$.
+\end{theorem}
+
+\begin{proof}
+Color the three-element subsets $\{h_1<h_2<h_3\}$ of $\kappa$ by the
+equality pattern of $g$ on their three pairs, and the four-element subsets
+$\{h_1<h_2<h_3<h_4\}$ by the equality pattern of $g$ on their six pairs;
+each coloring has finitely many values. By
+Theorem~\ref{thm:rowbottom}, fix $H\in\D$ homogeneous for both. Write
+$\mu=\max(\lambda,\omega_1)$; all fibers of $g$ have size $<\mu$, and by
+the order-type observation of Section~\ref{sec:prelim} we may pick elements
+of $H$ with at least $\mu$ predecessors in $H$ whenever needed.
+
+We claim the homogeneous patterns identify no two pairs; injectivity on
+$[H]^2$ follows, since two distinct pairs from $H$ span a three- or
+four-element subset of $H$. Suppose some identification held
+homogeneously; we derive in each case a fiber of $g$ of size $\ge\mu$.
+
+\emph{Three-element patterns.} If $g(h_1,h_2)=g(h_1,h_3)$ homogeneously,
+fix $h_1<h_2$ in $H$ and vary $h_3$ over the tail of $H$ above $h_2$: the
+fiber of $g(h_1,h_2)$ contains $\kappa$ pairs. If
+$g(h_1,h_2)=g(h_2,h_3)$, fix $h_1<h_2$ and vary $h_3$: again $\kappa$
+pairs. If $g(h_1,h_3)=g(h_2,h_3)$, choose $h_2<h_3$ in $H$ with
+$|H\cap h_2|\ge\mu$ and vary $h_1$ over $H\cap h_2$: the fiber of
+$g(h_2,h_3)$ contains $\mu$ pairs.
+
+\emph{Four-element patterns} (identifications between the two
+coordinate-disjoint pairs; identifications sharing a coordinate reduce to
+three-element patterns). If $g(h_1,h_2)=g(h_3,h_4)$, fix $h_1<h_2$ and
+vary $h_3<h_4$ above $h_2$: $\kappa$ pairs in one fiber. If
+$g(h_1,h_3)=g(h_2,h_4)$, fix $h_1<h_2<h_3$ and vary $h_4$: $\kappa$ pairs
+share the value $g(h_1,h_3)$. If $g(h_1,h_4)=g(h_2,h_3)$, fix
+$h_2<h_3$ and $h_1<h_2$, and vary $h_4$: $\kappa$ pairs share the value
+$g(h_2,h_3)$.
+
+Each case contradicts the fiber bound; so all patterns are
+``all-distinct,'' and $g$ is injective on $[H]^2$.
+\end{proof}
+
+\begin{corollary}\label{cor:product-sigmaQ}
+$\D\otimes\D$ is a $\sigma$-Q-point; indeed, for every $\lambda<\kappa$,
+every partition of $\kappa\times\kappa$ into pieces of size $<\lambda$
+admits a partial selector in $\D\otimes\D$, of the form
+$\{(\gamma,\beta):\gamma<\beta\in H\}$ with $H\in\D$.
+\end{corollary}
+
+\begin{proof}
+The product concentrates on the upper triangle, which we identify with
+$[\kappa]^2$. Let $g$ assign to each point its piece; the fibers are the
+pieces, of size $<\max(\lambda,\omega_1)<\kappa$. Theorem~\ref{thm:inj}
+gives $H\in\D$ with $g$ injective on $[H]^2$; the upper triangle
+$S=\{(\gamma,\beta):\gamma,\beta\in H,\ \gamma<\beta\}$ lies in
+$\D\otimes\D$ (its section at $\gamma\in H$ is a tail of $H$), and
+distinct points of $S$ are distinct pairs of $[H]^2$, hence lie in
+distinct pieces.
+\end{proof}
+
+Together with Proposition~\ref{prop:notiso}, the corollary separates two
+invariants: the $\sigma$-Q-point property does not imply the full-selector
+property.
+
+\section{Exact paving for the product}\label{sec:paving}
+
+\begin{theorem}\label{thm:paving-product}
+Let $\D$ be a normal measure on $\kappa$ and let each point
+$x\in\kappa\times\kappa$ carry a countable set
+$c_x\subseteq\kappa\times\kappa$. Then there is $S\in\D\otimes\D$ such
+that $y\notin c_x$ for all distinct $x,y\in S$. More generally the
+conclusion holds with ``countable'' replaced by ``of size $<\lambda$'' for
+any $\lambda<\kappa$.
+\end{theorem}
+
+\begin{proof}
+Write $\mu=\max(\lambda,\omega_1)$ in the general form; in the countable
+case $\mu=\omega_1$. As before, work on the upper triangle, identifying
+points with pairs. For each ordered pair of \emph{placement patterns} on a
+four-element set $\{h_1<h_2<h_3<h_4\}$ --- a choice of two disjoint pairs
+from the four elements, one designated $x$ and the other $y$ --- color the
+four-element sets of $\kappa$ by the truth value of ``$y\in c_x$''; there
+are finitely many placement patterns. Similarly, for each ordered pair of
+distinct pairs from a three-element set $\{h_1<h_2<h_3\}$ (patterns in
+which $x$ and $y$ share one coordinate), color the three-element sets by
+the truth value of ``$y\in c_x$.'' By Theorem~\ref{thm:rowbottom} fix
+$H\in\D$ homogeneous for all these finitely many colorings
+simultaneously, and let $S$ be the upper triangle of $H$; as in
+Corollary~\ref{cor:product-sigmaQ}, $S\in\D\otimes\D$.
+
+Distinct points $x,y\in S$ span a three- or four-element subset of $H$ in
+one of the enumerated patterns, so it suffices to show every pattern is
+homogeneously colored ``$y\notin c_x$.'' Suppose some pattern were
+homogeneously ``yes''; in each case we produce a single $x$ with
+$|c_x|\ge\mu$, contradicting the size bound. The scheme is uniform:
+holding $x$'s coordinates fixed at suitably chosen elements of $H$, the
+coordinates of $y$ still range over a large set, and homogeneity puts
+every resulting $y$ into the one set $c_x$. Each unordered placement must be treated in \emph{both} role assignments,
+giving twelve patterns in all. In four of them the large family lives in the
+region \emph{between} two fixed coordinates: there one passes first to the
+tail of $H$ above the lower coordinate --- a set of $\D$ --- and takes the
+pivot inside that tail, so that uncountably many elements of $H$ lie
+strictly between.
+
+\emph{Patterns in which $y$ owns the top position $h_4$}, with $x$ on two
+of the remaining positions: fix $x$'s coordinates (choosing, when the
+pattern requires an element of $H$ strictly between them or below them,
+elements of $H$ making those regions nonempty --- possible since $H$ is
+unbounded of order type $\kappa$), and vary $h_4$ over a tail of $H$:
+$\kappa$-many values of $y$, all in $c_x$.
+
+\emph{Patterns in which $x$ owns the top position and $y$ lies among the
+lower positions}: choose $x$'s lower coordinate to be an element $h$ of
+$H$ with $|H\cap h|\ge\mu$ (order-type observation), and its top
+coordinate above it; the free coordinates of $y$ then range over subsets
+of $H\cap h$ (together, when the pattern permits, with a region between
+$x$'s coordinates, which only helps), producing at least $\mu$-many values
+of $y$ in $c_x$. Concretely: for $y=(h_1,h_2)$, $x=(h_3,h_4)$, take
+$h_3$ with $\mu$ predecessors in $H$ and count the pairs from
+$H\cap h_3$; for $y=(h_1,h_3)$, $x=(h_2,h_4)$, take $h_2$ with $\mu$
+predecessors and $h_4$ large, and count $h_1\in H\cap h_2$ (with any fixed
+admissible $h_3$); for $y=(h_2,h_3)$, $x=(h_1,h_4)$, take $h_4$ so that
+$|H\cap(h_1,h_4)|\ge\mu$ and count the pairs between.
+
+\emph{Three-element patterns}: if $y$'s non-shared coordinate can be
+varied upward (patterns $y=(h_1,h_3)$ or $(h_2,h_3)$ with $h_3$ free
+above $x$, and the shared-coordinate analogues), fix $x$ and vary it:
+$\kappa$-many $y$'s. If $y$'s non-shared coordinate lies below a
+coordinate of $x$ (patterns $y=(h_1,h_2)$ or $(h_1,h_3)$ with $h_1$ free
+below), choose the relevant coordinate of $x$ with $\mu$ predecessors in
+$H$ and count.
+
+Every ``yes'' is thus impossible; all patterns are homogeneously
+``$y\notin c_x$,'' and $S$ mutually avoids the assignment.
+\end{proof}
+
+\begin{remark}
+The proof uses nothing about $\D\otimes\D$ beyond: it contains the upper
+triangles of Rowbottom-homogeneous sets. It therefore applies verbatim to
+all finite Fubini powers $\D^{\otimes n}$ (color $2n$-element sets by
+membership patterns; every ``yes'' pattern forces a large $c_x$ by
+freezing $x$ and freeing a coordinate of $y$, upward or below a
+high pivot), and to any ultrafilter extending the filter of triangle-sets
+of $\D$-homogeneous sets. We will not need this generality.
+\end{remark}
+
+\section{Transfer, and the answer to Question 5.5 of \cite{FWIII}}
+\label{sec:transfer}
+
+\begin{definition}\label{def:EPP}
+A $\kappa$-complete nonprincipal ultrafilter $\U$ on a set $X$ of size
+$\kappa$ has the \emph{exact-paving property} (EPP) if for every
+assignment of countable sets $c_x\subseteq X$ to points $x\in X$ there is
+$S\in\U$ with $y\notin c_x$ for all distinct $x,y\in S$.
+\end{definition}
+
+Thus \cite{FWIII}, Theorem 2.1 says normal measures have EPP (via the
+diagonal intersection), and Theorem~\ref{thm:paving-product} says
+$\D\otimes\D$ has EPP (via homogeneity). The point of the definition is
+that EPP is exactly what the positive theory of \cite{FWIII} consumes:
+
+\begin{theorem}\label{thm:main}
+Let $\U$ be a $\kappa$-complete nonprincipal ultrafilter with EPP on an
+index set $X$, $|X|=\kappa$, and let $\Phi(\U)$ be the block filter in
+$\PP(\ell^2(X))$. Then every conclusion of \cite{FWIII}, Sections 2--3
+holds for $\U$: exact paving of every bounded operator on a measure-one
+block; the exact dichotomy for closed subspaces; the diagonal-flattening
+estimate; and $\Phi(\U)$ is a proper, upward closed,
+${<}\kappa$-intersection-closed, nonprincipal filter deciding every closed
+subspace --- a $\kappa$-complete nonprincipal pluf --- with
+$S_{\Phi(\U)}$ a singleton and the round-slice property for every
+operator. In particular, all of this holds for $\U=\D\otimes\D$.
+\end{theorem}
+
+\begin{proof}
+Exact paving of a bounded operator $T$ asks precisely for a mutually
+avoiding set for the assignment
+$c_x=\supp(Te_x)\cup\supp(T^*e_x)$, which is countable because vectors of
+$\ell^2(X)$ have countable support; this is EPP verbatim. Every subsequent
+argument of \cite{FWIII}, Sections 2--3 --- the orthogonality of the
+defect vectors $P_{W^\perp}e_x$ over the paving set, the exact
+computation $W\cap\HH_{S_0}=\HH_{S_1}$, the ultrafilter decision, the
+filter axioms (which use $\kappa$-completeness and, for nonprincipality,
+that countable sets are $\U$-small, immediate from $\kappa$-completeness
+and nonprincipality), the flattening (which uses paving, the existence of
+ultrafilter limits of bounded functions, and a termwise series
+comparison), and the singleton face (paving plus flattening plus the
+state estimates of \cite{FWI}) --- consumes normality only through the
+paving conclusion, as one verifies by inspection; indeed the mechanized
+development accompanying \cite{FWIII} already isolates the dependence,
+deriving the dichotomy, the flattening and the filter packaging from the
+paving statement together with $\kappa$-completeness-type hypotheses
+alone. Theorem~\ref{thm:paving-product} supplies paving for
+$\D\otimes\D$, and $\D\otimes\D$ is $\kappa$-complete and nonprincipal.
+\end{proof}
+
+\begin{corollary}[Answer to {\cite{FWIII}}, Question 5.5]
+\label{cor:answer}
+Maximality of the block filter does not characterize normality up to
+isomorphism: $\Phi(\D\otimes\D)$ is a $\kappa$-complete nonprincipal pluf
+with singleton face, while $\D\otimes\D$ is isomorphic to no normal
+measure (Proposition~\ref{prop:notiso}).
+\end{corollary}
+
+The invariants now sit as follows, all implications for
+$\kappa$-complete nonprincipal ultrafilters on a set of size $\kappa$:
+\[
+\text{full-selector}\;\Longleftarrow\;\text{normal}
+\;\Longrightarrow\;\text{EPP}
+\;\Longrightarrow\;\text{$\Phi(\U)$ maximal}
+\;\Longrightarrow\;\text{$\sigma$-Q},
+\]
+where the last implication is \cite{FWIII}, Proposition 5.3, and EPP
+implies $\sigma$-Q directly: given a countable-piece partition, apply EPP
+to $c_x=\sigma(x)\setminus\{x\}$; a mutually avoiding set is a partial
+selector. The product has EPP, maximality and $\sigma$-Q while failing
+the full-selector property; so maximality detects strictly less than
+normality. Whether the two middle implications reverse we do not know
+(Question~\ref{q:EPP}).
+
+\begin{remark}[The two cardinals compared]\label{rem:compare}
+At $\aleph_0$, the block filter of an ultrafilter (completed by the
+finite-codimension subspaces) is maximal exactly for selective
+ultrafilters (\cite{FWII}, Theorem 3.4), and products $U\otimes V$ are
+never selective; at $\kappa$ along $\kappa$-complete ultrafilters,
+products of a normal measure \emph{are} maximal. The linear theory at
+measurable cardinals thus sees Rudin--Keisler structure more coarsely
+than the classical theory at $\omega$: the class of ``tame''
+ultrafilters strictly exceeds the RK-minimal ones. The mechanism is
+plain in the proofs: at $\omega$, maximality needs the full
+Ramsey-theoretic strength of selectivity through Mathias's theorem,
+while at $\kappa$ the countable-support phenomenon reduces maximality to
+paving, and paving to homogeneity --- which, unlike normality, survives
+finite products.
+\end{remark}
+
+\section{Constraints on blockers at $\aleph_0$}\label{sec:rigidity}
+
+We now return to the rigidity conjecture of \cite{FWII}. Fix a
+non-selective ultrafilter $\U$ on $\N$, a witness partition
+$\N=\bigsqcup_kA_k$ (no piece and no selector in $\U$), the constraint
+vectors $f_k=\sum_{n\in A_k}2^{-n}e_n$, and $W=\{f_k:k\}^\perp$; recall
+(\cite{FWII}, Theorem 3.4) that $W$ is addable to the block filter
+$\Phi(\U)$ but not a member. Call a closed subspace $R$ an \emph{addable
+blocker} if $R\cap W=0$ and $\dim(R\cap\HH_S)=\infty$ for every
+$S\in\U$; the rigidity conjecture (\cite{FWII}, Conjecture 3.8) asserts
+none exists, equivalently that $W$ belongs to every pluf extension of
+$\Phi(\U)$. The results of \cite{FWII} exclude blockers spanned by
+disjointly supported families and blockers meeting a single piece-block
+two-dimensionally. Here are three further constraints. For
+$T\subseteq\N$ write $\HH_T$ for the block, and for $x\in\HH$ let the
+\emph{piece-spread} of $x$ be $\{k:x|_{A_k}\neq0\}$.
+
+\begin{lemma}[Generalized thinness]\label{lem:genthin}
+If $R$ is closed with $R\cap W=0$, then for every finite set $F$ of
+piece indices,
+\[
+\dim\Bigl(R\cap\HH_{\bigcup_{k\in F}A_k}\Bigr)\;\le\;|F|.
+\]
+\end{lemma}
+
+\begin{proof}
+The $|F|$ linear functionals $\langle\,\cdot\,,f_k\rangle$, $k\in F$,
+cut any subspace of $\HH_{\cup F}$ of dimension exceeding $|F|$ in a
+nonzero vector $v$ orthogonal to all $f_k$, $k\in F$; and $v\perp f_j$
+for $j\notin F$ automatically (disjoint supports), so
+$v\in R\cap W=0$.
+\end{proof}
+
+Taking $F$ a singleton recovers \cite{FWII}, Lemma 3.6.
+
+\begin{lemma}[Support]\label{lem:support}
+If $R$ is an addable blocker, then
+$T^*:=\bigcup_{x\in R}\supp x\in\U$. Consequently no addable blocker is
+contained in $\HH_T$ for any $T\notin\U$ --- in particular, none is
+contained in the block of a partial selector, or of any union of a
+partial selector with a set outside $\U$.
+\end{lemma}
+
+\begin{proof}
+If $T^*\notin\U$ then $S_0=\N\setminus T^*\in\U$; but
+$R\subseteq\HH_{T^*}$, so a nonzero $x\in R\cap\HH_{S}$ for
+$S\in\U$ has infinite support inside $T^*\cap S$. More precisely, for
+any $T\supseteq T^*$ with $T\notin\U$: for every $S\in\U$,
+$R\cap\HH_S\subseteq\HH_{T\cap S}$, and $\dim(R\cap\HH_S)=\infty$
+forces $T\cap S$ infinite; ``$T\cap S$ infinite for all $S\in\U$'' is
+equivalent, for an ultrafilter, to $T\in\U$ (otherwise
+$\N\setminus T\in\U$ and $T\cap(\N\setminus T)=\emptyset$). So
+$T^*\in\U$.
+\end{proof}
+
+\begin{lemma}[Piece-spread]\label{lem:spread}
+If $R$ is an addable blocker, then for every $S\in\U$ the space
+$R\cap\HH_S$ contains a vector of infinite piece-spread.
+\end{lemma}
+
+\begin{proof}
+Fix $S\in\U$ and write $R_S=R\cap\HH_S$, a closed, hence completely
+metrizable, subspace with $\dim R_S=\infty$. The vectors of $R_S$ of
+piece-spread contained in a fixed finite $F$ form the closed set
+$E_F=R_S\cap\HH_{\bigcup_{k\in F}A_k}$, of dimension at most $|F|$ by
+Lemma~\ref{lem:genthin}; a finite-dimensional proper closed subspace of
+an infinite-dimensional Banach space is nowhere dense. The vectors of
+finite piece-spread form the countable union $\bigcup_F E_F$ over
+finite $F$, which by the Baire category theorem is not all of $R_S$.
+\end{proof}
+
+\begin{remark}\label{rem:shape}
+Together with \cite{FWII}, Proposition 3.7, the lemmas confine any
+counterexample to the conjecture to a narrow shape: a blocker must have
+total support in $\U$ (Lemma~\ref{lem:support}), meet every finite union
+of piece-blocks in dimension bounded by the number of pieces
+(Lemma~\ref{lem:genthin}), be spanned by no disjointly supported family
+(\cite{FWII}), and sustain, inside every measure-one block
+simultaneously, infinitely many dimensions of vectors each spread over
+infinitely many pieces (Lemma~\ref{lem:spread}) --- that is, its
+intersection with every $\HH_S$ must be produced by cancellation among
+overlapping supports across infinitely many pieces, never by whole
+generators. The measurable-cardinal results of
+Sections~\ref{sec:inj}--\ref{sec:transfer} bound the conjecture from above:
+along $\D$ or $\D\otimes\D$ the $\sigma$-Q-point property holds, so no
+witness subspace exists and the rigidity question does not arise.
+Rigidity, if it holds, is a phenomenon of small cardinality, tied to the
+same Ramsey-theoretic poverty of $\omega$ that makes selectivity a
+special property there and a theorem at $\kappa$.
+\end{remark}
+
+\section{Questions}\label{sec:questions}
+
+\begin{question}\label{q:EPP}
+For $\kappa$-complete nonprincipal ultrafilters on a set of size
+$\kappa$: does maximality of the block filter imply EPP? Does the
+$\sigma$-Q-point property imply EPP (equivalently, given
+\cite{FWIII}, Proposition 5.3 and Theorem~\ref{thm:main}, are
+$\sigma$-Q, EPP and maximality all equivalent)? A negative answer to
+either would require an ultrafilter separating selector-type from
+free-set-type combinatorics at $\kappa$; candidates presumably live
+among the many $\kappa$-complete ultrafilters of a Kunen-style model
+rather than among iterated products, which Theorem
+\ref{thm:paving-product} and its remark place on the EPP side.
+\end{question}
+
+\begin{question}\label{q:mixed}
+Do mixed products $\D_1\otimes\D_2$ of two distinct normal measures on
+the same $\kappa$ have EPP? The homogeneity argument as given requires
+one set $H$ serving both coordinates, i.e.\ Rowbottom-homogeneous sets
+in $\D_1\cap\D_2$, which need not exist. A proof or a counterexample
+would locate how much of Theorem~\ref{thm:paving-product} is about
+products and how much about self-products.
+\end{question}
+
+\begin{question}\label{q:rigidity}
+The rigidity conjecture of \cite{FWII} stands: does some non-selective
+$\U$ admit an addable blocker of its witness subspace --- necessarily of
+the shape delimited in Remark~\ref{rem:shape} --- or does $W$ belong to
+every maximalization of every block filter of a non-selective
+ultrafilter? A first target consistent with all known constraints: a
+blocker for a product ultrafilter $\U=V\otimes V$, built from vectors
+spread along the graphs of finitely-branching trees of pieces, where the
+selector obstructions of \cite{FWII}, Proposition 3.7 do not directly
+apply.
+\end{question}
+
+\subsection*{Formal verification}
+
+Every theorem of this paper has been formalized and machine-checked in
+Lean~4 with Mathlib (toolchain v4.28.0), extending the artifacts of
+\cite{FWIII}: Lemma~\ref{lem:full-selector}, without countability or
+nonemptiness of the pieces; Proposition~\ref{prop:notiso}, through an
+isomorphism-invariance lemma for the full-selector property;
+Theorem~\ref{thm:inj} and Corollary~\ref{cor:product-sigmaQ};
+Theorem~\ref{thm:paving-product}, as the enumeration of twelve ordered
+placement patterns, of which four are the mid-region patterns treated by the
+tail-then-pivot step of Section~\ref{sec:paving}; the exact-paving property
+with the implication EPP $\Rightarrow$ $\sigma$-Q; the lattice-level clauses
+of Theorem~\ref{thm:main} --- operator paving, the exact dichotomy, the
+flattening estimate, and the decision property and nonprincipality of the
+block filter, instantiated at the Fubini product --- and
+Lemmas~\ref{lem:genthin}--\ref{lem:spread}. Classical inputs are
+quarantined as hypotheses (Rowbottom homogeneity for triples and
+quadruples, membership of tails, uncountable pivots, and the Fodor
+property), so every mechanized statement is a theorem of ZFC. The
+injectivity theorem consumes the tails hypothesis, which holds for every
+uniform ultrafilter and is invisible at a normal measure. The artifacts
+compile with no unproved obligations, and every statement's axiom footprint
+is exactly \texttt{propext}, \texttt{Classical.choice},
+\texttt{Quot.sound}. Two items are not covered: the finite-power remark of
+Section~\ref{sec:paving}, and the state-theoretic clauses of
+Theorem~\ref{thm:main} (singleton face, round slices). The face machinery
+those clauses invoke is itself verified in \cite{FWI}; its transfer to
+ultrafilters given only by EPP is not part of the present development.
+
+\subsection*{Acknowledgements}
+
+Portions of these results were developed in the course of an extended
+dialogue with Anthropic's Claude language model; responsibility for
+correctness rests with the authors.
+
+\begin{thebibliography}{9}
+
+\bibitem{FWI} D.~V.~Feldman and A.~Wilce, \emph{Ultrafilter limits in
+the projection lattice of a Hilbert space}, preprint (paper I of this
+series).
+
+\bibitem{FWII} D.~V.~Feldman and A.~Wilce, \emph{Intimate subspaces,
+block filters, and the diagonalization of maximal projection filters},
+preprint (paper II of this series).
+
+\bibitem{FWIII} D.~V.~Feldman and A.~Wilce, \emph{Projection-lattice
+ultrafilters at a measurable cardinal}, preprint (paper III of this
+series).
+
+\bibitem{Kanamori} A.~Kanamori, \emph{The Higher Infinite}, 2nd ed.,
+Springer Monographs in Mathematics, Springer, 2003.
+
+\bibitem{Rowbottom} F.~Rowbottom, \emph{Some strong axioms of infinity
+incompatible with the axiom of constructibility}, Ann. Math. Logic
+\textbf{3} (1971), 1--44.
+
+\end{thebibliography}
+
+\end{document}

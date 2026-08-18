@@ -1,91 +1,107 @@
 # pluf-lean
 
-Lean 4 / Mathlib verification artifacts for the **pluf project**
-(D. Feldman, A. Wilce): maximal filters in the projection lattice of a
-Hilbert space, as the linearization of "bounded sequences converge along
+A Lean 4 / Mathlib verification of the theorems of a four-paper series on
+**maximal filters in the projection lattice of a Hilbert space** — *plufs*, the
+lattice-theoretic linearization of "bounded sequences converge along
 ultrafilters."
 
-**Status: private working repository.** Contents are machine-checked
-fragments of a three-paper series, not the papers' full mathematics; see the
-status table in `CLAUDE.md` for exactly what is and is not verified. Public
-release, tagging, and Zenodo archival happen only when the project is judged
-finished.
+**243 audited theorems.** Every one carries a `#print axioms` line reporting
+exactly `propext`, `Classical.choice`, `Quot.sound`. The sources contain no
+`sorry`, `admit`, `axiom` or `native_decide`. Both facts are enforced by CI on
+every push rather than asserted here: `scripts/check_axioms.py` parses the
+build log and fails unless each audited name's axiom line is present and
+confined to the whitelist.
 
-## Contents (WO-1)
+## The papers
 
-- `RequestProject/PartA.lean` — σ-Q-point combinatorics for ultrafilters on a
-  well-ordered type: partition/function equivalence, transversal escape, and
-  *normal ⇒ σ-Q* via the piece-minima/Fodor argument (Paper III, Lemma 5.2).
-- `RequestProject/PartB.lean` — the witness subspace `W` of a partition in
-  ℓ²(ℕ), block subspaces, and the **thinness lemma**: a subspace meeting `W`
-  trivially meets every piece-block in rank ≤ 1 (Paper II, Lemma 3.6).
-- `RequestProject/PartC.lean` — the block-intersection identity for closed
-  spans of disjointly supported families, and the **no-disjointly-supported-
-  blocker** proposition (Paper II, Prop. 3.7).
-- `RequestProject/PlufWO1.lean` — root; runs `#print axioms` on all sixteen
-  contract theorems.
-- `RequestProject/PlufWO2.lean` — WO-2 (root file; imports the WO-1 root, so
-  building it runs both audits): ℓ²(κ) infrastructure for an arbitrary index
-  type, **exact paving** along a diagonal-intersection-closed ultrafilter
-  (Paper III, Thm 2.1), and the **exact dichotomy** with its
-  maximality-shaped corollary (Paper III, Thm 3.1 / Cor 3.2).
-- `RequestProject/PlufWO3.lean` — WO-3 (root file; imports the chain, so one
-  build runs all three audits): ultrafilter limits of bounded functions,
-  **diagonal flattening** (Paper III, Cor 2.2, certified without
-  self-adjointness), the **block filter Φ(U) as a filter** (proper, upward
-  closed, intersection-closed, generically complete, nonprincipal, deciding),
-  and the **κ-witness** (Paper III, Prop 5.3, Hilbert half), including a
-  formalized counterexample showing the covering hypothesis of the blocking
-  characterization is necessary.
-- `RequestProject/PlufWO4.lean` + `RequestProject/PlufWO4/` — WO-4
-  (Paper IV): the twelve-pattern homogeneity analysis and **injectivity on a
-  square** (`Homog`), the Fubini product with the **full-selector
-  non-isomorphism** package (`Fubini`), the **exact-paving property** with
-  its proof for the self-product and the EPP-parametrized transfer of the
-  WO-2/WO-3 theory (`EPP`), and the **blocker constraints** at ω —
-  generalized thinness, support, Baire piece-spread (`Blockers`).
-- `RequestProject/PlufWO5.lean` + `RequestProject/PlufWO5/` — WO-5
-  (Paper II, §§2–5 minus Thm 5.4): the **gliding-hump dichotomy** and its
-  relativization, the block filter at ω with the **membership/addability
-  criteria**, **Theorem 3.4** (necessity in full; sufficiency
-  Mathias-parametrized), **Gowers's intimate subspace** with the dimension
-  bound by the pair-sum route, and **diagonalizable ⟺ intimate** against
-  the `PlufPackage` of companion-paper facts (to be discharged in WO-6),
-  including a formalized obstruction showing the naive extension
-  formulation requires the closed-subspace quantifier.
-- `RequestProject/PlufWO6.lean` + `RequestProject/PlufWO6/` — WO-6 (Paper I
-  §§2–4): the maximality criterion and its converse, the finite-dimension and
-  principality lemmas, no prime filters (for H; see the paper's Prop. 2.3), the
-  topology on the space of plufs, ellipsoid radii and the gap criterion, the
-  state face with Banach–Alaoglu compactness, Kadison–Singer parametrized by a
-  paving hypothesis, and the discharge of WO-5's `PlufPackage`.
-- `RequestProject/PlufWO8.lean` + `RequestProject/PlufWO8/` — WO-8 (Paper III
-  §§4–5, Paper I §6): the ultrafilter-limit state, its singularity (through the
-  compact operators), countable and generic-index additivity, purity derived
-  from the face machinery, Theorem 4.2 parametrized by a Blecher–Weaver
-  excision package, and the identification of its 1-set with the block filter.
-- `workorders/WO1/` … `workorders/WO8/` — the commission trails: work-order
-  input tarballs, Aristotle's census/reports and summaries.
+Sources and PDFs are in `papers/`.
 
-Formalization executed by **Aristotle** (Harmonic) against work order WO-1;
-source-audited by hand; independently compiled by the CI in this repo.
+| | Title |
+|---|---|
+| I | Ultrafilter limits in the projection lattice of a Hilbert space |
+| II | Intimate subspaces, block filters, and the diagonalization of maximal projection filters |
+| III | Projection-lattice ultrafilters at a measurable cardinal |
+| IV | Exact paving for Fubini products of normal measures, with an application to maximal projection filters |
 
-## Building locally (optional)
+**[`PAPERS.md`](PAPERS.md) is the index for a reader checking a paper.** It maps
+each printed numbered assertion to the Lean name that proves it and the file it
+lives in, paper by paper, and states for each paper what is *not* covered.
 
-With [elan](https://github.com/leanprover/elan) installed:
+## What is and is not proved here
 
-    lake exe cache get
-    lake build
+Four results from the literature are used and **never discharged**. Each enters
+only as a named hypothesis on the statements that consume it, so every
+mechanized statement is a theorem of ZFC:
 
-Toolchain is pinned (`lean-toolchain`: v4.28.0); first cache fetch downloads
-several GB. On Windows, run the above in CMD or PowerShell from the repo
-root.
+| Input | Hypothesis |
+|---|---|
+| Mathias, happy families | `PlufWO5.MathiasHyp` |
+| Marcus–Spielman–Srivastava (Kadison–Singer) | `PlufWO6.KSHyp` |
+| Blecher–Weaver excision and regularity | `PlufWO8.BWPackage` |
+| Rowbottom homogeneity; Fodor | `PlufWO4.RowbottomFor`, `PlufWO1.FodorProperty` |
 
-## CI
+The continuum hypothesis is likewise a hypothesis
+(`Cardinal.continuum = Cardinal.aleph 1`), never an axiom, on the two
+statements that use it.
 
-Every push builds the project on the pinned toolchain and runs
-`scripts/check_axioms.py`, which fails unless each contract theorem's axiom
-line is present in the build log and confined to
-`propext`, `Classical.choice`, `Quot.sound`, and unless the sources are free
-of `sorry`/`admit`/`axiom`/`native_decide`. The build log is uploaded as an
-artifact on every run.
+Mathlib has no essential spectrum, Calkin algebra, Fredholm theory or Borel
+functional calculus. The first is defined here by Weyl sequences; the last is
+circumvented rather than built, spectral subspaces being replaced by closed
+spans of approximate eigenvectors with summable defects
+(`PlufWO9.approx_eigen_span_spec`).
+
+**Scalars.** The development is over ℝ. The lattice-level results are
+field-blind and the explicit constructions have real coefficients; the
+state-theoretic sections would need the standard complexification to be read
+over ℂ.
+
+## Why one repository and not four
+
+The four papers share a dependency chain. Paper II's diagonalization theorem is
+stated against a package of lattice facts that Paper I discharges
+(`PlufWO6.plufPackage_of_isPluf`); Paper IV's transfer theorem consumes Paper
+III's mechanization; Papers I and II share the Hilbert-basis block API
+(`PlufWO9.blockB`) and the cardinal infrastructure (`PlufWO11`). Splitting the
+artifact would either duplicate that infrastructure — and let the copies
+drift — or introduce cross-repository version pinning. One CI over the whole
+chain is also what has caught defects: every commission was run under the
+requirement that all previously proved theorems stay green.
+
+## Building
+
+With [elan](https://github.com/leanprover/elan):
+
+```
+lake exe cache get
+lake build
+```
+
+The toolchain is pinned (`lean-toolchain`: `leanprover/lean4:v4.28.0`) and
+Mathlib is pinned by `lake-manifest.json`. The first cache fetch downloads
+several gigabytes.
+
+## Layout
+
+```
+RequestProject/       Lean sources; see PAPERS.md for the map to the papers
+papers/               the four papers, LaTeX sources and PDFs
+scripts/              check_axioms.py, the axiom and forbidden-token audit
+workorders/           provenance: one directory per commission, each with the
+                      work order, the input tarball, and the returned census
+                      and report
+.github/workflows/    CI: build on the pinned toolchain, run the audit, upload
+                      the build log as an artifact
+```
+
+The `workorders/` trail is kept deliberately. The development was produced by a
+sequence of commissions against written contracts, and the reports record what
+was found: eight contract statements that turned out to be false, each with a
+formalized counterexample; a defective printed proof of Proposition 2.3 of
+Paper I, replaced by the argument now in the paper; and several places where
+the mechanized proof is shorter or stronger than the printed one. These are
+itemized in `CLAUDE.md`, which also records the working protocol.
+
+## Licensing
+
+Lean sources, scripts and workflows: Apache-2.0 (`LICENSE-CODE`).
+Papers: CC BY 4.0 (`LICENSE`).

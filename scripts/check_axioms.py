@@ -249,6 +249,36 @@ CONTRACT_THEOREMS = [
     "PlufWO13.escape",
     "PlufWO13.quadratic_estimate_of_bound",
     "PlufWO13.infinite_codim_of_escape",
+    # WO-14 (Paper I Lemma 5.6, THE BLOCKING LEMMA - proved unconditionally)
+    "PlufWO14.finCodim_of_constraints",
+    "PlufWO14.exists_unit_constrained_rayleigh",
+    "PlufWO14.exists_unit_constrained_rayleigh_notMem",
+    "PlufWO14.exists_unit_constrained_rayleigh_notMem_other",
+    "PlufWO14.perturb_unit",
+    "PlufWO14.exists_decreasing_cofinal",
+    "PlufWO14.exists_blocking_sequence",
+    "PlufWO14.compress_exact_diagonal",
+    "PlufWO14.blocking_lemma_of_sequence",
+    "PlufWO14.blocking_lemma",
+    # WO-12 (Paper II Thm 5.4: CH construction of a non-diagonalizable pluf)
+    "PlufWO12.exists_constrained_notMem",
+    "PlufWO12.exists_two_nonzero_coords",
+    "PlufWO12.exists_nonIntimate_blocking",
+    "PlufWO12.exists_enum_vectors",
+    "PlufWO12.exists_decreasing_cofinal",
+    "PlufWO12.exists_witness_family",
+    "PlufWO12.exists_nonprincipal_nondiagonalizable",
+    # WO-15 (FINAL: Paper I Thm 5.7 and Prop 5.9 - the CH construction)
+    "PlufWO15.exists_admissible_decides",
+    "PlufWO15.admissible_iUnion",
+    "PlufWO15.admissible_iUnion_counterexample",
+    "PlufWO15.exists_admissible_chain",
+    "PlufWO15.exists_pluf_all_ample",
+    "PlufWO15.not_rsp_of_all_ample",
+    "PlufWO15.radii_of_all_ample",
+    "PlufWO15.face_apply_mem_Icc",
+    "PlufWO15.exists_face_state_apply_eq",
+    "PlufWO15.face_values_eq_Icc",
 ]
 
 FORBIDDEN = ["sorry", "admit", "native_decide"]
