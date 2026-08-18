@@ -104,9 +104,9 @@ CI run #7), including all formalized counterexamples and obstructions:
 | Paper V §7 (trace formula; covering criterion) | `PlufWO16` Part B | WO-16 | **verified** (CI #15, 2026-08-18) |
 | Paper V §8 (intimacy = level three; collapse; χ(Gowers)=3; blocker constraint) | `PlufWO16` Part C | WO-16 | **verified** (CI #15, 2026-08-18) |
 
-| Paper V Thm 4.3 (S1; S2 for finite deletions) | `PlufWO17` Part A | WO-17 | awaiting CI run #16 |
-| Paper V Thm 5.2 (finite-rank classification, Aroca quarantined) | `PlufWO17.suppFamily_isScrawlFamily` (+B1, B2) | WO-17 | awaiting CI run #16 |
-| Paper V Lemma 6.1, Example 6.2, and the §6 conditional | `PlufWO17` Part C | WO-17 | awaiting CI run #16 |
+| Paper V Thm 4.3 (S1; S2 for finite deletions) | `PlufWO17` Part A | WO-17 | **verified** (CI #16, 2026-08-18) |
+| Paper V Thm 5.2 (finite-rank classification, Aroca quarantined) | `PlufWO17.suppFamily_isScrawlFamily` (+B1, B2) | WO-17 | **verified** (CI #16, 2026-08-18) |
+| Paper V Lemma 6.1, Example 6.2, and the §6 conditional | `PlufWO17` Part C | WO-17 | **verified** (CI #16, 2026-08-18) |
 
 **WO-17 (Paper V §§4–6) delivered 2026-08-18: no false contracts. PAPER V IS
 COMPLETE.** All nine items in the printed shape. **Both WO-16 census

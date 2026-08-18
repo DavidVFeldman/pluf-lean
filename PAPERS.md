@@ -1,6 +1,6 @@
 # Which Lean theorem proves which printed assertion
 
-This repository holds a single Lean 4 development covering all four papers of
+This repository holds a single Lean 4 development covering all five papers of
 the pluf series. The papers share a dependency chain — Paper II's
 diagonalization theorem is stated against a package of lattice facts that
 Paper I discharges, Paper IV's transfer theorem consumes Paper III's
@@ -27,6 +27,7 @@ ZFC:
 | Marcus–Spielman–Srivastava (Kadison–Singer) | Paper I, Thm 4.1 | `PlufWO6.KSHyp` |
 | Blecher–Weaver excision and regularity | Paper III, Thm 4.2 | `PlufWO8.BWPackage` (in `PlufWO8/BW.lean`) |
 | Rowbottom homogeneity; Fodor | Paper IV, §§2–4; Paper III, Lemma 5.2 | `PlufWO4.RowbottomFor`, `PlufWO1.FodorProperty` |
+| Aroca et al., supports of finite-dimensional spaces | Paper V, Thm 5.2 | `PlufWO17.AroKaHyp` |
 
 The continuum hypothesis is likewise a hypothesis
 (`Cardinal.continuum = Cardinal.aleph 1`), never an axiom, on the two
@@ -148,6 +149,40 @@ Not mechanized: the finite-power remark of §4, and the state-theoretic
 clauses of Thm. 5.2 (singleton face, round slices) — the face machinery is
 verified for Paper I, but its transfer to ultrafilters given only by EPP is
 not part of this development.
+
+---
+
+## Paper V — *Support families of closed subspaces of $\ell^2$*
+
+| Printed assertion | Lean name | File |
+|---|---|---|
+| Lemma 2.1 (union of two supports) | `PlufWO16.exists_supp_union` | `PlufWO16/PartA.lean` |
+| Prop. 2.2 (countable unions; where closedness enters) | `PlufWO16.exists_supp_iUnion` | `PlufWO16/PartA.lean` |
+| Cor. 2.3 (arbitrary unions) | `PlufWO16.exists_supp_sUnion` | `PlufWO16/PartA.lean` |
+| Prop. 3.2 (elimination; minimality not needed) | `PlufWO16.exists_supp_elimination` | `PlufWO16/PartA.lean` |
+| Thm. 4.3 (S1) | `PlufWO17.suppFamily_sUnion_closed` | `PlufWO17/PartA.lean` |
+| Thm. 4.3 (S2, finite deletions) | `PlufWO17.suppFamily_elimination_finite` | `PlufWO17/PartA.lean` |
+| Thm. 5.1 (Aroca et al.) — **quarantined** | `PlufWO17.AroKaHyp` | `PlufWO17/Basic.lean` |
+| Thm. 5.2 (finite-rank classification) | `PlufWO17.suppFamily_isScrawlFamily` | `PlufWO17/PartB.lean` |
+| Thm. 5.2, the transfer into $\ell^2$ | `PlufWO17.exists_realization_in_lp` | `PlufWO17/PartB.lean` |
+| Lemma 6.1 (zeros of an exponential sum) | `PlufWO17.expSum_zeros_lt` | `PlufWO17/PartC.lean` |
+| Example 6.2 (every cofinite set is a support) | `PlufWO17.exists_supp_compl_finite` | `PlufWO17/PartC.lean` |
+| §6 conditional (no scrawl family) | `PlufWO17.not_isScrawlFamily_of_cofiniteOnly` | `PlufWO17/PartC.lean` |
+| Lemma 7.2 (meet nonzero ⟺ contains a support) | `PlufWO16.mem_cD_iff` | `PlufWO16/PartB.lean` |
+| Prop. 7.3 (the trace formula) | `PlufWO16.trace_subset`, `mem_trace_of_forall_cD` | `PlufWO16/PartB.lean` |
+| Prop. 7.5 (consistency ⟺ membership in a diagonalizable pluf) | `PlufWO16.diagonallyConsistent_iff` | `PlufWO16/PartB.lean` |
+| **Thm. 7.6 (the covering criterion)** | `PlufWO16.diagonallyConsistent_iff_not_finiteCover` | `PlufWO16/PartB.lean` |
+| Prop. 8.1 (intimate ⟺ no two-cover) | `PlufWO16.intimate_iff_no_two_cover` | `PlufWO16/PartC.lean` |
+| Prop. 8.2 (the collapse) | `PlufWO16.diagonallyConsistent_of_mem_diagonalizable` | `PlufWO16/PartC.lean` |
+| Cor. 8.3 (three equivalent conditions on a pluf) | `PlufWO16.diagonalizable_iff_all_diagonallyConsistent` | `PlufWO16/PartC.lean` |
+| **Thm. 8.4 ($\chi$ of Gowers's subspace is 3)** | `PlufWO16.gowersX_threeCover` | `PlufWO16/PartC.lean` |
+| Prop. 8.5 (addable blockers) | `PlufWO16.diagonallyConsistent_of_addableBlocker` | `PlufWO16/PartC.lean` |
+
+The matroid vocabulary of §§4–5 — circuit families, independence, the
+maximality axiom, scrawl families — is defined in `PlufWO17/Basic.lean` in
+terms of families of subsets of ℕ. Nothing is imported from Mathlib's matroid
+API, which has no constructor from a circuit family. Question 9.3 is open and
+is supplied as a hypothesis to the §6 conditional.
 
 ---
 

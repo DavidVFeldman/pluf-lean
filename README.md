@@ -2,12 +2,12 @@
 
 [![DOI](https://zenodo.org/badge/1336315599.svg)](https://doi.org/10.5281/zenodo.21987888)
 
-A Lean 4 / Mathlib verification of the theorems of a four-paper series on
+A Lean 4 / Mathlib verification of the theorems of a five-paper series on
 **maximal filters in the projection lattice of a Hilbert space** — *plufs*, the
 lattice-theoretic linearization of "bounded sequences converge along
 ultrafilters."
 
-**243 audited theorems.** Every one carries a `#print axioms` line reporting
+**272 audited theorems.** Every one carries a `#print axioms` line reporting
 exactly `propext`, `Classical.choice`, `Quot.sound`. The sources contain no
 `sorry`, `admit`, `axiom` or `native_decide`. Both facts are enforced by CI on
 every push rather than asserted here: `scripts/check_axioms.py` parses the
@@ -24,6 +24,7 @@ Sources and PDFs are in `papers/`.
 | II | Intimate subspaces, block filters, and the diagonalization of maximal projection filters |
 | III | Projection-lattice ultrafilters at a measurable cardinal |
 | IV | Exact paving for Fubini products of normal measures, with an application to maximal projection filters |
+| V | Support families of closed subspaces of $\ell^2$, with an application to diagonalizable projection filters |
 
 **[`PAPERS.md`](PAPERS.md) is the index for a reader checking a paper.** It maps
 each printed numbered assertion to the Lean name that proves it and the file it
@@ -41,6 +42,7 @@ mechanized statement is a theorem of ZFC:
 | Marcus–Spielman–Srivastava (Kadison–Singer) | `PlufWO6.KSHyp` |
 | Blecher–Weaver excision and regularity | `PlufWO8.BWPackage` |
 | Rowbottom homogeneity; Fodor | `PlufWO4.RowbottomFor`, `PlufWO1.FodorProperty` |
+| Aroca et al. (supports of finite-dimensional spaces) | `PlufWO17.AroKaHyp` |
 
 The continuum hypothesis is likewise a hypothesis
 (`Cardinal.continuum = Cardinal.aleph 1`), never an axiom, on the two
@@ -59,7 +61,7 @@ over ℂ.
 
 ## Why one repository and not four
 
-The four papers share a dependency chain. Paper II's diagonalization theorem is
+The five papers share a dependency chain. Paper II's diagonalization theorem is
 stated against a package of lattice facts that Paper I discharges
 (`PlufWO6.plufPackage_of_isPluf`); Paper IV's transfer theorem consumes Paper
 III's mechanization; Papers I and II share the Hilbert-basis block API

@@ -1,0 +1,750 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.15in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\spann}{span}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\T}{\mathfrak{T}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\pluf}{\pi}
+
+\title[Support families of closed subspaces of $\ell^2$]
+{Support families of closed subspaces of $\ell^2$,\\
+with an application to diagonalizable projection filters}
+
+\author{David V. Feldman}
+\address{Department of Mathematics and Statistics, University of New Hampshire,
+Durham, NH 03824, USA}
+\email{dvfinnh@gmail.com}
+
+\subjclass[2020]{Primary 46C07, 05B35, 06C15; Secondary 30J05, 81P10, 03E05,
+15A03, 46B45}
+
+\keywords{support, closed subspace, projection lattice, maximal abelian
+subalgebra, maximal filter, ultrafilter, matroid, circuit, scrawl, covering
+number, representability, model space, Blaschke product}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a closed subspace $M$ of $\ell^2(\N)$ let $\F(M)$ be the family of supports
+of its vectors. We determine which families arise this way in finite rank and
+record what survives in infinite rank. Closedness forces $\F(M)$ to be closed
+under arbitrary unions, and Gaussian elimination among minimal supports is the
+circuit elimination axiom; combined with a theorem of Aroca, Bossinger,
+Falkensteiner, Garay L\'opez, Gonz\'alez-Ram\'irez and Valencia Negrete, this
+gives, over $\C$, exactly the scrawl families of cofinitary matroids on $\N$
+with $\C$-representable duals of finite rank. Of the three Bowler--Carmesin
+scrawl axioms, union closure holds outright and elimination holds for finitely
+many deleted coordinates; a model space $K_\Theta$ shows the maximality axiom
+can fail, and can fail so far that $\F(K_\Theta)$ is the scrawl family of no
+matroid. The support family also computes the interaction of $M$ with the
+diagonal masa: the trace of a maximal filter of the projection lattice on the
+diagonal block is $\bigcap_{M}\cD(M)$, matroid independence is
+lattice-theoretic disjointness from the block, and $M$ belongs to a maximal
+filter with ultrafilter trace exactly when the covering number $\chi(M)$ of its
+support matroid is infinite. This invariant grades a property studied in the
+companion papers: a subspace is intimate exactly when $\chi\ge3$. The grading is
+strict --- Gowers's intimate subspace has $\chi=3$, so it lies in no
+diagonalizable maximal filter --- but collapses on filters, every member of a
+diagonalizable maximal filter having $\chi=\infty$.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+For $x\in\ell^2(\N)$ write $\supp(x)=\{n:x_n\neq0\}$, and for a closed subspace
+$M\subseteq\ell^2(\N)$ put
+\[
+\F(M)=\{\supp(x):x\in M\}\subseteq2^{\N}.
+\]
+
+\begin{question}\label{q:main}
+Which families $\F\subseteq2^{\N}$ arise as $\F(M)$?
+\end{question}
+
+The answer in finite rank is a piece of matroid representability
+(Section~\ref{sec:finiterank}). In infinite rank it is open, and
+Section~\ref{sec:infinite} locates the obstruction in a question about
+coefficient vanishing in model spaces.
+
+The reason for asking is lattice-theoretic, and it is the reason this paper
+belongs with \cite{FWI,FWII,FWIII,FWIV}. Write $\PP(\ell^2)$ for the lattice of
+closed subspaces, and let $\{\ell^2(S):S\subseteq\N\}$ be the projection
+lattice of the diagonal masa --- a copy of $2^{\N}$, and a maximal Boolean
+subalgebra, a \emph{block} in the language of quantum logic \cite{K83}. A
+\emph{pluf} is a maximal filter in $\PP(\ell^2)$ \cite{FWI}; its trace on the
+block is $\cS(\pluf)=\{S:\ell^2(S)\in\pluf\}$, and the question of when that
+trace is an ultrafilter is the diagonalization question of \cite{FWII}.
+Section~\ref{sec:lattice} shows that the trace is computed from support
+families and from nothing else, that matroid independence is disjointness from
+the block, and that a single invariant --- the covering number of the support
+matroid --- decides whether $M$ can sit in a pluf with ultrafilter trace.
+
+Section~\ref{sec:series} draws the consequences for the companion papers. The
+covering number grades the intimacy of \cite{FWII}: a subspace is intimate
+exactly when $\N$ is not the union of two sets $S$ with $M\wedge\ell^2(S)=0$,
+that is, exactly when $\chi(M)\ge3$, while membership in a diagonalizable pluf
+requires $\chi(M)=\infty$. The two conditions differ on subspaces:
+Gowers's intimate subspace of \cite{FWII} has $\chi=3$
+(Theorem~\ref{thm:gowerschi}), so it belongs to no diagonalizable pluf. They
+agree on plufs: every member of a pluf with ultrafilter trace has
+$\chi=\infty$ (Proposition~\ref{prop:collapse}), so ``every member intimate''
+and ``every member diagonally consistent'' define the same class of filters.
+Section~\ref{sec:series} closes with a constraint on the rigidity conjecture of
+\cite{FWII}: every addable blocker has infinite covering number.
+
+\subsection*{Conventions and the choice of field}
+$\ell^2=\ell^2(\N)$ is taken over $\C$. Two of the results below are
+field-sensitive and one is not; we fix which is which.
+Union closure (Section~\ref{sec:unions}) needs only that there are more scalars
+than coordinates, and holds over $\R$ and $\C$ alike; over a finite field it
+fails, and Section~\ref{sec:finiterank} shows the failure is not an artifact of
+the argument. The finite-rank classification is representability over the field
+in question, and representability genuinely depends on it
+(Question~\ref{q:realcomplex}); the theorem of \cite{ABFGGV} that we invoke
+carries a cardinality hypothesis on the field which $\C$ satisfies. Everything
+in Sections~\ref{sec:lattice}--\ref{sec:series} --- the Galois connection, the
+trace formula, the covering criterion, and the consequences for
+\cite{FWII} --- uses no property of the scalars at all and holds verbatim over
+$\R$. The companion papers work over $\R$, where their formal verification is
+carried out; the results transferred here are among those to which the field is
+immaterial.
+
+Members of $\F(M)$ include $\emptyset=\supp(0)$. For $S\subseteq\N$ we write
+$\ell^2(S)=\{x:\supp(x)\subseteq S\}$, which is $\HH_S$ in the notation of
+\cite{FWII}.
+
+\section{Closure under unions}\label{sec:unions}
+
+\begin{lemma}\label{lem:finiteunion}
+Let $M$ be any linear subspace of $\ell^2$ and $x,y\in M$. Then
+$\supp(x)\cup\supp(y)\in\F(M)$.
+\end{lemma}
+
+\begin{proof}
+For $\lambda\neq0$ the coordinate $(x+\lambda y)_n$ vanishes for at most one
+$\lambda$, namely $-x_n/y_n$ when $y_n\neq0$. There are countably many
+coordinates and uncountably many scalars, so some $\lambda$ avoids every bad
+value, and then $\supp(x+\lambda y)=\supp(x)\cup\supp(y)$.
+\end{proof}
+
+The proof uses that there are more scalars than coordinates. The infinite
+version uses closedness, and uses it once.
+
+\begin{proposition}[Countable unions]\label{prop:countableunion}
+Let $M\subseteq\ell^2$ be closed and $x^{(1)},x^{(2)},\dots\in M$. Then there
+is $x\in M$ with $\supp(x)=\bigcup_i\supp(x^{(i)})$.
+\end{proposition}
+
+\begin{proof}
+Normalize $\|x^{(i)}\|_2=1$, so $\|x^{(i)}\|_\infty\le1$. We choose $c_i\neq0$
+recursively and set $x=\sum_ic_ix^{(i)}$, writing $s_m=\sum_{i\le m}c_ix^{(i)}$.
+
+At stage $m$, two constraints bind. First, to keep
+$\supp(s_m)=\supp(s_{m-1})\cup\supp(x^{(m)})$, the coefficient $c_m$ must avoid
+$-(s_{m-1})_n/x^{(m)}_n$ for each of the countably many $n$ with
+$x^{(m)}_n\neq0$. Second, having chosen $c_m$, put
+\[
+\delta_m=\min\{|(s_m)_n|:n\le m,\ (s_m)_n\neq0\}>0,
+\]
+a minimum over a finite set, and require of all later coefficients that
+$|c_i|\le2^{-(i-m)-1}\delta_m$ for $i>m$, together with $|c_i|\le2^{-i}$
+throughout. The admissible set for $c_m$ is a punctured disc less a countable
+set, so the recursion runs.
+
+Since $\sum_i|c_i|\,\|x^{(i)}\|_2<\infty$ the series converges in $\ell^2$; the
+partial sums lie in $M$ and $M$ is closed, so $x\in M$. This is the only step
+that uses closedness. Every term is supported in $\bigcup_i\supp(x^{(i)})$, so
+$\supp(x)$ is contained in that union. Conversely, if $n\in\supp(x^{(m)})$ then
+$n\in\supp(s_m)$, so $|(s_m)_n|\ge\delta_{\max(m,n)}$ once the index is large
+enough for $n$ to be frozen, and the tail $\sum_{i>\max(m,n)}|c_i|$ is at most
+half of it; hence $x_n\neq0$.
+\end{proof}
+
+\begin{corollary}\label{cor:arbunion}
+$\F(M)$ is closed under arbitrary unions, and $\sigma(M):=\bigcup\F(M)$ is
+itself a member of $\F(M)$.
+\end{corollary}
+
+\begin{proof}
+An arbitrary union of supports is a union of countably many of them: a subset
+of $\N$ that is a union of members of $\F(M)$ is the union of countably many,
+one through each of its points. Apply
+Proposition~\ref{prop:countableunion}.
+\end{proof}
+
+Closedness is not decoration here. The subspace of finitely supported sequences
+orthogonal to a fixed vector of full support is a non-closed subspace whose
+support family omits its own union.
+
+\section{Elimination}\label{sec:elimination}
+
+Nonemptiness and union closure do not suffice.
+
+\begin{example}\label{ex:elimination}
+$\F=\{\emptyset,\{1,2\},\{1,3\},\{1,2,3\}\}$ contains $\emptyset$ and is closed
+under unions, but is no $\F(M)$: vectors $x,y$ with supports $\{1,2\}$ and
+$\{1,3\}$ have $x_1,y_1\neq0$, and $z=x-(x_1/y_1)y$ has support $\{2,3\}$.
+\end{example}
+
+\begin{proposition}[Elimination]\label{prop:elimination}
+Let $A\neq B$ be nonempty members of $\F(M)$ and $p\in A\cap B$. Then
+$(A\cup B)\setminus\{p\}$ contains a nonempty member of $\F(M)$. Minimality of
+$A$ and $B$ is not required; the case of minimal $A,B$ is the circuit
+elimination axiom.
+\end{proposition}
+
+\begin{proof}
+Eliminate $p$ as in Example~\ref{ex:elimination}. The result is nonzero, since
+$z=0$ would make $x$ a multiple of $y$ and force $A=B$, and is supported in
+$(A\cup B)\setminus\{p\}$.
+\end{proof}
+
+Nonemptiness, union closure and elimination among minimal members are the
+axioms of a structure introduced for unrelated reasons, to which we now turn.
+
+\section{Circuits and scrawls}\label{sec:matroids}
+
+We use only the following. A \emph{matroid} on a ground set $E$ is given by its
+family of \emph{circuits}: a nonempty antichain $\mathcal C\subseteq2^E$
+satisfying circuit elimination --- for distinct $C,C'\in\mathcal C$ and
+$p\in C\cap C'$, some circuit lies in $(C\cup C')\setminus\{p\}$ --- together
+with the requirement that the \emph{independent} sets, those containing no
+circuit, satisfy the maximality axiom (SM): every independent subset of a set
+$X$ extends to a maximal independent subset of $X$. For finite $E$ the last
+condition is automatic; for infinite $E$ it is the axiom isolated by Bruhn,
+Diestel, Kriesell, Pendavingh and Wollan \cite{BDKPW13}. A \emph{scrawl} is a
+union of circuits, and the scrawl family is closed under arbitrary unions.
+Bowler and Carmesin \cite{BC18} axiomatize matroids by their scrawls: (S1)
+union closure; (S2) scrawl elimination, the multi-coordinate form of circuit
+elimination; and (SM).
+
+For a matrix $A$ over a field $K$ with columns indexed by $E$, the supports of
+the vectors of $\ker A$ are the scrawls of the matroid whose circuits are the
+minimal dependencies among the columns. Question~\ref{q:main} asks which scrawl
+families are realized when $K=\C$, $E=\N$, and the kernel is required to be
+norm-closed in $\ell^2$.
+
+\begin{theorem}\label{thm:S1S2}
+Let $M\subseteq\ell^2(\N)$ be closed. Then $\F(M)$ satisfies \textup{(S1)}, and
+satisfies \textup{(S2)} for finite deleted sets: if $w=\supp(x)$ with $x\in M$,
+if $X\subseteq w$ is finite, and if $u_p\in M$ for $p\in X$ have supports $w_p$
+with $p\in w_q\iff p=q$, then for every
+$z\in w\setminus\bigcup_{p\in X}w_p$ there is $y\in M$ with
+\[
+z\in\supp(y)\subseteq\Bigl(w\cup\bigcup_{p\in X}w_p\Bigr)\setminus X.
+\]
+\end{theorem}
+
+\begin{proof}
+(S1) is Corollary~\ref{cor:arbunion}. For the elimination, $a_p=x_p/(u_p)_p$ is
+well defined by the hypothesis on the $w_q$, and
+$y=x-\sum_{p\in X}a_pu_p$ --- a finite sum, hence in $M$ --- has $y_p=0$ for
+$p\in X$. No subtracted term touches $z$, so $y_z=x_z\neq0$.
+\end{proof}
+
+For infinite $X$ the correction term is an infinite series that must converge
+in $\ell^2$, and there is no freedom to arrange it: rescaling $u_p$ rescales
+$a_p$ inversely, so $a_pu_p$ is determined by the data.
+Question~\ref{q:S2infinite} records the gap. Axiom (SM) is the subject of
+Section~\ref{sec:infinite}.
+
+\section{The finite-rank answer}\label{sec:finiterank}
+
+\begin{theorem}[Aroca et al.\ {\cite[Thms.~2.15, 3.5]{ABFGGV}}]\label{thm:ABFGGV}
+Let $K$ be a field, $E$ a set, and $\{0\}\neq W\subseteq K^E$ finite
+dimensional. Write $\T(W)$ for the supports of elements of $W$. Then the
+minimal nonempty members of $\T(W)$ are the circuits of a matroid on $E$ and
+every member of $\T(W)$ is a union of circuits; and if $\#E<\#K$ then $\T(W)$
+is exactly the scrawl family of that matroid.
+\end{theorem}
+
+The cardinality hypothesis is sharp. Over $\mathbb F_2$, the span of $(0,1,1)$
+and $(1,0,1)$ in $\mathbb F_2^3$ has support family
+$\{\emptyset,\{2,3\},\{1,3\},\{1,2\}\}$, which is not union-closed: there are
+too few scalars to run Lemma~\ref{lem:finiteunion}. For $E=\N$ and $K=\C$ the
+hypothesis reads $\aleph_0<2^{\aleph_0}$.
+
+\begin{theorem}\label{thm:finiterank}
+Let $M\subseteq\ell^2(\N)$ be a nonzero closed subspace of finite codimension
+in some $\ell^2(S)$, or more generally a closed subspace whose orthogonal
+complement within its own support block is finite dimensional. Then $\F(M)$ is
+the scrawl family of a matroid on $\N$ whose dual is $\C$-representable of
+finite rank; conversely every such scrawl family arises. In particular every
+finite restriction of every support family of a closed subspace is the scrawl
+family of a representable matroid.
+\end{theorem}
+
+\begin{proof}
+A closed subspace of finite codimension in $\ell^2(S)$ is the kernel of a
+finite matrix over $\C$ acting on $\ell^2(S)$, so Theorem~\ref{thm:ABFGGV}
+applies with $E=S$, $K=\C$; extend by $\emptyset$ off $S$. Conversely a
+representable dual of finite rank presents $M$ as such a kernel, and a kernel
+of finitely many continuous functionals is closed. For the last sentence,
+restrict to a finite set of coordinates: the restriction of $\F(M)$ is the
+support family of the image of $M$ under the coordinate projection, a
+finite-dimensional space over $\C$.
+\end{proof}
+
+By Mayhew, Newman and Whittle \cite{MNW14}, following V\'amos \cite{V78}, the
+class of representable matroids is not finitely axiomatizable, so the
+characterization in Theorem~\ref{thm:finiterank} is decidable
+\cite{S87} but admits no finite list of axioms.
+
+\section{Infinite rank: a model space}\label{sec:infinite}
+
+\begin{lemma}\label{lem:expzeros}
+Let $\mu_1<\dots<\mu_m$ be real and let $a\in\R^m$ be nonzero. Then
+$F(t)=\sum_{k\le m}a_ke^{\mu_kt}$ has at most $m-1$ real zeros.
+\end{lemma}
+
+\begin{proof}
+Induct on $m$, discarding vanishing coefficients so that all $a_k\neq0$. For
+$m=1$, $F$ has no zeros. For $m>1$, suppose $F$ had $m$ zeros. Then
+$G(t)=e^{-\mu_1t}F(t)$ has the same $m$ zeros, so by Rolle's theorem $G'$ has
+at least $m-1$; but
+$G'(t)=\sum_{k\ge2}a_k(\mu_k-\mu_1)e^{(\mu_k-\mu_1)t}$ is an exponential sum
+with $m-1$ nonzero coefficients and distinct exponents, hence has at most
+$m-2$ zeros.
+\end{proof}
+
+\begin{example}\label{ex:modelspace}
+Choose distinct $\lambda_1,\lambda_2,\dots\in(0,1)$ with
+$\sum_k(1-\lambda_k)<\infty$ --- the summability is used only for the
+identification below, not for the support claim --- put $v^{(k)}=(\lambda_k^{\,n})_{n\ge0}$ and
+$M=\overline{\spann}\{v^{(k)}\}$. Then every cofinite subset of $\N_0$ lies in
+$\F(M)$.
+\end{example}
+
+\begin{proof}
+Fix finite $S\subseteq\N_0$ and put $m=|S|+1$. Applying
+Lemma~\ref{lem:expzeros} with $\mu_k=\log\lambda_k$ shows that a nontrivial
+combination of $v^{(1)},\dots,v^{(m)}$ vanishes at no more than $m-1$ points of
+$\N_0$; in particular the $v^{(k)}$ are linearly independent, so their span
+$V_m$ has dimension $m$. Evaluation at the $|S|=m-1$ points of $S$ is a linear
+map $V_m\to\R^{m-1}$, so some nonzero $x\in V_m$ vanishes on $S$. That $x$ has
+at least $m-1$ zeros on $\N_0$ and at most $m-1$, so its zero set is exactly
+$S$ and $\supp(x)=\N_0\setminus S$.
+\end{proof}
+
+Under $\ell^2(\N_0)\cong H^2(\D)$ the vector $v^{(k)}$ is the reproducing
+kernel at $\lambda_k$ and $M$ is the model space $K_\Theta=H^2\ominus\Theta H^2$
+for the Blaschke product $\Theta$ with zeros $\lambda_k$; members of $\F(M)$ are
+Taylor-coefficient supports of functions in $K_\Theta$ \cite{GMR16}.
+
+What Example~\ref{ex:modelspace} establishes is that no cofinite set is a
+minimal nonempty member of $\F(M)$, since every cofinite set properly contains
+another. Whether $\F(M)$ contains any set of infinite complement, and hence
+whether it has any minimal nonempty member at all, is
+Question~\ref{q:coeff}. We avoid the word \emph{circuit} for the minimal
+members here: that terminology presupposes that $\F(M)$ is a scrawl family,
+which is what is in doubt.
+
+Suppose $K_\Theta$ contains no nonzero function with infinitely many vanishing
+Taylor coefficients. Then every nonzero support is cofinite and
+$\F(M)=\{\emptyset\}\cup\{\text{cofinite sets}\}$, and $\F(M)$ is the scrawl
+family of no matroid --- for a reason weaker than the failure of (SM). Were
+$\F(M)$ the family of unions of a circuit family $\mathcal C$, any $c\in\mathcal
+C$ would be a nonempty member of $\F(M)$, hence cofinite; it properly contains
+a cofinite set $c'$, itself a nonempty member of $\F(M)$ and so a union of a
+nonempty subfamily of $\mathcal C$, which supplies some $c''\in\mathcal C$ with
+$c''\subseteq c'\subsetneq c$ --- against the antichain axiom. Neither
+elimination nor (SM) is used. Separately, the sets containing no nonempty
+support are exactly the coinfinite ones, which have no maximal element, so
+(SM) fails as well, and there is no minimal nonempty member; (S1) and (S2)
+hold vacuously. This chain is conditional on Question~\ref{q:coeff};
+Example~\ref{ex:modelspace} is not.
+
+\section{The diagonal block}\label{sec:lattice}
+
+\begin{definition}\label{def:DI}
+For $M\in\PP(\ell^2)$ put
+\[
+\cD(M)=\{S\subseteq\N:M\wedge\ell^2(S)\neq0\},\qquad
+\cI(M)=2^{\N}\setminus\cD(M).
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:meetnonzero}
+$M\wedge\ell^2(S)\neq0$ if and only if $S$ contains a nonempty member of
+$\F(M)$. Hence $\cI(M)$ consists exactly of the sets containing no nonempty
+support, and $\cD(M)$ is determined by $\F(M)$.
+\end{lemma}
+
+\begin{proof}
+The meet of closed subspaces is the intersection, and a nonzero
+$x\in M\cap\ell^2(S)$ is a nonzero $x\in M$ with $\supp(x)\subseteq S$.
+\end{proof}
+
+In finite rank, where Theorem~\ref{thm:ABFGGV} applies, $\cI(M)$ is the family
+of independent sets of the support matroid: matroid independence is
+lattice-theoretic disjointness from the block. The minimal members of $\cD(M)$
+are its circuits, and axiom (SM) asserts that a subspace of the block disjoint
+from $M$ extends to a maximal such subspace.
+
+\begin{proposition}\label{prop:trace}
+For a filter $F$ on $\PP(\ell^2)$ with trace
+$\cS(F)=\{S:\ell^2(S)\in F\}$,
+\[
+\cS(F)\subseteq\bigcap_{M\in F}\cD(M),
+\]
+with equality when $F$ is maximal.
+\end{proposition}
+
+\begin{proof}
+If $S\in\cS(F)$ and $M\in F$ then $M\wedge\ell^2(S)\in F$, which is nonzero by
+properness, so $S\in\cD(M)$. For the converse under maximality, suppose
+$S\in\cD(M)$ for every $M\in F$. Then $\ell^2(S)$ meets every member of $F$
+nontrivially, so by the maximality criterion (\cite{FWI}, Lemma 2.1) it belongs
+to $F$.
+\end{proof}
+
+\begin{definition}\label{def:consistent}
+$M$ is \emph{diagonally consistent} if some ultrafilter $\cU$ on $\N$ satisfies
+$\cU\subseteq\cD(M)$. The \emph{covering number} $\chi(M)$ is the least $k$
+such that $\N$ is the union of $k$ members of $\cI(M)$, and $\infty$ if there
+is no such $k$.
+\end{definition}
+
+\begin{proposition}\label{prop:consistentiff}
+$M$ is diagonally consistent if and only if there is a pluf $\pluf$ with
+$M\in\pluf$ and $\cS(\pluf)$ an ultrafilter.
+\end{proposition}
+
+\begin{proof}
+Given $\cU\subseteq\cD(M)$, let $G$ be the upward closure of the finite meets
+of $\{M\}\cup\{\ell^2(S):S\in\cU\}$. Such a meet is
+$M\wedge\ell^2(S_1\cap\dots\cap S_k)$, nonzero because the intersection lies in
+$\cU\subseteq\cD(M)$; so $G$ is proper, and any pluf $\pluf\supseteq G$ has
+$\cU\subseteq\cS(\pluf)$. A trace contains no complementary pair, since
+$\ell^2(S)\wedge\ell^2(\N\setminus S)=0$, so $\cS(\pluf)=\cU$. Conversely
+Proposition~\ref{prop:trace} gives $\cS(\pluf)\subseteq\cD(M)$ for $M\in\pluf$.
+\end{proof}
+
+\begin{theorem}\label{thm:covering}
+$M$ is diagonally consistent if and only if $\chi(M)=\infty$.
+\end{theorem}
+
+\begin{proof}
+If $\chi(M)=\infty$, the ideal $J$ generated by the downward closed family
+$\cI(M)$ consists of the finite unions of its members and is proper, so its
+dual filter $J^*$ is proper; extend $J^*$ to an ultrafilter $\cU$. For
+$S\in\cI(M)$ we have $\N\setminus S\in J^*\subseteq\cU$, so $S\notin\cU$; hence
+$\cU\subseteq\cD(M)$. Conversely, if $\cU\subseteq\cD(M)$ and
+$\N=S_1\cup\dots\cup S_k$ with every $S_i\in\cI(M)$, primeness of $\cU$ puts
+some $S_i\in\cU\subseteq\cD(M)$, a contradiction.
+\end{proof}
+
+\begin{proposition}\label{prop:partitionregular}
+$M$ is diagonally consistent if and only if $\F(M)\setminus\{\emptyset\}$ is
+partition regular: every partition of $\N$ into finitely many cells has a cell
+containing a nonempty support.
+\end{proposition}
+
+\begin{proof}
+Theorem~\ref{thm:covering} through Lemma~\ref{lem:meetnonzero}, covers being
+refinable to partitions.
+\end{proof}
+
+For finite ground sets Edmonds' theorem \cite{E65} computes the covering number
+as $\max_{A\neq\emptyset}\lceil|A|/r(A)\rceil$; see \cite[\S11.3]{Ox11}.
+
+\section{The covering number in the pluf series}\label{sec:series}
+
+Fix the standard basis. A closed subspace $W$ is \emph{intimate} \cite{FWII} if
+for every $A\subseteq\N$ at least one of $W\wedge\ell^2(A)$,
+$W\wedge\ell^2(\N\setminus A)$ is nonzero, and a nonprincipal pluf is
+\emph{diagonalizable} if its trace is an ultrafilter.
+
+\begin{proposition}\label{prop:intimatechi}
+A nonzero closed subspace $W$ is intimate if and only if $\chi(W)\ge3$.
+\end{proposition}
+
+\begin{proof}
+$W$ fails to be intimate exactly when some $A$ has both $A$ and
+$\N\setminus A$ in $\cI(W)$, that is, exactly when $\N$ is the union of two
+members of $\cI(W)$. Since $\cI(W)$ is downward closed, a cover by two members
+may be replaced by a complementary pair, so this is $\chi(W)\le2$; and
+$\chi(W)\ge2$ because $W\neq0$ puts $\N$ in $\cD(W)$.
+\end{proof}
+
+Intimacy is thus the first nontrivial value of an invariant whose extreme value
+is diagonal consistency. The two conditions are different, and
+Theorem~\ref{thm:gowerschi} separates them; but on plufs they coincide.
+
+\begin{proposition}\label{prop:collapse}
+Let $\pluf$ be a pluf whose trace is an ultrafilter. Then every member of
+$\pluf$ is diagonally consistent, hence has $\chi=\infty$.
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:trace} gives $\cS(\pluf)\subseteq\cD(M)$ for each
+$M\in\pluf$, and $\cS(\pluf)$ is an ultrafilter; apply
+Theorem~\ref{thm:covering}.
+\end{proof}
+
+\begin{corollary}\label{cor:collapse}
+For a nonprincipal pluf the following are equivalent: it is diagonalizable;
+every member is intimate; every member is diagonally consistent.
+\end{corollary}
+
+\begin{proof}
+The first two are equivalent by \cite{FWII}, Theorem 5.2. The first implies the
+third by Proposition~\ref{prop:collapse}, and the third implies the second by
+Proposition~\ref{prop:intimatechi}.
+\end{proof}
+
+The equivalence is a property of filters, not of subspaces. The subspace
+constructed by Gowers in \cite{FWII} is intimate and has the least covering
+number compatible with that.
+
+\begin{theorem}\label{thm:gowerschi}
+Let $X$ be the intimate subspace of \cite{FWII}, Theorem 4.2. Then
+$\chi(X)=3$. Consequently $X$ belongs to no diagonalizable pluf.
+\end{theorem}
+
+\begin{proof}
+Write the coordinates in pairs $P_i=\{2i-1,2i\}$, $i\ge1$. By \cite{FWII},
+Remark 4.4 the membership condition for $X$ is that the sequence of pair sums
+$s_i=x_{2i-1}+x_{2i}$ be orthogonal to every $u_n$, and by \cite{FWII},
+Remark 4.7 the orthogonal complement of $\{u_n\}$ is the line spanned by
+$w=(1,\tfrac12,\tfrac13,\dots)$. So $x\in X$ if and only if $s=cw$ for some
+scalar $c$.
+
+We first identify $\cI(X)$. If $S\supseteq P_i$ for some $i$, then
+$e_{2i-1}-e_{2i}\in X\wedge\ell^2(S)$, so $S\in\cD(X)$. If $S$ meets every
+$P_i$ in exactly one point $a_i$, the vector with $x_{a_i}=1/i$ has pair sums
+$s_i=1/i$, hence lies in $X\wedge\ell^2(S)$, so again $S\in\cD(X)$. If $S$
+contains no $P_i$ and misses some $P_j$ entirely, then any
+$x\in X\wedge\ell^2(S)$ has $s_j=0$, forcing $c=0$ and $s\equiv0$; then for
+each $i$ the two coordinates of $P_i$ sum to zero while at most one of them is
+nonzero, so both vanish, and $x=0$. Hence
+\[
+\cI(X)=\{S:\ S\text{ contains no }P_i\text{ and misses some }P_j\}.
+\]
+
+Now $\chi(X)\ge3$ by Proposition~\ref{prop:intimatechi}, $X$ being intimate.
+For the upper bound, take
+\[
+S=\{1,6\}\cup\{n\ \text{odd}:n\ge7\},\quad
+T=\{2,3\}\cup\{n\ \text{even}:n\ge8\},\quad
+V=\{4,5\}.
+\]
+These cover $\N$. None contains a complete pair --- each meets $P_i$ in at most
+one point --- and each misses one entirely: $S$ misses $P_2$, $T$ misses $P_3$,
+and $V$ misses $P_1$. So all three lie in $\cI(X)$ and $\chi(X)\le3$. The last
+claim is Proposition~\ref{prop:collapse}.
+\end{proof}
+
+\begin{proposition}\label{prop:blocker}
+Let $\cU$ be a non-selective ultrafilter on $\N$ and let $R$ be an addable
+blocker in the sense of \cite{FWII}, \S3: a closed subspace with
+$\dim(R\wedge\ell^2(S))=\infty$ for every $S\in\cU$. Then $\chi(R)=\infty$.
+\end{proposition}
+
+\begin{proof}
+Each $S\in\cU$ has $R\wedge\ell^2(S)\neq0$, so $\cU\subseteq\cD(R)$; apply
+Theorem~\ref{thm:covering}.
+\end{proof}
+
+This is a fourth constraint on the rigidity conjecture of \cite{FWII},
+independent of the three proved in \cite{FWIV}, \S6: those bound the dimension
+of a blocker on finitely many pieces, place its total support in $\cU$, and
+force infinite piece-spread inside every measure-one block, while
+Proposition~\ref{prop:blocker} forbids finite covers of $\N$ by sets disjoint
+from $R$.
+
+\section{Questions}\label{sec:questions}
+
+\begin{question}\label{q:mainopen}
+Characterize the support families of closed subspaces of $\ell^2$ of infinite
+rank.
+\end{question}
+
+\begin{question}\label{q:S2infinite}
+Does $\F(M)$ satisfy scrawl elimination \textup{(S2)} when the deleted set is
+infinite?
+\end{question}
+
+\begin{question}\label{q:coeff}
+For a Blaschke product $\Theta$, which subsets of $\N_0$ occur as
+$\{n:\hat f(n)\neq0\}$ for $f\in K_\Theta$? Does $K_\Theta$ contain a nonzero
+function with infinitely many vanishing Taylor coefficients? By
+Proposition~\ref{prop:partitionregular}, $K_\Theta$ is diagonally consistent
+exactly when its family of nonzero coefficient supports is partition regular,
+so this question decides whether $K_\Theta$ can sit in a pluf with ultrafilter
+trace.
+\end{question}
+
+\begin{question}\label{q:spectrum}
+Which values does $\chi(M)$ take, and how is it computed? Edmonds' formula
+governs finite ground sets; Theorem~\ref{thm:gowerschi} exhibits the value $3$
+on an infinite-rank example.
+\end{question}
+
+\begin{question}\label{q:traces}
+Which filters on $\N$ arise as traces of plufs? By \cite{FWII}, Theorem 3.4 the
+block filter of $\cU$ is itself maximal exactly for selective $\cU$; the
+present question asks for the traces of arbitrary plufs.
+\end{question}
+
+\begin{question}\label{q:realcomplex}
+Theorem~\ref{thm:finiterank} is a statement about $\C$-representability. Which
+support families of closed subspaces of the real $\ell^2$ arise, and where do
+the two classifications differ?
+\end{question}
+
+\begin{question}\label{q:otherblocks}
+Replace the diagonal masa by another maximal Boolean subalgebra of
+$\PP(\ell^2)$. For the continuous masa the analogous question is the one posed
+in \cite{FWII}, \S6.
+\end{question}
+
+\subsection*{Formal verification}
+Sections~\ref{sec:unions}, \ref{sec:elimination}, \ref{sec:lattice} and
+\ref{sec:series} have been formalized and machine-checked in Lean~4 with
+Mathlib (toolchain v4.28.0), extending the development that accompanies
+\cite{FWI,FWII,FWIII,FWIV}: Lemma~\ref{lem:finiteunion},
+Proposition~\ref{prop:countableunion} with its recursion on frozen minima,
+Corollary~\ref{cor:arbunion} and Proposition~\ref{prop:elimination}, whose
+independence of minimality the mechanization established;
+Lemma~\ref{lem:meetnonzero}, both halves of Proposition~\ref{prop:trace},
+Proposition~\ref{prop:consistentiff} and Theorem~\ref{thm:covering}; and all
+of Section~\ref{sec:series} --- Propositions~\ref{prop:intimatechi},
+\ref{prop:collapse} and \ref{prop:blocker}, Corollary~\ref{cor:collapse}, and
+Theorem~\ref{thm:gowerschi} with the three-cover displayed above. The
+artifacts compile with no unproved obligations, and every statement's axiom
+footprint is exactly \texttt{propext}, \texttt{Classical.choice},
+\texttt{Quot.sound}.
+
+The mechanization is carried out over $\R$, which the conventions of
+Section~\ref{sec:intro} license: no item required a property of the scalars
+beyond uncountability of the field, used once, in the counting step behind
+Lemma~\ref{lem:finiteunion} and Proposition~\ref{prop:countableunion}.
+
+Sections~\ref{sec:matroids}--\ref{sec:infinite} are covered as well.
+Mathlib's matroid API has no constructor building a matroid from a circuit
+family, and no scrawls, cofinitary duals or representability; the
+mechanization therefore defines circuit families, independence, the maximality
+axiom and scrawl families directly, in terms of families of subsets of $\N$,
+and imports nothing from that API. Against those definitions:
+Theorem~\ref{thm:S1S2} in both clauses; Theorem~\ref{thm:finiterank},
+conditional on Theorem~\ref{thm:ABFGGV}, which is supplied as a named
+hypothesis about the support families of finite-dimensional subspaces of
+$\R^{\N}$ and never discharged --- the transfer between those and the support
+families of finite-rank closed subspaces of $\ell^2$, in both directions, is
+proved, the realization being by a diagonal rescaling with nonvanishing
+entries; Lemma~\ref{lem:expzeros}, for which a counting form of Rolle's
+theorem was built, Mathlib having none; and Example~\ref{ex:modelspace} and
+the conditional consequence drawn from it, in the strengthened form recorded
+in Section~\ref{sec:infinite}: the mechanized argument uses only the antichain
+axiom.
+
+What remains outside the development is what should: Theorem~\ref{thm:ABFGGV},
+which is a theorem of the literature, and Question~\ref{q:coeff}, which is
+open.
+
+\subsection*{Acknowledgements}
+Portions of these results were developed in the course of an extended dialogue
+with Anthropic's Claude language model; responsibility for correctness rests
+with the author.
+
+\begin{thebibliography}{ABFGGV}
+
+\bibitem[AB15]{AB15}
+S.~H. Afzali Borujeni and N.~Bowler,
+\emph{Thin sums matroids and duality},
+Adv. Math. \textbf{271} (2015), 1--29.
+
+\bibitem[ABFGGV]{ABFGGV}
+F.~Aroca, L.~Bossinger, S.~Falkensteiner, C.~Garay L\'opez,
+L.~R. Gonz\'alez-Ram\'irez and C.~V. Valencia Negrete,
+\emph{Infinite matroids in tropical differential algebra},
+Canad. Math. Bull.; \texttt{arXiv:2305.04784}.
+
+\bibitem[BC18]{BC18}
+N.~Bowler and J.~Carmesin,
+\emph{An excluded minors method for infinite matroids},
+J. Combin. Theory Ser. B \textbf{128} (2018), 104--113.
+
+\bibitem[BDKPW13]{BDKPW13}
+H.~Bruhn, R.~Diestel, M.~Kriesell, R.~Pendavingh and P.~Wollan,
+\emph{Axioms for infinite matroids},
+Adv. Math. \textbf{239} (2013), 18--46.
+
+\bibitem[E65]{E65}
+J.~Edmonds,
+\emph{Minimum partition of a matroid into independent subsets},
+J. Res. Nat. Bur. Standards Sect.~B \textbf{69B} (1965), 67--72.
+
+\bibitem[FWI]{FWI}
+D.~V. Feldman and A.~Wilce, \emph{Ultrafilter limits in the projection lattice
+of a Hilbert space}, preprint (paper I of this series).
+
+\bibitem[FWII]{FWII}
+D.~V. Feldman and A.~Wilce, \emph{Intimate subspaces, block filters, and the
+diagonalization of maximal projection filters}, preprint (paper II).
+
+\bibitem[FWIII]{FWIII}
+D.~V. Feldman and A.~Wilce, \emph{Projection-lattice ultrafilters at a
+measurable cardinal}, preprint (paper III).
+
+\bibitem[FWIV]{FWIV}
+D.~V. Feldman and A.~Wilce, \emph{Exact paving for Fubini products of normal
+measures, with an application to maximal projection filters}, preprint
+(paper IV).
+
+\bibitem[GMR16]{GMR16}
+S.~R. Garcia, J.~Mashreghi and W.~T. Ross,
+\emph{Introduction to Model Spaces and their Operators},
+Cambridge Univ. Press, 2016.
+
+\bibitem[K83]{K83}
+G.~Kalmbach, \emph{Orthomodular Lattices},
+London Math. Soc. Monographs \textbf{18}, Academic Press, 1983.
+
+\bibitem[MNW14]{MNW14}
+D.~Mayhew, M.~Newman and G.~Whittle,
+\emph{Is the missing axiom of matroid theory lost forever?},
+Quart. J. Math. \textbf{65} (2014), 1397--1415.
+
+\bibitem[Ox11]{Ox11}
+J.~Oxley, \emph{Matroid Theory}, 2nd ed., Oxford Univ. Press, 2011.
+
+\bibitem[S87]{S87}
+B.~Sturmfels,
+\emph{On the decidability of Diophantine problems in combinatorial geometry},
+Bull. Amer. Math. Soc. \textbf{17} (1987), 121--124.
+
+\bibitem[V78]{V78}
+P.~V\'amos,
+\emph{The missing axiom of matroid theory is lost forever},
+J. London Math. Soc. \textbf{18} (1978), 403--408.
+
+\end{thebibliography}
+
+\end{document}
